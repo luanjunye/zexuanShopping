@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/activity/activity",
+    "pages/shoppingcart/shoppingcart",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "屈蜂堂官方商城",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar":{
+        "color": "#9a9a9a",
+        "selectedColor": "#666",
+        "backgroundColor": "#fff",
+        "borderStyle": "black",
+        "list":[{
+          "pagePath": "pages/index/index",
+          "text": "首页",
+          "iconPath": "assets/shangcheng.png",
+          "selectedIconPath": "assets/shangcheng.png"
+        },
+        {
+          "pagePath": "pages/activity/activity",
+          "text": "活动",
+          "iconPath": "assets/activity.jpg",
+          "selectedIconPath": "assets/activity.jpg"
+        },
+        {
+          "pagePath": "pages/shoppingcart/shoppingcart",
+          "text": "购物车",
+          "iconPath": "assets/gouwuche.png",
+          "selectedIconPath": "assets/gouwuche.png"
+        },
+        {
+          "pagePath": "pages/mine/mine",
+          "text": "个人中心",
+          "iconPath": "assets/mine.png",
+          "selectedIconPath": "assets/mine.png"
+        }]
+  },
+  "usingComponents": {
+    "navBar": "/components/navBar/navBar"
+  },
+  "sitemapLocation": "sitemap.json"
+}

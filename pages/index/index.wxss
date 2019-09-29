@@ -1,0 +1,153 @@
+/**index.wxss**/
+
+/* 自定义导航栏开始 */
+
+/* .custom {
+  position: fixed;
+  width: 90%;
+  display: flex;
+  top: 0;
+  left: 10px;
+  height: 45px;
+  background: #c00;
+  z-index: 999;
+  background: #fff;
+}
+
+.navInput {
+  float: left;
+  margin-top: 16rpx;
+  width: 480rpx;
+  height: 58rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-left: 60rpx;
+  background: #eee;
+  border-radius: 40rpx;
+  position: relative;
+}
+
+.navInput image {
+  justify-content: center;
+  position: absolute;
+  left: 12rpx;
+  top: 13rpx;
+  width: 27rpx;
+  height: 27rpx;
+}
+
+.navInput input {
+  width: 100%;
+  height: 58rpx;
+  background: #eee;
+  font-size: 22rpx;
+}
+
+.custom text {
+  display: inline-block;
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: 500;
+  max-width: 280rpx;
+}
+
+.empty_custom {
+  height: 0px;
+  width: 100%;
+} */
+
+.navbar{
+    position: relative
+}
+.back-icon, .home-icon{
+    width: 28px;
+    height: 100%;
+    position: absolute;    
+    transform: translateY(-50%);    
+    top: 50%;    
+    display: flex;
+    }
+.back-icon{    
+    left: 16px;
+}
+.home-icon{    
+    left: 44px
+}
+.back-icon image{    
+    width: 28px;    
+    height: 28px;    
+    margin: auto;
+}
+.home-icon image{    
+    width: 20px;    
+    height: 20px;    
+    margin: auto;
+}
+.nav-title, .nav-icon{    
+    position: absolute;    
+    transform: translate(-50%, -50%);    
+    left: 50%;    
+    top: 50%;    
+    font-size: 0;    
+    font-weight: bold;
+}
+
+
+/* 自定义导航栏结束 */
+
+/* banner开始 */
+
+.banner-wrap {
+  padding-top: 20rpx;
+  /* display 显示类型 flex 弹性布局*/
+  display: flex;
+  /* justify-content 内容对其方式 center 和主轴横向居中对齐 */
+  justify-content: center;
+  background: #fff;
+}
+
+.banner image {
+  width: 100%;
+  height: 290rpx;
+}
+
+.banner {
+  width: 700rpx;
+  height: 290rpx;
+}
+
+/* banner 结束 */
+
+/* 快捷频道 开始 */
+.menu{
+  display: flex;
+  height:175rpx;
+  flex-flow:row nowrap;
+  align-items:center;
+  /* space-between 间距等分 首尾到头 */
+  justify-content:space-around;
+  background-color:#fff;
+}
+.menu .item{
+  flex: 1;
+  display: block;
+  padding: 20rpx 0;
+}
+
+.menu image {
+  display: block;
+  width: 58rpx;
+  height: 58rpx;
+  margin: 0 auto;
+  margin-bottom: 12rpx;
+}
+
+.menu text {
+  display: block;
+  font-size: 22rpx;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1;
+  padding-top: 3rpx;
+  color: #666;
+}

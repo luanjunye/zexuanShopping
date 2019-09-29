@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<!-- 顶部搜索框 -->
+<!-- <view class="custom flex_center" style="padding-top:{{statusBarHeight}}px">
+  <view class='navInput' bindtap="toSearch">
+    <image src='assets/search.png'></image>
+    <input placeholder='搜索你想要的内容' placeholder-class='none' placeholder-style='color:#b3b3b3;font-size:22rpx;'></input>
+  </view>
+</view>
+<view class="empty_custom" style="padding-top:{{statusBarHeight}}px"></view> -->
+
+<navBar title-text="自定义导航栏" back-icon="/pages/index/assets/back@3x.png" home-icon="/pages/index/assets/search.png" background="#f2f2f2" bindback="back" />
+<!-- banner轮播图 -->
+<view class="banner-wrap">
+  <!-- indicator-dots是否显示面板指示点 autoplay 是否自动切换 interval自动切换的间隔 duration切换的时间长短 circular是否衔接切换 -->
+  <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true" indicator-color="#e0e0e0" indicator-active-color="#fff">
+    <swiper-item wx:for="{{banner}}" wx:for-item="item" wx:key="{{item.id}}">
+      <image src="{{item.url}}" background-size="cover" mode="aspectFit" bindtap="handleClick"></image>
+    </swiper-item>
+  </swiper>
+</view>
+<!-- 快捷频道图标 -->
+<view class="menu">
+  <view class="categoryIndex" wx:for="{{categoryIndex}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+    <image src="{{item.icn}}" background-size="cover" data-value="{{item}}"></image>
+    <text>{{item.name}}</text>
+  </view>
+</view>
