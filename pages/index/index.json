@@ -1,4 +1,6 @@
 {
   "navigationStyle":"custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "product-big": "/components/product-big/product-big"
+  }
 }
