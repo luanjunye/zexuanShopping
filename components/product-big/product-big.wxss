@@ -5,7 +5,7 @@
 }
 
 .product-big .img {
-  width: 320rpx;
+  width: 340rpx;
   height: 320rpx;
   border: 1px solid #f0f0f0;
   border-radius: 0.2rem;
@@ -37,12 +37,40 @@
   white-space: nowrap;
 }
 
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rpx 10rpx 5rpx 20rpx;
+}
+
+.content .contents {
+  display: flex;
+  align-items: flex-end;
+}
+
 .product-big .price {
+  /* display:block换行显示 */
   display: block;
-  padding: 0rpx 10rpx 10rpx 20rpx;
   font-size: 24rpx;
-  color: #d44d44;
+  color: #FFA42F;
   font-weight: 700;
+}
+
+.product-big .number {
+  padding-left: 10rpx;
+  padding-bottom: 5rpx;
+  font-size: 15rpx;
+  color: #7f7f7f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-big .place {
+  font-size: 15rpx;
+  padding-left: 90rpx;
+  padding-bottom: 5rpx;
+  color: #7f7f7f;
 }
 
 .product-big .tag {
@@ -50,4 +78,30 @@
   position: absolute;
   top: 10rpx;
   left: 15rpx;
+}
+
+.product-big .label{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-big .label .free{
+  font-size: 15rpx;
+  color:#FFA42F;
+  font-weight: 700;
+  margin-right: 26rpx;
+  margin-bottom: 15rpx;
+  padding: 5rpx;
+  border:1rpx solid #FFA42F;
+  border-radius: 10%;
+}
+
+.product-big .titleLabel{
+  display: flex;
+  align-items: flex-end;
+}
+
+.product-big .titleLabel .tlabel{
+  padding-left: 20rpx;
+  padding-bottom: 5rpx;
 }

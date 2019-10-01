@@ -56,42 +56,47 @@
   width: 100%;
 } */
 
-.navbar{
-    position: relative
-}
-.back-icon, .home-icon{
-    width: 28px;
-    height: 100%;
-    position: absolute;    
-    transform: translateY(-50%);    
-    top: 50%;    
-    display: flex;
-    }
-.back-icon{    
-    left: 16px;
-}
-.home-icon{    
-    left: 44px
-}
-.back-icon image{    
-    width: 28px;    
-    height: 28px;    
-    margin: auto;
-}
-.home-icon image{    
-    width: 20px;    
-    height: 20px;    
-    margin: auto;
-}
-.nav-title, .nav-icon{    
-    position: absolute;    
-    transform: translate(-50%, -50%);    
-    left: 50%;    
-    top: 50%;    
-    font-size: 0;    
-    font-weight: bold;
+.navbar {
+  position: relative;
 }
 
+.back-icon, .home-icon {
+  width: 28px;
+  height: 100%;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  display: flex;
+}
+
+.back-icon {
+  left: 16px;
+}
+
+.home-icon {
+  left: 44px;
+}
+
+.back-icon image {
+  width: 28px;
+  height: 28px;
+  margin: auto;
+}
+
+.home-icon image {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.nav-title, .nav-icon {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  font-size: 0;
+  font-weight: bold;
+}
 
 /* 自定义导航栏结束 */
 
@@ -119,16 +124,24 @@
 /* banner 结束 */
 
 /* 快捷频道 开始 */
-.menu{
-  display: flex;
-  height:175rpx;
-  flex-flow:row nowrap;
-  align-items:center;
-  /* space-between 间距等分 首尾到头 */
-  justify-content:space-around;
-  background-color:#fff;
+
+.space {
+  height: 10rpx;
+  width: 100%;
+  background: #f5f6f7;
 }
-.menu .item{
+
+.menu {
+  display: flex;
+  height: 140rpx;
+  flex-flow: row nowrap;
+  align-items: center;
+  /* space-between 间距等分 首尾到头 */
+  justify-content: space-around;
+  background-color: #fff;
+}
+
+.menu .item {
   flex: 1;
   display: block;
   padding: 20rpx 0;
@@ -151,21 +164,28 @@
   padding-top: 3rpx;
   color: #666;
 }
+
+/* 快捷频道结束 */
+
 /* 快捷频道点击后对应的商品开始 */
-.detailed {
-  background: #fff;
-  color: #333;
-  margin-top: 20rpx;
-}
-.pick .pick-wrap {
+
+.pick {
   display: flex;
+  /* flex-wrap 换行 */
   flex-wrap: wrap;
-  padding: 20rpx 15rpx 30rpx 40rpx;
+  position: relative;
+  background: #f5f6f7;
+  padding: 0rpx 15rpx 30rpx 40rpx;
 }
 
-.pick-wrap .details {
+.pick .details {
   width: 320rpx;
-  margin-top: 25rpx;
-  margin-right: 25rpx;
+  height: auto;
+  /* overflow图片使用自定义样式 */
+  overflow: hidden;
+  margin-top: 20rpx;
+  margin-right: 29rpx;
+  background: #fff;
 }
+
 /* 快捷频道点击后对应的商品结束 */

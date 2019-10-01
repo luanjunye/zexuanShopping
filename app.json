@@ -47,7 +47,8 @@
     ]
   },
   "usingComponents": {
-    "navBar": "/components/navBar/navBar"
+    "navBar": "/components/navBar/navBar",
+    "van-tag": "lib/vant-weapp/tag/index"
   },
   "sitemapLocation": "sitemap.json"
 }

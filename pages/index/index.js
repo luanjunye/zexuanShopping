@@ -11,49 +11,11 @@ Page({
     // statusBarHeight: app.globalData.statusBarHeight,
     banner: [],
     categoryIndex: [],
-    details: [{
-      list: [{
-          id: 1,
-          relateId: 0,
-          title: "坚果 Pro",
-          description: "漂亮得不像实力派",
-          price: 1299.00,
-          type: 0,
-          picUrl: "https://resource.smartisan.com/resource/3bd5267edd7257e719e7965b756e2c2e.png",
-          tag: "满减"
-        },
-        {
-          id: 2,
-          relateId: 0,
-          title: "半入耳式耳机 心动版",
-          description: "哑光表面、专业级调音",
-          price: 99.00,
-          type: 0,
-          picUrl: "https://resource.smartisan.com/resource/90be7779c2454407ee5f4b6184c929ed.jpg"
-        },
-        {
-          id: 3,
-          relateId: 0,
-          title: "坚果 Pro 2 软胶保护套",
-          description: "TPU 环保材质、完美贴合",
-          price: 49.00,
-          type: 0,
-          picUrl: "https://resource.smartisan.com/resource/ca332140775bb0646f65e516942d3adc.jpg"
-        },
-        {
-          id: 4,
-          relateId: 0,
-          title: "Smartisan 半入耳式耳机",
-          description: "经典配色、专业调音、高品质麦克风",
-          price: 59.00,
-          type: 0,
-          picUrl: "https://resource.smartisan.com/resource/8a875418797690e26b665cc0d86dffc7.jpg"
-        }
-      ]
-    }]
+    details: []
   },
   onLoad: function(options) {
     this.getIndexData();
+    //console.log(this.details)
   },
   getIndexData: function() {
     let that = this;
@@ -67,7 +29,101 @@ Page({
     util.request(api.IndexUrlQuick, "GET").then(function(res) {
       if (res.retCode == 0) {
         data.categoryIndex = res.retData.categoryIndex
+        data.details = [{
+            id: 1,
+            label: "自营",
+            relateId: 0,
+            title: "煲汤材料炖汤清补",
+            description: "漂亮得不像实力派",
+            price: 59.9,
+            number: "365人付款",
+            place: "广州",
+            free: "包邮",
+            type: 0,
+            picUrl: "/pages/index/assets/tang.png",
+            tag: "满减"
+          },
+          {
+            id: 2,
+            label: "自营",
+            relateId: 0,
+            title: "煲汤材料炖汤清补",
+            description: "哑光表面、专业级调音",
+            price: 59.9,
+            number: "365人付款",
+            place: "广州",
+            free: "包邮",
+            type: 0,
+            picUrl: "/pages/index/assets/tang.png"
+          },
+          {
+            id: 3,
+            label: "自营",
+            relateId: 0,
+            title: "煲汤材料炖汤清补",
+            description: "TPU 环保材质、完美贴合",
+            price: 59.9,
+            number: "365人付款",
+            place: "广州",
+            free: "包邮",
+            type: 0,
+            picUrl: "/pages/index/assets/tang.png"
+          },
+          {
+            id: 4,
+            label: "自营",
+            relateId: 0,
+            title: "煲汤材料炖汤清补",
+            description: "经典配色、专业调音、高品质麦克风",
+            price: 59.9,
+            number: "365人付款",
+            place: "广州",
+            free: "包邮",
+            type: 0,
+            picUrl: "/pages/index/assets/tang.png"
+          },
+          {
+            id: 5,
+            label: "自营",
+            relateId: 0,
+            title: "煲汤材料炖汤清补",
+            description: "经典配色、专业调音、高品质麦克风",
+            price: 59.9,
+            number: "365人付款",
+            place: "广州",
+            free: "包邮",
+            type: 0,
+            picUrl: "/pages/index/assets/tang.png"
+          },
+          {
+            id: 6,
+            label: "自营",
+            relateId: 0,
+            title: "煲汤材料炖汤清补",
+            description: "经典配色、专业调音、高品质麦克风",
+            price: 59.9,
+            number: "365人付款",
+            place: "广州",
+            free: "包邮",
+            type: 0,
+            picUrl: "/pages/index/assets/tang.png"
+          },
+          {
+            id: 7,
+            label: "自营",
+            relateId: 0,
+            title: "煲汤材料炖汤清补",
+            description: "经典配色、专业调音、高品质麦克风",
+            price: 59.9,
+            number: "365人付款",
+            place: "广州",
+            free: "包邮",
+            type: 0,
+            picUrl: "/pages/index/assets/tang.png"
+          }
+        ]
         that.setData(data);
+        console.log(data)
       }
     });
   }

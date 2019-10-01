@@ -19,6 +19,7 @@
   </swiper>
 </view>
 <!-- 快捷频道图标 -->
+<view class="space"/>
 <view class="menu">
   <view class="categoryIndex" wx:for="{{categoryIndex}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
     <image src="{{item.icn}}" background-size="cover" data-value="{{item}}"></image>
@@ -26,10 +27,9 @@
   </view>
 </view>
 <!-- 快捷频道点击后所对应的产品 -->
-<view class="detailed pick">
-  <view class="pick-wrap">
-    <view class="details" wx:for="{{details.list}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="handleClick">
-      <product-big data="{{item}}"/>
+
+  <view class="pick">
+    <view class="details" wx:for="{{details}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="handleClick">
+     <product-big data="{{item}}"/>
     </view>
   </view>
-</view>
