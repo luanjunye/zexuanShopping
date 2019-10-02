@@ -1,5 +1,5 @@
 .navbar{
-    position: relative
+    position: relative;
 }
 .back-icon, .home-icon{
     width: 28px;
@@ -32,4 +32,34 @@
     top: 50%;
     font-size: 0;
     font-weight: bold;
+}
+
+.search{
+  position: absolute;
+  display: flex;
+  transform: translate(-70%, -50%);
+  left: 54%;
+  top: 50%;
+  width: 60%;
+  height: 70%;
+  background: #EEEEEF;
+  border: 1px solid #EEEEEF;
+  border-radius: 30pt;
+  justify-content: center;
+}
+
+.search .search-icon{
+ margin-right: auto;
+padding-top: 17rpx;
+ margin-bottom: auto;
+ margin-left: 90rpx;
+  width: 18px;
+    height: 16px;
+    /* margin: auto; */
+}
+
+.search .search-input{
+  margin-left: 10rpx;
+  font-size: 30rpx;
+  padding-top: 10rpx;
 }

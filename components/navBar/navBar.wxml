@@ -1,7 +1,7 @@
 <view class='nav' style='height: {{status + navHeight}}px'>
     <view class='status' style='height: {{status}}px;{{containerStyle}}'></view>
     <view class='navbar' style='height:{{navHeight}}px;{{containerStyle}}'>
-        <view class='back-icon' wx:if="{{backIcon}}" bindtap='back'>
+        <!-- <view class='back-icon' wx:if="{{backIcon}}" bindtap='back'>
             <image src='{{backIcon}}'></image>
         </view>
         <view class='home-icon' wx:if="{{homeIcon}}" bindtap='home'>
@@ -12,6 +12,10 @@
         </view>
         <view class='nav-title' wx:if="{{titleText && !titleImg}}">
             <text style='{{textStyle}}'>{{titleText}}</text>
+        </view> -->
+        <view class="search">
+          <image class="search-icon" src="/pages/index/assets/search.png"/>
+          <input class="search-input" placeholder="搜索你要的商品"></input>
         </view>
     </view>
 </view>
