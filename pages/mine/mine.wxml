@@ -1,2 +1,14 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<view class="ucenter">
+  <image class="background" src="/pages/mine/assets/top.png" bindload="imageLoad" data-index="{{ 0 }}" style="width:{{ images[0].width }}rpx; height:{{ images[0].height }}rpx;"></image>
+  <view class="top" bindtap="toLogin">
+    <!-- userInfo.avatarUrl -->
+    <image class="avatar" src="/pages/mine/assets/avatar.png"></image>
+    <view class="info">
+      <text class="name">Muse</text>
+    </view>
+    <view class="icon">
+      <image class="set" src="/pages/mine/assets/set.png"></image>
+    </view>
+  </view>
+</view>

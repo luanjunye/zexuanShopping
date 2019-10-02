@@ -1,1 +1,44 @@
 /* pages/mine/mine.wxss */
+
+.ucenter {
+  padding-bottom: 30rpx;
+}
+
+.ucenter .background {
+  display: flex;
+  z-index: -1;
+  position: absolute;
+}
+
+.top {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 32rpx;
+  padding-top: 32rpx;
+  align-items: center;
+}
+
+.top .avatar {
+  height: 148rpx;
+  width: 148rpx;
+  border-radius: 50%;
+}
+
+.top .info {
+  padding-left: 30rpx;
+}
+
+.top .info .name {
+  text-align: 45rpx;
+  color: #fff;
+}
+
+.top .icon {
+  padding-left: 370rpx;
+  margin-top: 13rpx;
+}
+
+.top .icon .set {
+  width: 60rpx;
+  height: 60rpx;
+}
