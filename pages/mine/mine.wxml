@@ -1,14 +1,97 @@
 <!--pages/mine/mine.wxml-->
 <view class="ucenter">
+  <!-- 头部开始 -->
+
   <image class="background" src="/pages/mine/assets/top.png" bindload="imageLoad" data-index="{{ 0 }}" style="width:{{ images[0].width }}rpx; height:{{ images[0].height }}rpx;"></image>
+
   <view class="top" bindtap="toLogin">
-    <!-- userInfo.avatarUrl -->
     <image class="avatar" src="/pages/mine/assets/avatar.png"></image>
     <view class="info">
       <text class="name">Muse</text>
-    </view>
-    <view class="icon">
       <image class="set" src="/pages/mine/assets/set.png"></image>
     </view>
   </view>
+
+  <!-- 头部结束 -->
+
+  <!-- 我的订单开始 -->
+
+  <view class="order">
+    <view class="myOrder">
+      <text class="title">我的订单</text>
+      <image class="icon" src="/pages/mine/assets/forward.png"></image>
+    </view>
+    <view class="line"></view>
+    <view class="myStatus">
+      <view class="status" wx:for="{{status}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+        <badge count="{{item.content}}">
+          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="iconLoad" data-index="{{ index }}" style="width:{{ icons[index].width }}rpx; height:{{ icons[index].height }}rpx;"></image>
+        </badge>
+        <text class="text">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 我的订单结束 -->
+
+  <view class="wallet_score">
+
+    <!-- 我的钱包开始 -->
+
+    <view class="wallet">
+      <view class="title">
+        <view class="main">我的钱包</view>
+        <view class="title_vice">
+          <view class="vice">立即充值</view>
+          <image class="icon" src="/pages/mine/assets/forward.png"></image>
+        </view>
+      </view>
+      <view class="value">
+        <view class="key">¥</view>
+        <view class="number">0</view>
+      </view>
+    </view>
+
+    <!-- 我的钱包结束 -->
+
+    <!-- 我的积分开始 -->
+
+    <view class="score">
+      <view class="title">
+        <view class="main">我的积分</view>
+        <view class="title_vice">
+          <view class="vice">立即查看</view>
+          <image class="icon" src="/pages/mine/assets/forward.png"></image>
+        </view>
+      </view>
+      <view class="value">
+        <view class="number">0</view>
+        <view class="key">人</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的积分结束 -->
+
+  <!-- 其他功能开始 -->
+
+  <view class="other">
+    <view class="other_info">
+      <view class="myStatus">
+        <view class="status" wx:for="{{others_first}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="otherfLoad" data-index="{{ index }}" style="width:{{ other_f[index].width }}rpx; height:{{ other_f[index].height }}rpx;"></image>
+          <text class="text">{{item.title}}</text>
+        </view>
+      </view>
+      <view class="myStatus">
+        <view class="status" wx:for="{{others_second}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="othersLoad" data-index="{{ index }}" style="width:{{ other_s[index].width }}rpx; height:{{ other_s[index].height }}rpx;"></image>
+          <text class="text">{{item.title}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
+
+<!-- 其他功能结束 -->

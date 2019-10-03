@@ -49,7 +49,8 @@
   },
   "usingComponents": {
     "navBar": "/components/navBar/navBar",
-    "van-tag": "lib/vant-weapp/tag/index"
+    "van-tag": "lib/vant-weapp/tag/index",
+    "badge":"lib/wux-weapp/badge/index"
   },
   "sitemapLocation": "sitemap.json"
 }

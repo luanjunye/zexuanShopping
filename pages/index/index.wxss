@@ -134,6 +134,7 @@
 .menu {
   display: flex;
   height: 140rpx;
+  /* flex-flow: row nowrap;从左开始 默认不换行 */
   flex-flow: row nowrap;
   align-items: center;
   /* space-between 间距等分 首尾到头 */
@@ -173,6 +174,7 @@
   display: flex;
   /* flex-wrap 换行 */
   flex-wrap: wrap;
+  /* 相对定位 */
   position: relative;
   background: #f5f6f7;
   padding: 0rpx 15rpx 30rpx 40rpx;

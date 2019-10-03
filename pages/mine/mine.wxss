@@ -1,10 +1,23 @@
 /* pages/mine/mine.wxss */
 
+/* 整体布局开始 */
+
 .ucenter {
-  padding-bottom: 30rpx;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 110rpx;
+  background: #f7f7f7;
+  position: absolute;
+  z-index: -2;
+  display: flex;
+  flex-direction: column;
 }
 
-.ucenter .background {
+/* 整体布局结束 */
+
+/* 头部布局开始 */
+
+.background {
   display: flex;
   z-index: -1;
   position: absolute;
@@ -12,33 +25,174 @@
 
 .top {
   display: flex;
-  justify-content: flex-start;
-  padding-left: 32rpx;
-  padding-top: 32rpx;
+  justify-content: space-between;
+  padding: 32rpx;
   align-items: center;
 }
 
 .top .avatar {
-  height: 148rpx;
-  width: 148rpx;
+  height: 120rpx;
+  width: 120rpx;
   border-radius: 50%;
 }
 
 .top .info {
-  padding-left: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .top .info .name {
+  padding-left: 30rpx;
   text-align: 45rpx;
   color: #fff;
 }
 
-.top .icon {
+.top .info .set {
   padding-left: 370rpx;
   margin-top: 13rpx;
-}
-
-.top .icon .set {
   width: 60rpx;
   height: 60rpx;
 }
+
+/* 头部布局结束 */
+
+/* 我的订单布局开始 */
+
+.order {
+  background: #fff;
+  margin: 80rpx 30rpx 20rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.order .myOrder {
+  align-items: center;
+  display: flex;
+  padding: 20rpx;
+  justify-content: space-between;
+}
+
+.order .myOrder .title {
+  color: #666;
+}
+
+.icon {
+  height: 20rpx;
+  width: 15rpx;
+}
+
+.order .line {
+  background: #ececec;
+  height: 1rpx;
+  width: 100%;
+}
+
+.myStatus {
+  height: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.myStatus .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 120rpx;
+}
+
+.myStatus .status .text {
+  font-size: 24rpx;
+  color: #666;
+  padding-top: 15rpx;
+}
+
+/* 我的订单布局结束 */
+
+/* 我的钱包积分布局开始 */
+
+.wallet_score {
+  margin: 0rpx 30rpx 15rpx 30rpx;
+  display: flex;
+}
+
+.wallet {
+  width: 50%;
+  margin-right: 10rpx;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title .main {
+  color: #666;
+}
+
+.title .title_vice {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5rpx;
+}
+
+.title .title_vice .vice {
+  display: flex;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.value {
+  background: #fff;
+  height: 120rpx;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.value .key {
+  font-size: 30rpx;
+  color: #ffa42f;
+  margin-bottom: 10rpx;
+  margin-right: 5rpx;
+}
+
+.value .number {
+  font-size: 50rpx;
+  color: #ffa42f;
+  margin-right: 5rpx;
+}
+
+.score {
+  width: 50%;
+  margin-left: 10rpx;
+  background: #fff;
+  border-radius: 5px;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 我的钱包积分布局结束 */
+
+/* 其他功能布局开始 */
+
+.other{
+  background: #fff;
+  margin: 10rpx 30rpx 0rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+/* 其他功能布局结束 */
