@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/mine/mine",
+    "pages/shoppingcart/shoppingcart",
     "pages/index/index",
     "pages/logs/logs",
     "pages/activity/activity",
-    "pages/shoppingcart/shoppingcart",
+   
     
     "pages/product/product"
   ],
@@ -50,7 +51,13 @@
   "usingComponents": {
     "navBar": "/components/navBar/navBar",
     "van-tag": "lib/vant-weapp/tag/index",
-    "badge":"lib/wux-weapp/badge/index"
+    "badge":"lib/wux-weapp/badge/index",
+    "i-swipeout": "lib/iview-weapp/swipeout/index",
+    "van-checkbox": "lib/vant-weapp/checkbox/index",
+    "van-icon": "lib/vant-weapp/icon/index",
+    "i-input-number": "lib/iview-weapp/input-number/index",
+    "van-button": "lib/vant-weapp/button/index",
+    "van-dialog": "lib/vant-weapp/dialog/index"
   },
   "sitemapLocation": "sitemap.json"
 }

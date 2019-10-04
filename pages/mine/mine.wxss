@@ -5,7 +5,7 @@
 .ucenter {
   width: 100%;
   height: 100%;
-  padding-bottom: 110rpx;
+  padding-bottom: 80rpx;
   background: #f7f7f7;
   position: absolute;
   z-index: -2;
@@ -30,16 +30,16 @@
   align-items: center;
 }
 
-.top .avatar {
+.top .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top .info .avatar {
   height: 120rpx;
   width: 120rpx;
   border-radius: 50%;
-}
-
-.top .info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .top .info .name {
@@ -48,9 +48,11 @@
   color: #fff;
 }
 
-.top .info .set {
-  padding-left: 370rpx;
-  margin-top: 13rpx;
+
+
+
+
+.top .set {
   width: 60rpx;
   height: 60rpx;
 }
@@ -191,8 +193,40 @@
   background: #fff;
   margin: 10rpx 30rpx 0rpx 30rpx;
   display: flex;
+  padding: 20rpx;
   flex-direction: column;
   border-radius: 5px;
+}
+
+.other .other_info_first{
+  padding-bottom: 20rpx;
+
+}
+
+.other .other_info_second{
+  padding-top: 20rpx;
+}
+
+.myStatus_other {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.myStatus_other .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 120rpx;
+  height: auto;
+}
+
+.myStatus_other .status .text {
+  font-size: 24rpx;
+  color: #666;
+  padding-top: 15rpx;
 }
 
 /* 其他功能布局结束 */

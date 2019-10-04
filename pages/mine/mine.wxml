@@ -5,11 +5,12 @@
   <image class="background" src="/pages/mine/assets/top.png" bindload="imageLoad" data-index="{{ 0 }}" style="width:{{ images[0].width }}rpx; height:{{ images[0].height }}rpx;"></image>
 
   <view class="top" bindtap="toLogin">
-    <image class="avatar" src="/pages/mine/assets/avatar.png"></image>
-    <view class="info">
-      <text class="name">Muse</text>
+   <view class="info">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <text class="name">{{userInfo.nickName}}</text>
+     </view>
       <image class="set" src="/pages/mine/assets/set.png"></image>
-    </view>
+  
   </view>
 
   <!-- 头部结束 -->
@@ -77,20 +78,23 @@
   <!-- 其他功能开始 -->
 
   <view class="other">
-    <view class="other_info">
-      <view class="myStatus">
+    <view class="other_info_first">
+      <view class="myStatus_other">
         <view class="status" wx:for="{{others_first}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
           <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="otherfLoad" data-index="{{ index }}" style="width:{{ other_f[index].width }}rpx; height:{{ other_f[index].height }}rpx;"></image>
           <text class="text">{{item.title}}</text>
         </view>
-      </view>
-      <view class="myStatus">
-        <view class="status" wx:for="{{others_second}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
-          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="othersLoad" data-index="{{ index }}" style="width:{{ other_s[index].width }}rpx; height:{{ other_s[index].height }}rpx;"></image>
-          <text class="text">{{item.title}}</text>
         </view>
       </view>
-    </view>
+      <view class="other_info_second">
+        <view class="myStatus_other">
+          <view class="status" wx:for="{{others_second}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+            <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="othersLoad" data-index="{{ index }}" style="width:{{ other_s[index].width }}rpx; height:{{ other_s[index].height }}rpx;"></image>
+            <text class="text">{{item.title}}</text>
+          </view>
+        </view>
+      </view>
+    
   </view>
 </view>
 

@@ -1,2 +1,65 @@
 <!--pages/shoppingcart/ShoppingCart.wxml-->
-<text>pages/shoppingcart/ShoppingCart.wxml</text>
+<view class="ucenter">
+
+  <!-- 购物车为空布局开始 -->
+
+  <view class="{{isLogin ? 'no-ccart-small' : 'no-cart'}}" wx:if="{{!isLogin||careList.length==0}}">
+    <view class="add">
+      <image class="image" src="/pages/shoppingcart/assets/emptyCart.png" />
+      <text class="txt">去添加点什么吧</text>
+    </view>
+  </view>
+
+  <!-- 购物车为空布局结束 -->
+
+  <!-- 未登录布局开始 -->
+
+  <view class="login-wrap" wx:if="{{!isLogin}}">
+    <navigator url="" class="login">登录</navigator>
+  </view>
+
+  <!-- 未登陆布局结束 -->
+
+  <!-- 购物车布局开始 -->
+
+  <view class="cart-wrap" wx:if="{{careList.length > 0 && isLogin}}">
+    <i-swipeout i-class="item" operateWidth="{{70}}" wx:for="{{careList}}" wx:for-item="item" wx:key="{{itme.id}}">
+      <view slot="content" class="product">
+        <van-checkbox data-value="{{item}}" data-index="{{index}}" class="check" value="{{item.checked}}" checked-color="#E9A23D" bind:change="changeCheck">
+        </van-checkbox>
+        <image data-value="{{item}}" class="image" src="{{item.picUrl}}" bindtap="toProduct"></image>
+        <view class="info">
+          <view class="top">
+            <text class="title" data-value="{{item}}" bindtap="toProduct">{{item.title}}</text>
+            <view class="spec">{{item.spec}}
+              <van-icon class="arrow" color="#F7F7F7" name="arrow-down" />
+            </view>
+          </view>
+          <view class="bottom">
+            <text class="price">¥{{item.price}}</text>
+            <text class="origin" wx:if="{{item.originPrice}}">￥{{item.originPrice}}</text>
+            <i-input-number data-value="{{item}}" data-index="{{index}}" value="{{item.count}}" min="1" max="{{item.maxNum}}" bindchange="changeCount" />
+          </view>
+        </view>
+      </view>
+      <view slot="button" class="delete" data-value="{{item}}" bindtap="deleteProduct">删除</view>
+    </i-swipeout>
+
+    <!-- 购物车布局结束 -->
+
+    <!-- 底部统计菜单布局开始 -->
+
+    <view class="cart-bottom">
+      <van-checkbox class="left" label-class="checked-all" value="{{checkedAll}}" checked-color="#E9A23D" bindlchange="changeCheckedAll">
+        <text wx:if="{{noChecked}}">全选</text>
+        <text wx:if="{{!noChecked}}">已选</text>
+      </van-checkbox>
+      <view class="right">
+        <view class="total">合计: ¥{{totalPrice}}</view>
+        <view class="checkout {{noChecked ? 'disabled' : ''}}" hover-class="{{noChecked ? '' : 'active'}}" bindtap="checkout">下单</view>
+      </view>
+    </view>
+
+    <!-- 底部统计菜单布局结束 -->
+  </view>
+</view>

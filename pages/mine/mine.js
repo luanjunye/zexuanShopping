@@ -1,10 +1,13 @@
 // pages/mine/mine.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo:{},
+    isLogin: false,
     images: {},
     icons: {},
     other_f: {},
@@ -145,7 +148,6 @@ Page({
       width: viewWidth,
       height: viewHeight
     }
-    console.log(icon)
     this.setData({
       icons: icon,
     })
@@ -165,7 +167,6 @@ Page({
       width: viewWidth,
       height: viewHeight
     }
-    console.log(otherf)
     this.setData({
       other_f: otherf,
     })
@@ -185,7 +186,6 @@ Page({
       width: viewWidth,
       height: viewHeight
     }
-    console.log(others)
     this.setData({
       other_s: others,
     })
@@ -194,7 +194,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    
   },
 
   /**
@@ -208,7 +208,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let userInfo = wx.getStorageSync('userInfo');
+    let isLogin = wx.getStorageSync('isLogin');
+    console.log(userInfo + "," + isLogin)
+    // 页面显示
+    if (userInfo && isLogin) {
+      this.setData({
+        userInfo: userInfo,
+        isLogin: isLogin
+      });
+    } else {
+      // 未登录信息
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        isLogin: isLogin
+      });
+    }
   },
 
   /**
@@ -244,5 +259,13 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  toLogin: function () {
+    if (!this.data.isLogin) {
+      wx.navigateTo({
+        url: '/pages/auth/tologin/tologin',
+      })
+    }
   }
 })
