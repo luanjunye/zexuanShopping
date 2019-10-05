@@ -7,16 +7,25 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
-justify-content: center;
-
 }
+
+.no-cart {
+  margin-top: 300rpx;
+  margin-bottom: 50rpx;
+}
+
+.no-cart-small {
+  margin-top: 100rpx;
+  margin-bottom: 100rpx;
+}
+
+
 
 /* 无列表 */
 
 .add {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 }
@@ -42,7 +51,6 @@ justify-content: center;
   font-size: 29rpx;
   line-height: 90rpx;
   text-align: center;
-  margin-top: 40rpx;
   color: #fff;
   background-color: #b4282d;
   border-radius: 5rpx;
@@ -51,9 +59,8 @@ justify-content: center;
 /* 购物车列表 */
 
 .cart-wrap .item {
-  height: 210rpx;
-  width: 100%;
-  margin-bottom: 20rpx;
+  height: 220rpx;
+  margin: 20rpx;
   background: #fff;
   border-bottom: none !important;
 }
@@ -87,11 +94,22 @@ justify-content: center;
   align-items: flex-start;
 }
 
+.cart-wrap .product .info .top .main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-wrap .product .info .top .main .tlabel{
+  padding-bottom: 5rpx;
+}
+
 .cart-wrap .product .info .title {
   overflow: hidden;
   text-overflow: ellipsis;
   color: #333;
   font-size: 26rpx;
+  padding-left: 10rpx;
 }
 
 .cart-wrap .product .info .spec {
@@ -119,6 +137,7 @@ justify-content: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  color: #ECAF57;
   font-weight: 500;
 }
 
@@ -172,9 +191,22 @@ justify-content: center;
   justify-content: flex-end;
 }
 
-.cart-bottom .right .total {
+.cart-bottom .right .cost{
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.cart-bottom .right .cost .freight {
   font-size: 29rpx;
-  color: #b4282d;
+  color: #ECAF57;
+  margin-right: 20rpx;
+}
+
+.cart-bottom .right .cost .total {
+  font-size: 29rpx;
+  color: #ECAF57;
   margin-right: 20rpx;
 }
 
@@ -183,7 +215,7 @@ justify-content: center;
   width: 225rpx;
   text-align: center;
   font-size: 29rpx;
-  background: #b4282d;
+  background: #ECAF57;
   color: #fff;
 }
 
