@@ -1,0 +1,92 @@
+<!--pages/ordercenter/ordercenter.wxml-->
+<view class="ucenter">
+  <!-- tab布局开始 -->
+
+  <van-tabs color="#b4282d" active="{{active}}" tab-class="tab" swipeable animated bind:change="changeTab" class="nav">
+    <van-tab title="全部"></van-tab>
+    <van-tab title="待付款"></van-tab>
+    <van-tab title="待发货"></van-tab>
+    <van-tab title="已发货"></van-tab>
+    <van-tab title="待评价"></van-tab>
+    <van-tab title="退款售后"></van-tab>
+  </van-tabs>
+
+  <!-- tab布局结束 -->
+
+  <!-- 加载中布局开始 -->
+
+  <view wx:if="{{loading}}" class="loading-center">
+    <van-loading type="spinner" />
+  </view>
+
+  <!-- 加载中布局结束 -->
+
+  <!-- 无订单布局开始 -->
+
+  <view class="no-order" wx:if="{{orderList.length == 0&&!loading}}">
+    <image class="img" src="/assets/noOrder.png"></image>
+    <view class="txt">还没有新订单,快去买买买吧ꉂ(˃̤▿˂̤*ૢ)'`!</view>
+  </view>
+
+  <!-- 无订单布局结束 -->
+
+  <!-- 订单列表布局开始 -->
+  <scroll-view bindscrolltolower="scrollListen" scroll-y enable-flex class="orders" wx:if="{{orderList.length > 0&&!loading}}">
+    <view class="order" wx:for="{{orderList}}" wx:key="{{item.id}}">
+      <view class="order-title">
+        <view class="order-title-top">
+          <van-tag wx:if="{{item.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.label}}</van-tag>
+          <view class="order-text">屈蜂堂官方商城</view>
+        </view>
+        <view class="status">
+          <text class="txt" wx:if="{{item.status==0}}">交易关闭</text>
+          <text class="txt" wx:if="{{item.status==1}}">等待买家付款</text>
+          <text class="txt" wx:if="{{item.status==2}}">买家已付款</text>
+          <text class="txt" wx:if="{{item.status==3}}">卖家已发货</text>
+          <text class="txt-success" wx:if="{{item.status==4||item.status==5}}">交易成功</text>
+        </view>
+      </view>
+      <view class="product" wx:for="{{item.productList}}" wx:key="{{product.id}}" wx:for-item="product" data-value="{{item}}" bindtap="toOrderDetail">
+        <view class="product-remark">
+          <image class="img" src="{{product.picUrl}}"></image>
+          <view class="product-info">
+            <view class="status">
+              <text class="title">{{product.title}}</text>
+              <text class="remark">¥ {{item.actualPrice}}</text>
+            </view>
+            <view class="status">
+              <text class="title">{{product.specDesc}}</text>
+              <text class="remark_gray">x{{product.count}}</text>
+            </view>
+            <view class="status">
+              <view class="status_item">
+                <view class="title">运费险</view>
+                <view class="remark_gray">退换货可自动理赔</view>
+              </view>
+              <view class="remark_gray">¥{{item.freight}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="total">
+          <view class="surplus"></view>
+          <view class="total-foot">
+          <view class="total-title">共{{product.count}}件商品 合计：</view>
+          <view class="total-money"> ¥{{item.totalPrice * product.count}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="foot" wx:if="{{item.orderStatus != 2}}">
+          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">评价</van-button>
+          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==0||item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toDelete">删除订单</van-button>
+          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==1}}" color="#b4282d" size="small" class="btn" bindtap="toPay">去付款</van-button>
+          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==3}}" plain type="default" size="small" class="btn" bindtap="toExpress">查看物流</van-button>
+          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==3}}" plain type="default" size="small" class="btn_submit" bindtap="confirmReceive">确认收货</van-button>
+          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toPayAgain">再次购买</van-button>
+        </view>
+    </view>
+  </scroll-view>
+
+  <!-- 订单列表布局结束 -->
+
+  <van-dialog confirm-button-color="#b4282d" id="van-dialog" />
+</view>
