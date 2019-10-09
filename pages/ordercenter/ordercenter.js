@@ -87,15 +87,14 @@ Page({
         payType: '微信',
         label: "自营",
         freight: 5.00,
+        status: 4,
         productList: [{
           id: '5',
           picUrl: 'https://yanxuan.nosdn.127.net/69a890ff1cfe400c4e2fdaee7d9e598a.png',
           title: '自动喷香机',
           specDesc: '主机+4罐芳香喷雾罐',
-          status: 4,
           count: 1,
           price: 99.00,
-          label: "自营"
         }],
         totalPrice: 99.00,
         expressPrice: 0.00,

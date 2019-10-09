@@ -24,7 +24,7 @@
     </view>
     <view class="line"></view>
     <view class="myStatus">
-      <view class="status" wx:for="{{status}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+      <view class="status" wx:for="{{status}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" id="{{item.id}}" bindtap="toOrder">
         <badge count="{{item.content}}">
           <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="iconLoad" data-index="{{ index }}" style="width:{{ icons[index].width }}rpx; height:{{ icons[index].height }}rpx;"></image>
         </badge>

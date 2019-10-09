@@ -267,5 +267,13 @@ Page({
         url: '/pages/auth/tologin/tologin',
       })
     }
+  },
+  toOrder: function (e) {
+    this.toLogin();
+    let type = e.currentTarget.id;
+    console.log(type)
+    wx.navigateTo({
+      url: '/pages/ordercenter/ordercenter?type=' + type,
+    })
   }
 })
