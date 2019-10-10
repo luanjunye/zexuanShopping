@@ -31,9 +31,9 @@
         <image data-value="{{item}}" class="image" src="{{item.picUrl}}" bindtap="toProduct"></image>
         <view class="info">
           <view class="top">
-          <view class="main">
-          <van-tag wx:if="{{item.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.label}}</van-tag>
-            <text class="title" data-value="{{item}}" bindtap="toProduct">{{item.title}}</text>
+            <view class="main">
+              <van-tag wx:if="{{item.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.label}}</van-tag>
+              <text class="title" data-value="{{item}}" bindtap="toProduct">{{item.title}}</text>
             </view>
             <view class="spec">{{item.spec}}
               <van-icon class="arrow" color="#F7F7F7" name="arrow-down" />
@@ -59,9 +59,9 @@
         <text wx:if="{{!noChecked}}">已选( {{totalCount}} )</text>
       </van-checkbox>
       <view class="right">
-      <view class="cost">
-      <view class="freight">运费: ¥{{freightPrice}}</view>
-        <view class="total">合计: ¥{{totalPrice}}</view>
+        <view class="cost">
+          <view class="freight">运费: ¥{{freightPrice}}</view>
+          <view class="total">合计: ¥{{totalPrice}}</view>
         </view>
         <view class="checkout {{noChecked ? 'disabled' : ''}}" hover-class="{{noChecked ? '' : 'active'}}" bindtap="checkout">结算</view>
       </view>

@@ -104,7 +104,7 @@
   padding-bottom: 5rpx;
 }
 
-.cart-wrap .product .info .title {
+.cart-wrap .product .info .top .main .title {
   overflow: hidden;
   text-overflow: ellipsis;
   color: #333;
@@ -112,9 +112,9 @@
   padding-left: 10rpx;
 }
 
-.cart-wrap .product .info .spec {
+.cart-wrap .product .info .top .spec {
   margin-top: 10rpx;
-  padding: 0 10rpx;
+  padding-left: 15rpx;
   color: #999;
   background: #fafafa;
   border: 2rpx solid #efefef;
@@ -123,9 +123,8 @@
   display: flex;
 }
 
-.cart-wrap .product .info .arrow {
+.cart-wrap .product .info .top .spec .arrow {
   margin-top: 4rpx;
-  margin-left: 10rpx;
 }
 
 .cart-wrap .product .info .bottom {
