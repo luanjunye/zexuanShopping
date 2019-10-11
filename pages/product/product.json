@@ -1,7 +1,8 @@
 {
   "usingComponents": {
-    "product-hot": "/component/product-hot/product-hot",
-    "coupon": "/component/coupon/coupon",
-    "comment": "/component/comment/comment"
-  }
+      "product-hot": "/components/product-hot/product-hot",
+      "coupon": "/components/coupon/coupon",
+      "comment": "/components/comment/comment"
+  },
+  "navigationBarTitleText":"商品详情"
 }

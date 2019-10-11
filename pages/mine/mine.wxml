@@ -9,7 +9,7 @@
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     <text class="name">{{userInfo.nickName}}</text>
      </view>
-      <image class="set" src="/pages/mine/assets/set.png"></image>
+      <!-- <image class="set" src="/pages/mine/assets/set.png"></image> -->
   
   </view>
 

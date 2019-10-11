@@ -1,122 +1,109 @@
-<!--pages/product/product.wxml-->
+<!--pages/commodity/commodity.wxml-->
 <import src="../../lib/wxParse/wxParse.wxml" />
 <wxs module="common" src="../../utils/common.wxs"></wxs>
 
-<swiper class="gallery" indicator-dots="true" indicator-color="#e0e0e0" indicator-active-color="#fff" autoplay="true" interval="3000" duration="1000">
-  <swiper-item wx:for="{{product.gallery}}" wx:key="{{index}}">
-    <image class="image" src="{{item.picUrl}}" background-size="cover"></image>
-  </swiper-item>
-</swiper>
-<view class="info-wrap">
-  <view class="info">
-    <view class="left">
-      <view class="title wux-ellipsis--l2">{{product.title}}</view>
-      <view class="desc wux-ellipsis--l2">{{product.description}}</view>
-      <view class="price">￥{{common.toFix(product.price)}}
-        <text class="price-origin">￥{{common.toFix(product.originPrice)}}</text>
+<view class="ucenter">
+
+  <!-- banner图布局开始 -->
+
+  <swiper class="gallery" indicator-dots indicator-color="#e0e0e0" indicator-active-color="#fff" autoplay interval="3000" duration="1000">
+    <swiper-item wx:for="{{product.gallery}}" wx:key="{{index}}">
+      <image class="image" src="{{item.picUrl}}" background-size="cover"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- banner图布局结束 -->
+
+  <!-- 商品布局开始 -->
+
+  <view class="top_title">
+    <view class="title_price">
+      <van-tag wx:if="{{product.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{product.label}}</van-tag>
+      <text class="price">¥{{common.toFix(product.price)}}</text>
+      <text class="origin_price">¥{{common.toFix(product.originPrice)}}</text>
+      <text class="sales">{{product.sales}}</text>
+    </view>
+    <view class="title_text">
+      <view class="title_remark">{{product.remark}}
+        <button open-type="share" class="tui-share-btn tui-share-position">
+          <tui-tag type="gray" tui-tag-class="tui-tag-share tui-size" shape="circleLeft" size="small">
+            <tui-icon name="partake" color="#999" size="15"></tui-icon>
+            <text class="tui-share-text tui-gray">分享</text>
+          </tui-tag>
+        </button>
       </view>
-      <view class="tags" wx:if="{{product.tags.length > 0}}">
-        <view wx:for="{{product.tags}}" wx:key="{{item.id}}" data-value="{{item}}" class="tag" hover-class="active" bindtap="clickTag">{{item.title}}
-          <van-icon class="arrow" color="#f48f18" name="arrow" size="13px" />
+    </view>
+    <view class="title_sub" style="color:#999;font-size:24rpx; padding-top:10rpx;">正品保障·极速发货·七天内退换货</view>
+  </view>
+
+  <!-- 商品布局结束 -->
+  <view class="sprcifications">
+    <view class="attr-wrap" hover-class="active" bindtap="showSku">
+      <view class="attr">
+        <view class="left">
+          <text class="title">{{sku.specText ? '已选' : '请选择数量规格'}}</text>
+          <text class="txt">{{sku.specText ? sku.specText : ''}}</text>
+        </view>
+        <image class="arrow" src="/assets/rightArrow.png"></image>
+      </view>
+    </view>
+
+    <view class="attr-wrap" hover-class="active" bindtap="openCoupon" wx:if="{{product.promotion==2}}">
+      <view class="attr">
+        <view class="left">
+          <text class="title">领劵</text>
+          <van-tag color="#f2826a" plain wx:for="{{couponList}}" wx:key="{{item.id}}">{{item.title}}</van-tag>
+        </view>
+        <image class="arrow" src="/assets/rightArrow.png"></image>
+      </view>
+    </view>
+
+    <view class="attr-wrap" hover-class="active" bindtap="openAddress">
+      <view class="delivery">
+        <view class="title">配送</view>
+        <view class="right">
+          <view class="info">
+            <text class="address wux-ellipsis">{{deliveryAddress.address}}</text>
+            <text class="time">{{deliveryAddress.time}}前完成支付, 预计({{deliveryAddress.diff}}){{deliveryAddress.day}}送达</text>
+          </view>
+          <image class="arrow" src="/assets/rightArrow.png"></image>
         </view>
       </view>
     </view>
-    <view class="right" bindtap="toComment">
-      <view class="comment">
-        <view class="comment-rate">{{product.comment.goodCommentRate}}%</view>
-        <text class="txt">好评率</text>
-      </view>
-      <van-icon class="arrow-icon" color="rgb(170, 170, 170)" name="arrow" size="18px" />
-    </view>
-  </view>
 
-  <view class="vip-banner" bindtap="toVip">
-    <view class="left">
-      <image class="image" src="/assets/vip.png"></image>
-      <text>超级会员价￥0.01</text>
-    </view>
-
-    <view class="right">
-      <text>立即开通</text>
-      <van-icon class="arrow-icon" name="arrow" size="13px" />
-    </view>
-  </view>
-</view>
-
-<view class="attr-wrap" hover-class="active" bindtap="showSku">
-  <view class="attr">
-    <view class="left">
-      <text class="title">{{sku.specText ? '已选' : '请选择数量规格'}}</text>
-      <text class="txt">{{sku.specText ? sku.specText : ''}}</text>
-    </view>
-    <image class="arrow" src="/assets/rightArrow.png"></image>
-  </view>
-</view>
-
-<view class="attr-wrap" hover-class="active" bindtap="openCoupon" wx:if="{{product.promotion==2}}">
-  <view class="attr">
-    <view class="left">
-      <text class="title">领劵</text>
-      <van-tag color="#f2826a" plain wx:for="{{couponList}}" wx:key="{{item.id}}">{{item.title}}</van-tag>
-    </view>
-    <image class="arrow" src="/assets/rightArrow.png"></image>
-  </view>
-</view>
-
-<view class="attr-wrap" wx:if="{{product.promotion==1}}">
-  <view class="attr">
-    <view class="left">
-      <text class="title">限制</text>
-      <text class="limit">特价商品不可与优惠券叠加使用</text>
-    </view>
-  </view>
-</view>
-
-<view class="attr-wrap" hover-class="active" bindtap="openAddress">
-  <view class="delivery">
-    <view class="title">配送</view>
-    <view class="right">
-      <view class="info">
-        <text class="address wux-ellipsis">{{deliveryAddress.address}}</text>
-        <text class="time">{{deliveryAddress.time}}前完成支付, 预计({{deliveryAddress.diff}}){{deliveryAddress.day}}送达</text>
-      </view>
-      <image class="arrow" src="/assets/rightArrow.png"></image>
-    </view>
-  </view>
-</view>
-
-<view class="attr-wrap" hover-class="active" bindtap="openService">
-  <view class="service">
-    <text class="title">服务</text>
-    <view class="right">
-      <view class="info">
-        <view class="item" wx:for="{{product.serviceList}}" wx:key="{{item.id}}">
-          <view class="red-point"></view>{{item.title}}
+    <view class="attr-wrap" hover-class="active" bindtap="openService">
+      <view class="service">
+        <text class="title">服务</text>
+        <view class="right">
+          <view class="info">
+            <view class="item" wx:for="{{product.serviceList}}" wx:key="{{item.id}}">
+              <view class="red-point"></view>{{item.title}}
+            </view>
+          </view>
+          <image class="arrow" src="/assets/rightArrow.png"></image>
         </view>
       </view>
-      <image class="arrow" src="/assets/rightArrow.png"></image>
     </view>
   </view>
-</view>
 
-<!-- 评论统计 -->
-<view class="attr-wrap comments" hover-class="active" bindtap="toComment" wx:if="{{product.comment.count > 0}}">
-  <view class="header">
-    <text class="title">用户评价({{product.comment.count}})</text>
-    <view class="right">
-      <text class="rate">{{product.comment.goodCommentRate}}%</text>
-      <text class="text">好评率</text>
-      <image class="arrow" src="/assets/rightArrow.png"></image>
+  <!-- 评论统计 -->
+  <view class="attr-wrap comments" hover-class="active" bindtap="toComment" wx:if="{{product.comment.count > 0}}">
+    <view class="header">
+      <text class="title">用户评价({{product.comment.count}})</text>
+      <view class="right">
+        <text class="rate">{{product.comment.goodCommentRate}}%</text>
+        <text class="text">好评率</text>
+        <image class="arrow" src="/assets/rightArrow.png"></image>
+      </view>
     </view>
   </view>
-</view>
 
-<!-- 精选评论 -->
-<view class="select-comment">
-  <comment data="{{product.comment.goodComment}}"></comment>
-</view>
+  <!-- 精选评论 -->
+  <view class="select-comment">
+    <comment data="{{product.comment.goodComment}}"></comment>
+  </view>
 
-<!-- 推荐 -->
+  <!-- 推荐
 <van-tabs color="#b4282d" class="recommend" active="{{ active }}" bind:change="onChange">
   <van-tab title="你可能还喜欢">
     <scroll-view scroll-x class="wrap">
@@ -136,94 +123,91 @@
       </view>
     </scroll-view>
   </van-tab>
-</van-tabs>
+</van-tabs> -->
 
-<!-- 商品参数 -->
-<view class="product-attr">
-  <view class="title">商品参数</view>
-  <view class="wrap">
-    <view class="item" wx:for="{{product.attribute}}" wx:key="{{item.name}}">
-      <text class="left">{{item.name}}</text>
-      <text class="right">{{item.value}}</text>
+  <!-- 商品参数 -->
+  <view class="product-attr">
+    <view class="tui-nomore-box">
+      <tui-nomore text="宝贝详情" visible="{{true}}" bgcolor="#f7f7f7"></tui-nomore>
     </view>
-  </view>
 </view>
 
-<!-- 详情 -->
-<view class="detail">
-  <template is="wxParse" data="{{wxParseData:productDetail.nodes}}" />
-</view>
+  <!-- 详情 -->
+  <view class="detail">
+    <template is="wxParse" data="{{wxParseData:productDetail.nodes}}" />
+  </view>
 
-<!-- 底部按钮 -->
-<view class="bottom">
-  <view class="b-wrap collect" hover-class="active" bindtap="openIndexPage">
-    <van-icon name="wap-home-o" color="#777" size="20px" />
+  <!-- 底部按钮 -->
+  <view class="bottom">
+    <view class="b-wrap collect" hover-class="active" bindtap="openIndexPage">
+      <van-icon name="wap-home-o" color="#777" size="20px" />
+    </view>
+    <view class="b-wrap service-icon" hover-class="active">
+      <button open-type="contact" hover-class="none" class="wxbtn">
+        <van-icon name="service-o" color="#777" size="20px" />
+      </button>
+    </view>
+    <view class="b-wrap cart" hover-class="active" bindtap="openCartPage">
+      <van-icon custom-class="icon-info" name="shopping-cart-o" info="{{cartList.length>0 ? cartList.length:''}}" color="#777" size="20px" />
+    </view>
+    <view class="buy" hover-class="active" bindtap="buyNow">立即购买</view>
+    <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
   </view>
-  <view class="b-wrap service-icon" hover-class="active">
-    <button open-type="contact" hover-class="none" class="wxbtn">
-      <van-icon name="service-o" color="#777" size="20px" />
-    </button>
-  </view>
-  <view class="b-wrap cart" hover-class="active" bindtap="openCartPage">
-    <van-icon custom-class="icon-info" name="shopping-cart-o" info="{{cartList.length>0 ? cartList.length:''}}" color="#777" size="20px" />
-  </view>
-  <view class="buy" hover-class="active" bindtap="buyNow">立即购买</view>
-  <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
-</view>
 
-<!-- 优惠券选择 -->
-<van-popup show="{{ couponShow }}" class="coupon-pop" position="bottom" bind:close="closeCoupon">
+  <!-- 优惠券选择 -->
+  <!-- <van-popup show="{{ couponShow }}" class="coupon-pop" position="bottom" bind:close="closeCoupon">
   <view class="title">领劵</view>
   <view class="coupon-wrap">
     <coupon data="{{item}}" wx:for="{{couponList}}" wx:key="{{item.id}}" data-value="{{item}}" bindtap="choose" class="item" />
   </view>
-</van-popup>
+</van-popup> -->
 
-<!-- 服务详情 -->
-<van-popup show="{{ serviceShow }}" position="bottom" bind:close="closeService">
-  <view class="service-wrap">
-    <view class="h">服务</view>
-    <scroll-view class="c" scroll-y="true">
-      <view class="desc" wx:for="{{product.serviceList}}" wx:key="{{item.id}}">
-        <view class="dt">
-          {{item.title}}
+  <!-- 服务详情 -->
+  <van-popup show="{{ serviceShow }}" position="bottom" bind:close="closeService">
+    <view class="service-wrap">
+      <view class="h">服务</view>
+      <scroll-view class="c" scroll-y="true">
+        <view class="desc" wx:for="{{product.serviceList}}" wx:key="{{item.id}}">
+          <view class="dt">
+            {{item.title}}
+          </view>
+          <view class="dc">
+            {{item.desc}}
+          </view>
         </view>
-        <view class="dc">
-          {{item.desc}}
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-</van-popup>
-
-<!-- 商品规格选择 -->
-<van-popup show="{{ sku.show }}" position="bottom" bind:close="closeSku">
-  <view class="sku">
-    <!-- 关闭图标 -->
-    <van-icon name="cross" color="#999" class="close" bindtap="closeSku" />
-    <!-- 图片标价 -->
-    <view class="info">
-      <image class="img" src="{{product.picUrl}}" bindtap="previewThumb"></image>
-      <view class="sku-desc">
-        <van-tag wx:if="{{product.promotion==1}}" color="#f48f18" style="margin-bottom: 10rpx">限时购</van-tag>
-        <view class="price">价格：￥{{common.toFix(product.price)}}
-          <view class="origin-price">￥{{common.toFix(product.originPrice)}}</view>
-        </view>
-        <view class="spec" wx:if="{{!sku.noneSku}}">{{sku.specText ? '已选择:'+sku.specText : '请选择规格属性'}}</view>
-      </view>
+      </scroll-view>
     </view>
-    <view wx:for="{{sku.tree}}" wx:key="{{index}}" data-value="{{item}}">
-      <view class="title">{{item.k}}</view>
-      <view class="wrap">
-        <view class="value {{iitem.selected ? 'selected':''}} {{iitem.disabled ? 'disabled':''}}" wx:for="{{item.v}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="{{iindex}}" data-index="{{index}}" data-iindex="{{iindex}}" data-k="{{item}}" data-value="{{iitem}}"
-          bindtap="selectSku">{{iitem.name}}</view>
+  </van-popup>
+
+  <!-- 商品规格选择 -->
+  <van-popup show="{{ sku.show }}" position="bottom" bind:close="closeSku">
+    <view class="sku">
+      <!-- 关闭图标 -->
+      <van-icon name="cross" color="#999" class="close" bindtap="closeSku" />
+      <!-- 图片标价 -->
+      <view class="info">
+        <image class="img" src="{{product.picUrl}}" bindtap="previewThumb"></image>
+        <view class="sku-desc">
+          <van-tag wx:if="{{product.promotion==1}}" color="#f48f18" style="margin-bottom: 10rpx">限时购</van-tag>
+          <view class="price">价格：￥{{common.toFix(product.price)}}
+            <view class="origin-price">￥{{common.toFix(product.originPrice)}}</view>
+          </view>
+          <view class="spec" wx:if="{{!sku.noneSku}}">{{sku.specText ? '已选择:'+sku.specText : '请选择规格属性'}}</view>
+        </view>
       </view>
+      <view wx:for="{{sku.tree}}" wx:key="{{index}}" data-value="{{item}}">
+        <view class="title">{{item.k}}</view>
+        <view class="wrap">
+          <view class="value {{iitem.selected ? 'selected':''}} {{iitem.disabled ? 'disabled':''}}" wx:for="{{item.v}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="{{iindex}}" data-index="{{index}}" data-iindex="{{iindex}}" data-k="{{item}}" data-value="{{iitem}}"
+            bindtap="selectSku">{{iitem.name}}</view>
+        </view>
+      </view>
+
+      <view class="title ">数量</view>
+      <i-input-number value="{{ sku.count }} " min="1 " max="{{sku.quota}}" bindchange="changeCount" />
+      <view style="width: 1rpx;"></view>
     </view>
+  </van-popup>
 
-    <view class="title ">数量</view>
-    <i-input-number value="{{ sku.count }} " min="1 " max="{{sku.quota}}" bindchange="changeCount" />
-    <view style="width: 1rpx;"></view>
-  </view>
-</van-popup>
-
-<van-toast id="van-toast" />
+  <van-toast id="van-toast" />
+</view>

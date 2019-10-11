@@ -40,8 +40,9 @@
             </view>
           </view>
           <view class="bottom">
-            <text class="price">¥{{item.price}}</text>
+            <view class="price">¥{{item.price}}
             <text class="origin" wx:if="{{item.originPrice}}">￥{{item.originPrice}}</text>
+            </view>
             <i-input-number data-value="{{item}}" data-index="{{index}}" value="{{item.count}}" min="1" max="{{item.maxNum}}" bindchange="changeCount" />
           </view>
         </view>

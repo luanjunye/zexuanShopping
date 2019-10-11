@@ -1,4 +1,4 @@
-// pages/product/product.js
+// pages/commodity/commodity.js
 let WxParse = require("../../lib/wxParse/wxParse.js");
 import Toast from '../../lib/vant-weapp/toast/toast';
 
@@ -48,6 +48,9 @@ Page({
       defaultPrice: 1.00, // 默认显示价格
       price: 1.00,
       originPrice: 9588.00,
+      label:"自营",
+      sales:"已售276件",
+      remark:"煲汤材料炖汤清补凉煲汤材料炖汤清补凉补品干货食材养生汤包鸡汤",
       detail: '<div><img src="https://img14.360buyimg.com/cms/jfs/t1/25195/1/9487/388554/5c7f80a5E8b8f8f0c/46818404849d6ec6.jpg"><img src="https://img12.360buyimg.com/cms/jfs/t1/15853/18/9628/325164/5c7f80a5E7172b236/ba9f3f63a83a9b65.jpg"></div>', // 商品详情
       tags: [{
         id: 1,
@@ -445,7 +448,7 @@ Page({
     let that = this;
     wx.chooseLocation({
       success: function (res) {
-        if(!res.address){
+        if (!res.address) {
           return;
         }
         that.setData({
@@ -733,7 +736,7 @@ Page({
       Toast("加入购物车成功");
     }
   },
-  toVip: function(){
+  toVip: function () {
     wx.navigateTo({
       url: '/pages/ucenter/vip/vip',
     })

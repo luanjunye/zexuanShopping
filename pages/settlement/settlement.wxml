@@ -1,0 +1,35 @@
+<!--pages/settlement/settlement.wxml-->
+<view class="ucenter">
+
+  <!-- 地址栏布局开始 -->
+
+  <view class="address_box" bindtap="chooseAddress">
+    <image class="image" src="/pages/settlement/assets/address.png" />
+    <view class="information">
+      <view class="name">{{address.name}}
+        <text class="phone">{{address.phone}}</text>
+      </view>
+      <text class="address_text">{{address.address + address.street}}</text>
+    </view>
+    <image class="right" src="../../assets/rightArrow.png" />
+  </view>
+
+  <!-- 地址栏布局结束 -->
+
+  <!-- 商品信息布局开始 -->
+
+  <view class="product">
+    <view class="item" wx:for="{{productList}}" wx:key="{{item.id}}">
+      <view class="title">
+        <van-tag wx:if="{{item.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.label}}</van-tag>
+        <text class="title_text">屈蜂堂官方商城</text>
+      </view>
+      <view class="body">
+        <image class="left" src="{{pirUrl}}"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品信息布局结束 -->
+
+</view>
