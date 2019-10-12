@@ -133,10 +133,10 @@
 }
 
 .cart-wrap .product .info .price {
-font-size: 36rpx;
-   margin-bottom: 10rpx;
+  font-size: 36rpx;
+  margin-bottom: 10rpx;
   color: #ecaf57;
-font-weight: bold;
+  font-weight: bold;
 }
 
 .cart-wrap .product .info .origin {
@@ -162,11 +162,10 @@ font-weight: bold;
   z-index: 100;
   position: fixed;
   bottom: 0;
- 
   background: #fff;
   display: flex;
   align-items: center;
-padding: 20rpx 0rpx;
+  padding: 20rpx 0rpx;
   justify-content: space-around;
   width: 750rpx;
   border-top: 2rpx solid #f0f0f0;
@@ -185,7 +184,7 @@ padding: 20rpx 0rpx;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  }
+}
 
 .cart-bottom .right .cost {
   display: flex;

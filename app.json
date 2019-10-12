@@ -1,13 +1,14 @@
 {
   "pages": [
-    "pages/settlement/settlement",
+  "pages/settlement/settlement",
     "pages/index/index",
     "pages/logs/logs",
     "pages/activity/activity",
     "pages/ordercenter/ordercenter",
     "pages/mine/mine",
     "pages/shoppingcart/shoppingcart",
-    "pages/product/product"
+      "pages/product/product"
+  
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -64,7 +65,10 @@
     "tui-icon": "lib/ThorUI/components/icon/icon",
     "tui-tag": "lib/ThorUI/components/tag/tag",
     "van-popup": "lib/vant-weapp/popup/index",
-    "tui-nomore": "lib/ThorUI/components/nomore/nomore"
+    "tui-nomore": "lib/ThorUI/components/nomore/nomore",
+    "i-radio":"lib/iview-weapp/radio/index",
+    "i-input":"lib/iview-weapp/input/index",
+      "van-toast": "lib/vant-weapp/toast/index"
   },
   "sitemapLocation": "sitemap.json"
 }

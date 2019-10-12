@@ -39,16 +39,16 @@
   width: 500rpx;
 }
 
-.address_box .information .name{
+.address_box .information .name {
   font-size: 36rpx;
   margin-right: 20rpx;
 }
 
-.address_box .information .phone{
+.address_box .information .phone {
   font-size: 28rpx;
 }
 
-.address_box .address_box .address_text{
+.address_box .address_box .address_text {
   padding-top: 20rpx;
 }
 
@@ -56,6 +56,149 @@
 
 /* 商品信息布局开始 */
 
+.product {
+  background: #fff;
+  margin: 0rpx 30rpx;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
 
+.product .item {
+  padding: 20rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.product .item .title {
+  display: flex;
+  align-items: center;
+}
+
+.product .item .title .tlabel {
+  padding-bottom: 8rpx;
+  padding-right: 15rpx;
+}
+
+.product .item .body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 10rpx;
+}
+
+.product .item .body .left {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 10rpx;
+}
+
+.product .item .body .body_top {
+  display: flex;
+  flex-direction: column;
+}
+
+.product .item .body .body_top .body_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 30rpx;
+}
+
+.product .item .body .body_top .body_text .body_title {
+  width: 350rpx;
+}
+
+.product .item .body .body_top .body_center {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 30rpx;
+  padding-top: 10rpx;
+}
+
+.product .item .body .body_top .body_center .explain {
+  background: #f5f6f7;
+  color: #a8a9aa;
+  width: 300rpx;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.product .item .body .body_top .body_center .number {
+  color: #a8a9aa;
+}
+
+.product .item .bottom {
+  padding-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.product .item .bottom .bottom_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product .item .bottom .bottom_text {
+  font-size: 30rpx;
+  padding-left: 35rpx;
+}
+
+.product .item .bottom .bottom_list .input_text {
+  width: 650rpx;
+}
 
 /* 商品信息布局结束 */
+
+.agreement {
+  display: flex;
+  padding-left: 32rpx;
+  height: 130rpx;
+  align-items: center;
+}
+
+.checked {
+  color: #333;
+  font-size: 26rpx;
+}
+
+.end {
+  position: fixed;
+  bottom: 0;
+  padding: 0 30rpx;
+  height: 100rpx;
+  width: 750rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1rpx solid #ebebeb;
+  background: #fff;
+}
+
+.end .l {
+  font-size: 30rpx;
+  color: #b4282d;
+}
+
+.end .r {
+  margin-right: 50rpx;
+  width: 200rpx;
+  background: #ecaf57;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 5px;
+}
+
+.end .r.active {
+  background: #ecaf57;
+}
+
+.end .r.disabled {
+  background: #ccc !important;
+}

@@ -10,7 +10,7 @@ Page({
     address: {
       id: 1,
       name: '吴越',
-      mobile: '155555555555',
+      phone: '155555555555',
       address: '山东省济南市历下区',
       street: '舜华路街道万达广场写字楼J1-2101'
     },
@@ -24,9 +24,10 @@ Page({
       title: "",
       discount: 0
     },
-    productList: [
-
-    ],
+    productList: [{
+      id:1,
+      label:"自营",
+    }],
     agree: true
   },
 
@@ -34,70 +35,70 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '结算',
-    })
-    if (options.from == "product") {
-      // 直接购买
-      let product = wx.getStorageSync("checkoutProduct");
-      let sku = wx.getStorageSync("checkoutProductSku");
-      this.setData({
-        productList: [{
-          id: product.id,
-          checked: true,
-          picUrl: product.picUrl,
-          title: product.title,
-          spec: sku.specTextNoCount,
-          count: sku.count,
-          maxNum: sku.quota,
-          price: product.price
-        }],
-        totalPrice: product.price * sku.count
-      })
-      // 判断运费
-      if (product.price >= 88) {
-        this.setData({
-          expressPrice: 0
-        })
-      } else {
-        this.setData({
-          expressPrice: 10
-        })
-      }
-      // 实际价格总计
-      let actualPrice = this.data.totalPrice + this.data.expressPrice - this.data.coupon.discount
-      this.setData({
-        actualPrice: actualPrice
-      })
-    } else {
-      // 购物车结算
-      let cartList = wx.getStorageSync("cartList");
-      let data = [];
-      cartList.forEach(function (v) {
-        if (v.checked) {
-          data.push(v)
-        }
-      })
-      this.setData({
-        productList: data,
-        totalPrice: wx.getStorageSync("totalPrice")
-      })
-      // 判断运费
-      if (wx.getStorageSync("isExpressFree") == "true") {
-        this.setData({
-          expressPrice: 0
-        })
-      } else {
-        this.setData({
-          expressPrice: 10
-        })
-      }
-      // 实际价格总计
-      let actualPrice = this.data.totalPrice + this.data.expressPrice - this.data.coupon.discount
-      this.setData({
-        actualPrice: actualPrice
-      })
-    }
+    // wx.setNavigationBarTitle({
+    //   title: '结算',
+    // })
+    // if (options.from == "product") {
+    //   // 直接购买
+    //   let product = wx.getStorageSync("checkoutProduct");
+    //   let sku = wx.getStorageSync("checkoutProductSku");
+    //   this.setData({
+    //     productList: [{
+    //       id: product.id,
+    //       checked: true,
+    //       picUrl: product.picUrl,
+    //       title: product.title,
+    //       spec: sku.specTextNoCount,
+    //       count: sku.count,
+    //       maxNum: sku.quota,
+    //       price: product.price
+    //     }],
+    //     totalPrice: product.price * sku.count
+    //   })
+    //   // 判断运费
+    //   if (product.price >= 88) {
+    //     this.setData({
+    //       expressPrice: 0
+    //     })
+    //   } else {
+    //     this.setData({
+    //       expressPrice: 10
+    //     })
+    //   }
+    //   // 实际价格总计
+    //   let actualPrice = this.data.totalPrice + this.data.expressPrice - this.data.coupon.discount
+    //   this.setData({
+    //     actualPrice: actualPrice
+    //   })
+    // } else {
+    //   // 购物车结算
+    //   let cartList = wx.getStorageSync("cartList");
+    //   let data = [];
+    //   cartList.forEach(function (v) {
+    //     if (v.checked) {
+    //       data.push(v)
+    //     }
+    //   })
+    //   this.setData({
+    //     productList: data,
+    //     totalPrice: wx.getStorageSync("totalPrice")
+    //   })
+    //   // 判断运费
+    //   if (wx.getStorageSync("isExpressFree") == "true") {
+    //     this.setData({
+    //       expressPrice: 0
+    //     })
+    //   } else {
+    //     this.setData({
+    //       expressPrice: 10
+    //     })
+    //   }
+    //   // 实际价格总计
+    //   let actualPrice = this.data.totalPrice + this.data.expressPrice - this.data.coupon.discount
+    //   this.setData({
+    //     actualPrice: actualPrice
+    //   })
+    // }
   },
 
   /**

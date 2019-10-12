@@ -699,11 +699,11 @@ Page({
         Toast("库存不足，请减少购买数量");
         return;
       }
-      // 跳转checkout页面
+      // 跳转settlement页面
       wx.setStorageSync("checkoutProduct", this.data.product);
       wx.setStorageSync("checkoutProductSku", this.data.sku);
       wx.navigateTo({
-        url: '/pages/checkout/checkout?from=product',
+        url: '/pages/settlement/settlement?from=product',
       })
     }
   },
