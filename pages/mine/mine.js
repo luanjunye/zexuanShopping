@@ -210,7 +210,6 @@ Page({
   onShow: function() {
     let userInfo = wx.getStorageSync('userInfo');
     let isLogin = wx.getStorageSync('isLogin');
-    console.log(userInfo + "," + isLogin)
     // 页面显示
     if (userInfo && isLogin) {
       this.setData({
@@ -272,7 +271,7 @@ Page({
     this.toLogin();
     let type = e.currentTarget.id;
     console.log(type)
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/ordercenter/ordercenter?type=' + type,
     })
   }

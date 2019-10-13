@@ -110,6 +110,7 @@ Page({
   onLoad: function (options) {
     // 获取参数
     let type = options.type;
+    console.log(type)
     if (type) {
       this.setData({
         active: type
