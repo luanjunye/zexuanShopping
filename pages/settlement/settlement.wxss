@@ -181,7 +181,7 @@
 
 .end .l {
   font-size: 30rpx;
-  color: #b4282d;
+  color: #ecaf57;
 }
 
 .end .r {

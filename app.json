@@ -1,14 +1,15 @@
 {
   "pages": [
-  "pages/settlement/settlement",
+    "pages/ucenter/address/index/index",
+    "pages/ucenter/address/edit/edit",
     "pages/index/index",
     "pages/logs/logs",
     "pages/activity/activity",
     "pages/ordercenter/ordercenter",
-    "pages/mine/mine",
     "pages/shoppingcart/shoppingcart",
-      "pages/product/product"
-  
+    "pages/mine/mine",
+    "pages/product/product",
+    "pages/settlement/settlement"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -66,9 +67,14 @@
     "tui-tag": "lib/ThorUI/components/tag/tag",
     "van-popup": "lib/vant-weapp/popup/index",
     "tui-nomore": "lib/ThorUI/components/nomore/nomore",
-    "i-radio":"lib/iview-weapp/radio/index",
-    "i-input":"lib/iview-weapp/input/index",
-      "van-toast": "lib/vant-weapp/toast/index"
+    "i-radio": "lib/iview-weapp/radio/index",
+    "i-input": "lib/iview-weapp/input/index",
+    "van-toast": "lib/vant-weapp/toast/index",
+    "i-icon": "lib/iview-weapp/icon/index",
+    "van-cell": "lib/vant-weapp/cell/index",
+    "van-cell-group": "lib/vant-weapp/cell-group/index",
+    "van-field": "lib/vant-weapp/field/index",
+      "van-area": "lib/vant-weapp/area/index"
   },
   "sitemapLocation": "sitemap.json"
 }

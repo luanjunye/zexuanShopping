@@ -19,6 +19,7 @@ Page({
     expressPrice: 0,
     actualPrice: 0,
     couponCount: 2,
+    count:"一",
     coupon: {
       id: "",
       title: "",

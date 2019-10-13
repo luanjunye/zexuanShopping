@@ -60,7 +60,7 @@
 </van-checkbox>
 
 <view class="end">
-  <view class="l">实付: ￥{{actualPrice}}</view>
+  <view class="l">共{{count}}件,合计: ￥{{actualPrice}}</view>
   <view class="r {{agree ? '' : 'disabled'}}" hover-class="{{agree ? 'active' : ''}}" bindtap="submitOrder">去付款</view>
 </view>
 
