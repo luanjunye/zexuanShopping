@@ -270,9 +270,11 @@ Page({
   toOrder: function(e) {
     this.toLogin();
     let type = e.currentTarget.id;
+    console.log(type)
     if (type <= 5) {
+      getApp().globalData.type = type;
       wx.switchTab({
-        url: '/pages/ordercenter/ordercenter?type=' + type,
+        url: '/pages/ordercenter/ordercenter',
       })
     } else if (type == 6) {
       wx.navigateTo({

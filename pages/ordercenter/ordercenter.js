@@ -109,7 +109,7 @@ Page({
    */
   onLoad: function (options) {
     // 获取参数
-    let type = options.type;
+    let type = getApp().globalData.type;
     console.log(type)
     if (type) {
       this.setData({
@@ -131,14 +131,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let type = getApp().globalData.type;
+    console.log(type)
+    if (type) {
+      this.setData({
+        active: type
+      })
+    }
+    // 模拟加载数据
+    this.loadData(type)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
 
   /**
