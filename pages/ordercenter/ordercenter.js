@@ -1,7 +1,7 @@
 // pages/ordercenter/ordercenter.
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
 Page({
-
+// 订单中心
   /**
    * 页面的初始数据
    */

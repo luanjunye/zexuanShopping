@@ -1,12 +1,12 @@
 // pages/mine/mine.js
 var app = getApp();
 Page({
-
+// 个人中心
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo:{},
+    userInfo: {},
     isLogin: false,
     images: {},
     icons: {},
@@ -194,7 +194,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+
   },
 
   /**
@@ -260,19 +260,29 @@ Page({
 
   },
 
-  toLogin: function () {
+  toLogin: function() {
     if (!this.data.isLogin) {
       wx.navigateTo({
         url: '/pages/auth/tologin/tologin',
       })
     }
   },
-  toOrder: function (e) {
+  toOrder: function(e) {
     this.toLogin();
     let type = e.currentTarget.id;
-    console.log(type)
-    wx.switchTab({
-      url: '/pages/ordercenter/ordercenter?type=' + type,
-    })
+    if (type <= 5) {
+      wx.switchTab({
+        url: '/pages/ordercenter/ordercenter?type=' + type,
+      })
+    } else if (type == 6) {
+      wx.navigateTo({
+        url: '/pages/ucenter/address/index/index',
+      })
+    } else {
+      wx.showToast({
+        title: "功能开发中~",
+        icon: "none"
+      })
+    }
   }
 })

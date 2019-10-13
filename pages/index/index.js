@@ -6,6 +6,7 @@ const api = require('../../config/url.js');
 const app = getApp()
 
 Page({
+  // 主页
   data: {
     // // 头部导航栏的高度
     // statusBarHeight: app.globalData.statusBarHeight,

@@ -2,7 +2,7 @@
 import Toast from '../../lib/vant-weapp/toast/toast';
 
 Page({
-
+// 确认订单
   /**
    * 页面的初始数据
    */

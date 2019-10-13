@@ -3,7 +3,7 @@ let WxParse = require("../../lib/wxParse/wxParse.js");
 import Toast from '../../lib/vant-weapp/toast/toast';
 
 Page({
-
+// 商品详情
   /**
    * 页面的初始数据
    */

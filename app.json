@@ -3,7 +3,6 @@
     "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/activity/activity",
     "pages/ordercenter/ordercenter",
     "pages/shoppingcart/shoppingcart",
     "pages/product/product",

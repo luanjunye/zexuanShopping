@@ -1,6 +1,6 @@
 // pages/shoppingcart/ShoppingCart.js
 Page({
-
+// 购物车
   /**
    * 页面的初始数据
    */

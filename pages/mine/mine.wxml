@@ -80,7 +80,7 @@
   <view class="other">
     <view class="other_info_first">
       <view class="myStatus_other">
-        <view class="status" wx:for="{{others_first}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+        <view class="status" wx:for="{{others_first}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" id="{{item.id}}" bindtap="toOrder">
           <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="otherfLoad" data-index="{{ index }}" style="width:{{ other_f[index].width }}rpx; height:{{ other_f[index].height }}rpx;"></image>
           <text class="text">{{item.title}}</text>
         </view>
@@ -88,7 +88,7 @@
       </view>
       <view class="other_info_second">
         <view class="myStatus_other">
-          <view class="status" wx:for="{{others_second}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+          <view class="status" wx:for="{{others_second}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" id="{{item.id}}" bindtap="toOrder">
             <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="othersLoad" data-index="{{ index }}" style="width:{{ other_s[index].width }}rpx; height:{{ other_s[index].height }}rpx;"></image>
             <text class="text">{{item.title}}</text>
           </view>

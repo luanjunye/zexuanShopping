@@ -1,6 +1,6 @@
 // pages/comment/comment.js
 Page({
-
+// 评价页面
   /**
    * 页面的初始数据
    */

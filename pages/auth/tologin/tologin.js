@@ -3,7 +3,7 @@ import Dialog from '../../../lib/vant-weapp/dialog/dialog';
 var app = getApp();
 
 Page({
-
+// 登陆页面
   /**
    * 页面的初始数据
    */
