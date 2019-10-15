@@ -18,7 +18,7 @@
   <!-- 我的订单开始 -->
 
   <view class="order">
-    <view class="myOrder">
+    <view class="myOrder" id="0" bindtap="toOrder">
       <text class="title">我的订单</text>
       <image class="icon" src="/pages/mine/assets/forward.png"></image>
     </view>
@@ -41,7 +41,7 @@
     <!-- 我的钱包开始 -->
 
     <view class="wallet">
-      <view class="title">
+      <view class="title" id="14" bindtap="toOrder">
         <view class="main">我的钱包</view>
         <view class="title_vice">
           <view class="vice">立即充值</view>
@@ -59,7 +59,7 @@
     <!-- 我的积分开始 -->
 
     <view class="score">
-      <view class="title">
+      <view class="title" id="15" bindtap="toOrder">
         <view class="main">我的积分</view>
         <view class="title_vice">
           <view class="vice">立即查看</view>

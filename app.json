@@ -1,14 +1,18 @@
 {
   "pages": [
+    "pages/orderInfo/orderInfo",
+    "pages/ordercenter/ordercenter",
     "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/ordercenter/ordercenter",
     "pages/shoppingcart/shoppingcart",
     "pages/product/product",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
-    "pages/ucenter/address/edit/edit"
+    "pages/ucenter/address/edit/edit",
+    "pages/ucenter/express/express",
+    "pages/secondIndex/secondIndex"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -73,7 +77,8 @@
     "van-cell": "lib/vant-weapp/cell/index",
     "van-cell-group": "lib/vant-weapp/cell-group/index",
     "van-field": "lib/vant-weapp/field/index",
-    "van-area": "lib/vant-weapp/area/index"
+    "van-area": "lib/vant-weapp/area/index",
+    "van-steps": "lib/vant-weapp/steps/index"
   },
   "sitemapLocation": "sitemap.json"
 }

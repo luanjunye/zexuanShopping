@@ -1,0 +1,8 @@
+<!--pages/secondIndex/secondIndex.wxml-->
+<view class="ucenter">
+  <view class="pick">
+    <view class="details" wx:for="{{details}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="handleClick">
+      <product-big data="{{item}}" />
+    </view>
+  </view>
+</view>

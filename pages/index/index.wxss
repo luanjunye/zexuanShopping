@@ -188,6 +188,7 @@
   margin-top: 20rpx;
   margin-right: 29rpx;
   background: #fff;
+  border-radius: 5px;
 }
 
 /* 快捷频道点击后对应的商品结束 */

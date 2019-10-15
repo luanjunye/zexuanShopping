@@ -3,8 +3,8 @@
   <image class="{{border=='true' ? 'img' : 'img-noborder'}}" src="{{data.picUrl}}" background-size="cover" mode="aspectFill" lazy-load="true"></image>
   <!-- <van-tag wx:if="{{data.tag}}" round color="#ffe7e5" text-color="#cc3e39" class="tag">{{data.tag}}</van-tag> -->
   <view class="titleLabel">
-  <van-tag wx:if="{{data.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{data.label}}</van-tag>
-  <text class="name">{{data.title}}</text>
+    <van-tag wx:if="{{data.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{data.label}}</van-tag>
+    <text class="name">{{data.title}}</text>
   </view>
   <!-- <text class="description">{{data.description}}</text> -->
   <view class="content">
@@ -15,6 +15,6 @@
     </view>
   </view>
   <view class="label">
-  <text class="free">{{data.free}}</text>
+    <text class="free">{{data.free}}</text>
   </view>
 </view>

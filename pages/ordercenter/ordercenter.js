@@ -16,7 +16,7 @@ Page({
         createTime: '2019-08-18 18:35',
         payType: '微信',
         label: "自营",
-        status: 1,
+        status: 2,
         freight: 5.00,
         productList: [{
           id: '1',
@@ -29,7 +29,7 @@ Page({
         totalPrice: 88.00,
         expressPrice: 0.00,
         actualPrice: 88.00,
-        orderStatus: 1
+        orderStatus: 2
       },
       {
         id: '2',
@@ -78,7 +78,6 @@ Page({
         totalPrice: 398.00,
         expressPrice: 0.00,
         actualPrice: 398.00,
-        orderStatus: 5
       },
       {
         id: '4',
@@ -95,6 +94,7 @@ Page({
           specDesc: '主机+4罐芳香喷雾罐',
           count: 1,
           price: 99.00,
+          status: 4
         }],
         totalPrice: 99.00,
         expressPrice: 0.00,
@@ -205,7 +205,7 @@ Page({
   },
   cancelOrder: function (e) {
     Dialog.confirm({
-      message: '要取消此订单？'
+      message: '是否取消此订单？'
     }).then(() => {
       // on confirm
       let index = e.currentTarget.dataset.index;
@@ -221,9 +221,9 @@ Page({
       // on cancel
     });
   },
-  deleteOrder: function (e) {
+  toDelete: function (e) {
     Dialog.confirm({
-      message: '要删除此订单？'
+      message: '是否删除此订单？'
     }).then(() => {
       // on confirm
       let id = e.currentTarget.dataset.value.id;
@@ -242,16 +242,17 @@ Page({
   },
   confirmReceive: function (e) {
     Dialog.confirm({
-      message: '确收到货物？'
+      message: '确认收货后钱款会支付给商家'
     }).then(() => {
       // on confirm
       let index = e.currentTarget.dataset.index;
+      console.log(index)
       this.setData({
         [`orderList[${index}].orderStatus`]: 4
       })
       for (let i = 0; i < this.data.orderList[index].productList.length; i++) {
         this.setData({
-          [`orderList[${index}].productList[${i}].status`]: 4
+          [`orderList[${index}].status`]: 4
         })
       }
     }).catch(() => {
@@ -293,7 +294,7 @@ Page({
       url: '/pages/ucenter/express/express'
     })
   },
-  buyAgain: function (e) {
+  toPayAgain: function (e) {
     let index = e.currentTarget.dataset.index;
     wx.navigateTo({
       url: '/pages/product/product?id=' + this.data.order[index].productList[0].id
