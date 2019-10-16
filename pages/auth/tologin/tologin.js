@@ -1,5 +1,7 @@
 // pages/auth/tologin/tologin.js
 import Dialog from '../../../lib/vant-weapp/dialog/dialog';
+const api = require('../../../config/url.js');
+const util = require('../../../utils/util.js');
 var app = getApp();
 
 Page({
@@ -8,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    code: '',
+    userInfo:[]
   },
 
   /**
@@ -72,7 +75,7 @@ Page({
         let userInfo = res.userInfo
         app.globalData.userInfo = res.userInfo;
         wx.setStorageSync('userInfo', res.userInfo);
-        console.log(app.globalData.userInfo)
+        //console.log(app.globalData.userInfo)
       }
     })
   },
@@ -82,18 +85,44 @@ Page({
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
-          // 获取用户信息
-          that.getUserInfo();
-          // 记录登录状态
-          wx.setStorageSync('isLogin', true);
-          Dialog.alert({
-            message: '模拟登录成功，此处还需调用微信登录开放接口'
-          }).then(() => {
-            // 返回上一级
-            wx.navigateBack({
-              delta: 1
-            })
-          });
+          // // 获取用户信息
+          //that.getUserInfo()
+          // // 记录登录状态
+          // wx.setStorageSync('isLogin', true);
+          // Dialog.alert({
+          //   message: '模拟登录成功，此处还需调用微信登录开放接口'
+          // }).then(() => {
+          //   // 返回上一级
+           
+          // });
+          wx.login({
+            success:res =>{
+             
+              if (res.code){
+               util.request(api.IndexUrlLogin,{
+                 code: res.code,
+                 userInfo: e.detail
+               },'POST','application/json').then(res =>{
+                 if(res.code === 0){
+                   wx.setStorageSync('userInfo', res.map.userInfo);
+                   wx.setStorageSync('token', res.map.token);
+                   wx.setStorageSync('userId', res.map.userId);
+                   wx.setStorageSync('isLogin', true);
+                   wx.navigateBack({
+                     delta: 1
+                   })
+                 } else {
+                   // util.showErrorToast(res.errmsg)
+                   wx.showModal({
+                     title: '提示',
+                     content: res.errmsg,
+                     showCancel: false
+                   });
+                 }
+               });
+             }
+            }
+          })
         }
       }
     })

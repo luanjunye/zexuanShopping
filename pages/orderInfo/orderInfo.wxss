@@ -166,7 +166,7 @@
   justify-content: space-between;
 }
 
-.order{
+.order {
   font-size: 30rpx;
   background: #fff;
   margin-top: 15rpx;
@@ -175,12 +175,12 @@
   margin-bottom: 15rpx;
 }
 
-.order .order_info{
+.order .order_info {
   padding: 20rpx 30rpx;
 }
 
-.order .order_info .order_title{
-padding-bottom: 10rpx;
+.order .order_info .order_title {
+  padding-bottom: 10rpx;
 }
 
 .cart-bottom {
@@ -196,34 +196,34 @@ padding-bottom: 10rpx;
   border-top: 2rpx solid #f0f0f0;
 }
 
-.cart-bottom .cart_bottom_left{
+.cart-bottom .cart_bottom_left {
   display: flex;
   margin-left: 30rpx;
   flex-direction: column;
   align-items: center;
 }
 
-.cart-bottom .cart_bottom_left .customer_icon{
+.cart-bottom .cart_bottom_left .customer_icon {
   width: 40rpx;
   height: 40rpx;
 }
 
-.cart-bottom .cart_bottom_left .customer_icon .customer_text{
+.cart-bottom .cart_bottom_left .customer_icon .customer_text {
   font-size: 26rpx;
   padding-top: 10rpx;
 }
 
-.cart-bottom .cart_bottom_right{
+.cart-bottom .cart_bottom_right {
   display: flex;
   justify-content: space-between;
 }
 
-.cart-bottom .cart_bottom_right .cart_btn{
+.cart-bottom .cart_bottom_right .cart_btn {
   margin-right: 30rpx;
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
   background: #ecaf57;
-  color:#fff;
+  color: #fff;
   height: 80rpx;
   border: none;
   border-radius: 13pt;

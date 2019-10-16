@@ -91,10 +91,8 @@
 
   <view class="cart-bottom">
     <view class="cart_bottom_left">
-     
         <image class="customer_icon" src="/assets/customer.png" />
         <text class="customer_text">1对1客服</text>
-    
     </view>
     <view class="cart_bottom_right">
       <button plain type="default" size="small" class="cart_btn" bindtap="toLogistics">查看物流</button>

@@ -16,8 +16,9 @@
 
 .login-btn {
   width: 650rpx;
-  background-color: #b4282d !important;
+  background-color: #74BD3F !important;
   color: #fff !important;
+  border: none; 
 }
 
 .mlogin-btn {
@@ -28,3 +29,17 @@
   border: 1rpx solid #b4282d !important;
 }
 
+.foot{
+  font-size: 30rpx;
+   position: fixed;
+  bottom: 30rpx;
+  color: #6E6F6F;
+}
+
+.foot .and{
+  color: #669DB5;
+}
+
+.foot .a{
+  color: #6E6F6F;
+}

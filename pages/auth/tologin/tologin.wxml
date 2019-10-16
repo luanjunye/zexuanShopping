@@ -1,6 +1,9 @@
 <!--pages/auth/tologin/tologin.wxml-->
 <view class="form-box">
   <image src="/assets/m.png" class="logo"></image>
-  <van-button open-type="getUserInfo" custom-class="login-btn" bind:getuserinfo="wxlogin">微信登录</van-button>
+  <van-button round icon="/assets/wechat.png" custom-class="login-btn" bind:getuserinfo="wxlogin" open-type="getUserInfo">微信一键登录</van-button>
+  <view class="foot">注册/登录即代表同意<text class="and">隐私政策<text class="a">和<text class="and">服务条款</text></text>
+    </text>
+  </view>
 </view>
 <van-dialog confirm-button-color="#b4282d" id="van-dialog" />
