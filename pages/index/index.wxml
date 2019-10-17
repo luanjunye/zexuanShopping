@@ -21,7 +21,7 @@
 <!-- 快捷频道图标 -->
 <view class="space" />
 <view class="menu">
-  <view class="categoryIndex" wx:for="{{categoryIndex}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}">
+  <view class="categoryIndex" wx:for="{{categoryIndex}}" wx:for-item="item" wx:key="{{item.type}}" data-value="{{item}}" bindtap="handleClick">
     <image src="{{item.icn}}" background-size="cover" data-value="{{item}}"></image>
     <text>{{item.name}}</text>
   </view>

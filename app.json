@@ -1,18 +1,20 @@
 {
   "pages": [
+    "pages/mine/mine",
     "pages/index/index",
+    "pages/secondIndex/secondIndex",
     "pages/logs/logs",
     "pages/shoppingcart/shoppingcart",
     "pages/ordercenter/ordercenter",
-    "pages/mine/mine",
+   
     "pages/orderInfo/orderInfo",
     "pages/product/product",
     "pages/auth/tologin/tologin",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
-    "pages/ucenter/express/express",
-    "pages/secondIndex/secondIndex"
+    "pages/ucenter/express/express"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,25 +33,25 @@
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "assets/shangcheng.png",
-        "selectedIconPath": "assets/shangcheng.png"
+        "selectedIconPath": "assets/clickshangcheng.png"
       },
       {
         "pagePath": "pages/ordercenter/ordercenter",
         "text": "订单",
         "iconPath": "assets/order.png",
-        "selectedIconPath": "assets/order.png"
+        "selectedIconPath": "assets/clickorder.png"
       },
       {
         "pagePath": "pages/shoppingcart/shoppingcart",
         "text": "购物车",
         "iconPath": "assets/gouwuche.png",
-        "selectedIconPath": "assets/gouwuche.png"
+        "selectedIconPath": "assets/clickgouwuche.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "个人中心",
         "iconPath": "assets/mine.png",
-        "selectedIconPath": "assets/mine.png"
+        "selectedIconPath": "assets/clickmine.png"
       }
     ]
   },

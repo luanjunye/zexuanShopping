@@ -1,118 +1,23 @@
 // pages/mine/mine.js
+const api = require('/../../config/url.js');
+const util = require('/../../utils/util.js');
 var app = getApp();
 Page({
-// 个人中心
+  // 个人中心
   /**
    * 页面的初始数据
    */
   data: {
+    background: "",
     userInfo: {},
     isLogin: false,
     images: {},
     icons: {},
-    other_f: {},
-    other_s: {},
-    status: [{
-        "id": 1,
-        "url": "/pages/mine/assets/payment.png",
-        "webUrl": "",
-        "title": "待付款",
-        "content": 1,
-
-      },
-      {
-        "id": 2,
-        "url": "/pages/mine/assets/deliver.png",
-        "webUrl": "",
-        "title": "待发货",
-        "content": 0,
-
-      }, {
-        "id": 3,
-        "url": "/pages/mine/assets/receiving.png",
-        "webUrl": "",
-        "title": "待收货",
-        "content": 0,
-
-      },
-      {
-        "id": 4,
-        "url": "/pages/mine/assets/evaluate.png",
-        "webUrl": "",
-        "title": "待评价",
-        "content": 0,
-      },
-      {
-        "id": 5,
-        "url": "/pages/mine/assets/sale.png",
-        "webUrl": "",
-        "title": "退款售后",
-        "content": 0,
-
-      }
-    ],
-    others_first: [{
-        "id": 6,
-        "url": "/pages/mine/assets/address.png",
-        "webUrl": "",
-        "title": "收货地址",
-        "content": 1,
-
-      },
-      {
-        "id": 7,
-        "url": "/pages/mine/assets/collection.png",
-        "webUrl": "",
-        "title": "我的收藏",
-        "content": 0,
-
-      }, {
-        "id": 8,
-        "url": "/pages/mine/assets/mail.png",
-        "webUrl": "",
-        "title": "我的私信",
-        "content": 0,
-
-      },
-      {
-        "id": 9,
-        "url": "/pages/mine/assets/cheat.png",
-        "webUrl": "",
-        "title": "反作弊",
-        "content": 0,
-      }
-    ],
-    others_second: [{
-        "id": 10,
-        "url": "/pages/mine/assets/customer.png",
-        "webUrl": "",
-        "title": "官方客服",
-        "content": 1,
-
-      },
-      {
-        "id": 11,
-        "url": "/pages/mine/assets/enterprise.png",
-        "webUrl": "",
-        "title": "公司简介",
-        "content": 0,
-
-      }, {
-        "id": 12,
-        "url": "/pages/mine/assets/group.png",
-        "webUrl": "",
-        "title": "团购优惠",
-        "content": 0,
-
-      },
-      {
-        "id": 13,
-        "url": "/pages/mine/assets/contact.png",
-        "webUrl": "",
-        "title": "联系我们",
-        "content": 0,
-      }
-    ]
+    otherSecond: {},
+    otherFirst: {},
+    other_f: [],
+    other_s: [],
+    status: []
   },
 
   imageLoad: function(e) {
@@ -168,7 +73,7 @@ Page({
       height: viewHeight
     }
     this.setData({
-      other_f: otherf,
+      otherFirst: otherf,
     })
   },
 
@@ -187,13 +92,43 @@ Page({
       height: viewHeight
     }
     this.setData({
-      other_s: others,
+      otherSecond: others,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.getInitialization()
+  },
+
+  getInitialization: function() {
+    let that = this;
+    var data = new Object();
+    util.request(api.MineUrlBackground, "GET").then(function(res) {
+      if (res.code === 0) {
+        data.background = res.data[0].url
+        that.setData(data)
+      }
+    });
+    util.request(api.MineUrlIconFirst, "GET").then(function(res) {
+      if (res.code === 0) {
+        data.status = res.status
+        that.setData(data)
+      }
+    });
+    util.request(api.MineUrlIconSecond, "GET").then(function(res) {
+      if (res.code === 0) {
+        data.other_f = res.other_f
+        that.setData(data)
+      }
+    });
+    util.request(api.MineUrlIconThird, "GET").then(function(res) {
+      if (res.code === 0) {
+        data.other_s = res.other_s
+        that.setData(data)
+      }
+    });
 
   },
 
@@ -223,6 +158,7 @@ Page({
         isLogin: isLogin
       });
     }
+    this.getInitialization()
   },
 
   /**

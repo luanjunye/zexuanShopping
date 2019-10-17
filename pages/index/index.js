@@ -8,7 +8,6 @@ const app = getApp()
 Page({
   // 主页
   data: {
-
     banner: [],
     categoryIndex: [],
     details: []
@@ -17,7 +16,7 @@ Page({
     this.getIndexData();
   },
   onshow: function(options) {
-
+    this.getIndexData();
   },
   getIndexData: function() {
     let that = this;
@@ -40,5 +39,13 @@ Page({
         that.setData(data);
       }
     })
+  },
+  handleClick:function(e){
+    let data = e.currentTarget.dataset.value;
+    if (data.type&&data.name){
+      wx.navigateTo({
+        url: '/pages/secondIndex/secondIndex?type=' + data.type + '&&name=' + data.name,
+      })
+    }
   }
 })

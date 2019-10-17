@@ -12,6 +12,7 @@
   display: flex;
   /* flex-wrap 换行 */
   flex-wrap: wrap;
+  height: 100%;
   /* 相对定位 */
   position: relative;
   background: #f5f6f7;
@@ -28,3 +29,4 @@
   background: #fff;
   border-radius: 5px;
 }
+

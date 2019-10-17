@@ -99,7 +99,7 @@ Page({
             success:res =>{
              
               if (res.code){
-               util.request(api.IndexUrlLogin,{
+                util.request(api.MineUrlLogin,{
                  code: res.code,
                  userInfo: e.detail
                },'POST','application/json').then(res =>{
