@@ -39,21 +39,22 @@
 
 .content {
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  padding: 0rpx 10rpx 5rpx 20rpx;
+  padding: 0rpx 30rpx 5rpx 20rpx;
 }
 
 .content .contents {
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
 .product-big .price {
   /* display:block换行显示 */
   display: block;
   font-size: 24rpx;
-  color: #FFA42F;
-  font-weight: 700;
+  color: #ffa42f;
 }
 
 .product-big .number {
@@ -68,7 +69,6 @@
 
 .product-big .place {
   font-size: 15rpx;
-  padding-left: 90rpx;
   padding-bottom: 5rpx;
   color: #7f7f7f;
 }
@@ -80,28 +80,29 @@
   left: 15rpx;
 }
 
-.product-big .label{
+.product-big .label {
   display: flex;
+  margin-top: 5rpx;
   justify-content: flex-end;
 }
 
-.product-big .label .free{
+.product-big .label .free {
   font-size: 15rpx;
-  color:#FFA42F;
+  color: #ffa42f;
   font-weight: 700;
   margin-right: 26rpx;
   margin-bottom: 15rpx;
   padding: 5rpx;
-  border:1rpx solid #FFA42F;
+  border: 1rpx solid #ffa42f;
   border-radius: 10%;
 }
 
-.product-big .titleLabel{
+.product-big .titleLabel {
   display: flex;
   align-items: flex-end;
 }
 
-.product-big .titleLabel .tlabel{
+.product-big .titleLabel .tlabel {
   padding-left: 20rpx;
   padding-bottom: 5rpx;
 }

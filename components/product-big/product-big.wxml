@@ -9,10 +9,12 @@
   <!-- <text class="description">{{data.description}}</text> -->
   <view class="content">
     <view class="contents">
+    
       <text class="price">￥{{data.price}}</text>
       <text class="number">{{data.number}}</text>
+      </view>
       <text class="place">{{data.place}}</text>
-    </view>
+   
   </view>
   <view class="label">
     <text class="free">{{data.free}}</text>

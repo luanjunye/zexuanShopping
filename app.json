@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/auth/tologin/tologin",
-    "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs",
     "pages/shoppingcart/shoppingcart",
     "pages/ordercenter/ordercenter",
+    "pages/mine/mine",
     "pages/orderInfo/orderInfo",
     "pages/product/product",
+    "pages/auth/tologin/tologin",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
