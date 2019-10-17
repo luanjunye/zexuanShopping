@@ -1,0 +1,157 @@
+@import '../../utils/variables';
+@import '../../utils/utility';
+
+$font-size-list: .9rem;
+
+$bg: #F5F6F7;
+
+.content{
+  padding: 10px 0;
+  background-color: $bg;
+}
+
+.order-return{
+  font-size: $font-size-list;
+  background-color: #fff;
+  padding: 15px;
+}
+
+.product{
+  padding-bottom: 15px;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1rpx solid $color-border;
+}
+
+.product-img{
+  background-color: #cccccc;
+  flex-shrink: 0;
+  height: 70px;
+  width: 70px;
+}
+
+.product-info{
+  padding: 10px;
+  flex-grow: 1;
+  .product-name{
+    line-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .product-meta{
+    line-height: 20px;
+    .product-meta-title{
+    }
+    .product-meta-content{
+    }
+  }
+}
+
+.list-item{
+  padding: 10px 0;
+  border-bottom: 1rpx solid $color-border;
+}
+
+.list-item-content{
+  margin-bottom: 5px;
+  justify-content: space-between;
+  display: flex;
+  &:last-child{
+    margin-bottom: 0;
+  }
+  .list-label{
+
+  }
+  .list-content{
+    text-align: right;
+    color: $text-sutitle;
+  }
+}
+
+.uploader{
+  padding: 10px 0;
+  &-title{
+    line-height: 20px;
+  }
+  &-content{
+    display: flex;
+  }
+}
+
+.comment{
+  font-size: .7rem;
+  color: $text-sutitle;
+  padding: 5px 0;
+}
+
+
+.fix-bottom{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+}
+
+.btn-main{
+  display: block;
+  text-align: center;
+  color: white;
+  background-color: $color-main;
+  font-size: 1.1rem;
+}
+
+.mask{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  background-color: rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px, saturate(180%));
+  -webkit-backdrop-filter: blur(10px, saturate(180%));
+  z-index: $z-mobile-menu;
+}
+
+.slide-up-panel{
+  position: relative;
+  height: 400px;
+  background-color: white;
+
+  .header{
+    text-align: center;
+    padding: 15px;
+    line-height: 1;
+  }
+  .body{
+    padding: 15px;
+  }
+  .footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+
+
+.select-list-item{
+  padding: 0 10px;
+}
+
+.btn-full{
+  background-color: $color-main;
+  color: white;
+  font-size: 1.1rem;
+}
+
+
+
