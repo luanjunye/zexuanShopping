@@ -1,0 +1,73 @@
+<!--pages/orderReturn/orderReturn.wxml-->
+
+<view class="content">
+    <view class="order-return">
+        <view class="product">
+            <image class='product-img'></image>
+            <view class='product-info'>
+                <view class='product-name'>{{productName}}</view>
+                <view class="product-meta">
+                    <text class='product-meta-title'>规格：</text>
+                    <text class='product-meta-content'>{{productMeta}}</text>
+                </view>
+            </view>
+        </view>
+
+        <view class='list-item'>
+            <view class="list-item-content">
+                <view class='list-label'>退款原因</view>
+                <view class='list-content'>{{returnReason}}</view>
+            </view>
+        </view>
+
+        <view class='list-item'>
+            <view class="list-item-content">
+                <view class='list-label'>退货方式</view>
+                <view class='list-content'>自行寄回</view>
+            </view>
+            <view class="list-item-content">
+                <view class='list-label'>退货单号</view>
+                <view class='list-content'>{{returnPackageId}}</view>
+            </view>
+            <view class="list-item-content">
+                <view class='list-label'>快递公司</view>
+                <view class='list-content'>{{packageListArray[returnPackageCompany]}}</view>
+            </view>
+            <view class="list-item-content">
+                <view class='list-label'>退款金额</view>
+                <view class='list-content'>￥{{returnPrice}}</view>
+            </view>
+            <view class="comment">
+                最多 <text>￥{{returnPrice}}</text>，含发货邮费 <text>￥1.00</text>
+            </view>
+        </view>
+
+        <view class='list-item'>
+            <view class="list-item-content">
+                <view class='list-label'>退款说明</view>
+                <input class='list-content' placeholder='选填'>{{returnComment}}</input>
+            </view>
+        </view>
+
+        <view class="uploader">
+            <view class="uploader-title">上传凭证</view>
+            <view class="uploader-content">
+
+            </view>
+        </view>
+
+
+
+
+        <view class='fix-bottom'>
+            <button class='btn-main'>提交</button>
+        </view>
+
+    </view>
+</view>
+
+ <picker bindchange="bindPickerChange" value="{{returnPackageCompany}}" range="{{packageListArray}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>

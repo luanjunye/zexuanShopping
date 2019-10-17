@@ -1,5 +1,9 @@
 {
   "pages": [
+    "pages/orderReturn/orderReturn",
+    "pages/product/product",
+    "pages/logs/logs",
+    "pages/auth/tologin/tologin",
     "pages/index/index",
     "pages/logs/logs",
     "pages/shoppingcart/shoppingcart",
@@ -7,7 +11,6 @@
     "pages/mine/mine",
     "pages/orderInfo/orderInfo",
     "pages/product/product",
-    "pages/auth/tologin/tologin",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
