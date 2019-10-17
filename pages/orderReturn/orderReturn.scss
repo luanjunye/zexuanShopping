@@ -104,3 +104,54 @@ $bg: #F5F6F7;
   background-color: $color-main;
   font-size: 1.1rem;
 }
+
+.mask{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  background-color: rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px, saturate(180%));
+  -webkit-backdrop-filter: blur(10px, saturate(180%));
+  z-index: $z-mobile-menu;
+}
+
+.slide-up-panel{
+  position: relative;
+  height: 400px;
+  background-color: white;
+
+  .header{
+    text-align: center;
+    padding: 15px;
+    line-height: 1;
+  }
+  .body{
+    padding: 15px;
+  }
+  .footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+
+
+.select-list-item{
+  padding: 0 10px;
+}
+
+.btn-full{
+  background-color: $color-main;
+  color: white;
+  font-size: 1.1rem;
+}
+
+
+
