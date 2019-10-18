@@ -21,7 +21,7 @@ function formatNumber(n) {
 /**
  * 封封微信的的request
  */
-function request(url, data = {}, method, header = "application/x-www-form-urlencoded") {
+function request(url, data = {}, method, header = "application/json") {
     wx.showLoading({
         title: '加载中...',
     });

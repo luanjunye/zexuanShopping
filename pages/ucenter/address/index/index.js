@@ -32,9 +32,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var data = new Object();
+    let userId = wx.getStorageSync('userId')
     wx.setNavigationBarTitle({
       title: '地址管理',
     })
+    util.request(api.AddressPage,{userId:userId}, "GET").then(function (res) {
+      if (res.code === 0) {
+     
+      }
+    });
     if (options.chooseMode == "true") {
       this.setData({
         chooseMode: true

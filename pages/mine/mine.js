@@ -105,18 +105,32 @@ Page({
   getInitialization: function() {
     let that = this;
     var data = new Object();
+    let userId = wx.getStorageSync('userId')
+
     util.request(api.MineUrlBackground, "GET").then(function(res) {
       if (res.code === 0) {
         data.background = res.data[0].url
         that.setData(data)
       }
     });
-    util.request(api.MineUrlIconFirst, "GET").then(function(res) {
-      if (res.code === 0) {
-        data.status = res.status
-        that.setData(data)
-      }
-    });
+    if (userId) {
+      util.request(api.MineUrlIconFirst, {
+        userId: userId
+      }, "GET").then(function(res) {
+        if (res.code === 0) {
+          data.status = res.status
+          that.setData(data)
+        }
+      });
+    } else {
+      util.request(api.MineUrlIconFirst, "GET").then(function(res) {
+        if (res.code === 0) {
+          data.status = res.status
+          that.setData(data)
+        }
+      });
+    }
+
     util.request(api.MineUrlIconSecond, "GET").then(function(res) {
       if (res.code === 0) {
         data.other_f = res.other_f
@@ -203,18 +217,34 @@ Page({
       })
     }
   },
+  checkLogin: function() {
+    if (!this.data.isLogin) {
+      wx.navigateTo({
+        url: '/pages/auth/tologin/tologin',
+      })
+    }
+  },
   toOrder: function(e) {
-    this.toLogin();
     let type = e.currentTarget.id;
     console.log(type)
     if (type <= 5) {
+      this.checkLogin();
       getApp().globalData.type = type;
       wx.switchTab({
         url: '/pages/ordercenter/ordercenter',
       })
     } else if (type == 6) {
+      this.checkLogin();
       wx.navigateTo({
         url: '/pages/ucenter/address/index/index',
+      })
+    } else if (type == 9) {
+      wx.navigateTo({
+        url: '/pages/ucenter/antiCheating/antiCheating',
+      })
+    } else if (type == 11) {
+      wx.navigateTo({
+        url: '/pages/ucenter/companyProfile/companyProfile',
       })
     } else {
       wx.showToast({

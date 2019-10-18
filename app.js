@@ -40,6 +40,7 @@ App({
       nickName: "Hi，游客",
       avatarUrl: "/assets/avatar.png"
     },
+    userId:"",
     token:"",
   }
 })

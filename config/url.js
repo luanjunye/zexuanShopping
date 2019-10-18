@@ -8,5 +8,10 @@ module.exports = {
   MineUrlBackground: API_BASE_URL + 'icon/background',//个人中心背景图
   MineUrlIconFirst: API_BASE_URL + 'icon/first',//个人中心第一排icon
   MineUrlIconSecond: API_BASE_URL + 'icon/second',//个人中心第二排icon
-  MineUrlIconThird: API_BASE_URL + 'icon/third'//个人中心第三排icon
+  MineUrlIconThird: API_BASE_URL + 'icon/third',//个人中心第三排icon
+  CartPage:API_BASE_URL + 'cart/page',//购物车
+  AddressPage: API_BASE_URL + 'address/page',//地址管理
+  AddressSave: API_BASE_URL + 'address/save/json',//添加新地址
+  AddressUpdate: API_BASE_URL + 'address/update/json',//添加新地址
+  AddressDelete: API_BASE_URL + 'address/delete'//删除地址
 };

@@ -1,16 +1,19 @@
 // pages/shoppingcart/ShoppingCart.js
+const api = require('/../../config/url.js');
+const util = require('/../../utils/util.js');
 Page({
-// 购物车
+  // 购物车
   /**
    * 页面的初始数据
    */
   data: {
+    userId: 0,
     isLogin: false,
     noChecked: false,
     checkedAll: false,
     totalPrice: 0,
     totalCount: 0,
-    freightPrice:0,
+    freightPrice: 0,
     cartList: []
   },
 
@@ -32,11 +35,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    let that = this;
+    var data = new Object();
     let isLogin = wx.getStorageSync('isLogin');
+    let userId = wx.getStorageSync('userId');
+
     // 页面显示
-    if (isLogin) {
+    if (isLogin && userId) {
       this.setData({
-        isLogin: isLogin
+        isLogin: isLogin,
+        userId: userId
       });
     }
     // 读取购物车缓存数据
@@ -44,43 +52,27 @@ Page({
     console.log(cartList)
     // 模拟数据
     if (!cartList) {
-      let data = [{
-          id: 1,
-          checked: false,
-          picUrl: 'https://resource.smartisan.com/resource/71432ad30288fb860a4389881069b874.png',
-          title: '畅呼吸智能空气净化器',
-          spec: '标准版 白色',
-          count: 1,
-          maxNum: 99,
-          price: 1399.00,
-          originPrice: 1999.00,
-          label: "自营"
-        },
-        {
-          id: 2,
-          checked: true,
-          picUrl: 'https://yanxuan.nosdn.127.net/e9cecc7cb24a8d7745da1c99b87dde08.png',
-          title: '丛林系列·缝线笔记本 4本装',
-          spec: '丛林系列',
-          count: 1,
-          maxNum: 99,
-          price: 19.00,
-          originPrice: 29.00,
-          label: "自营"
+      util.request(api.CartPage, {
+        userId: userId
+      }, "GET").then(function(res) {
+        if (res.code === 0) {
+          console.log(res.data.list)
+          data.cartList = res.data.list
+          that.setData(data)
+          wx.setStorageSync("cartList", cartList);
+          that.setCheckedTotalPrice();
+          that.setCheckedTotalCount();
+          that.judgeCheckedAll();
         }
-      ];
-      this.setData({
-        cartList: data
       });
-      wx.setStorageSync("cartList", cartList);
     } else {
-      this.setData({
+      that.setData({
         cartList: cartList
       })
+      that.setCheckedTotalPrice();
+      that.setCheckedTotalCount();
+      that.judgeCheckedAll();
     }
-    this.setCheckedTotalPrice();
-    this.setCheckedTotalCount();
-    this.judgeCheckedAll();
   },
 
   /**
@@ -151,6 +143,7 @@ Page({
     })
   },
   judgeCheckedAll: function() {
+    console.log(1)
     let noChecked = true;
     this.data.cartList.forEach(function(v) {
       if (v.checked) {
@@ -176,7 +169,7 @@ Page({
     this.setData({
       checkedAll: e.detail
     });
-    
+
     for (let i = 0; i < this.data.cartList.length; i++) {
       this.setData({
         [`cartList[${i}].checked`]: e.detail
