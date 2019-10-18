@@ -58,7 +58,7 @@ Page({
         },
         {
           id: 2,
-          checked: true,
+          checked: false,
           picUrl: 'https://yanxuan.nosdn.127.net/e9cecc7cb24a8d7745da1c99b87dde08.png',
           title: '丛林系列·缝线笔记本 4本装',
           spec: '丛林系列',

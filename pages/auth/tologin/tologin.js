@@ -115,7 +115,7 @@ Page({
                    // util.showErrorToast(res.errmsg)
                    wx.showModal({
                      title: '提示',
-                     content: res.errmsg,
+                     content: res.msg,
                      showCancel: false
                    });
                  }

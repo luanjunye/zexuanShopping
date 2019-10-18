@@ -1,22 +1,20 @@
 {
   "pages": [
+    "pages/orderReturn/orderReturn",
     "pages/mine/mine",
     "pages/index/index",
     "pages/secondIndex/secondIndex",
-    "pages/orderReturn/orderReturn",
     "pages/logs/logs",
     "pages/auth/tologin/tologin",
-    "pages/index/index",
     "pages/shoppingcart/shoppingcart",
     "pages/ordercenter/ordercenter",
-   
     "pages/orderInfo/orderInfo",
     "pages/product/product",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
     "pages/ucenter/express/express"
-   
+
   ],
   "window": {
     "backgroundTextStyle": "light",

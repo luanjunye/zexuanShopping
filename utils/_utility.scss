@@ -57,3 +57,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin bg-blur(){
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+}
