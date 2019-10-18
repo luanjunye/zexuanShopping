@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/mine/mine",
-    "pages/index/index",
     "pages/secondIndex/secondIndex",
     "pages/orderReturn/orderReturn",
     "pages/logs/logs",
@@ -9,14 +8,14 @@
     "pages/index/index",
     "pages/shoppingcart/shoppingcart",
     "pages/ordercenter/ordercenter",
-   
     "pages/orderInfo/orderInfo",
     "pages/product/product",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
-    "pages/ucenter/express/express"
-   
+    "pages/ucenter/express/express",
+    "pages/ucenter/companyProfile/companyProfile",
+    "pages/ucenter/antiCheating/antiCheating"
   ],
   "window": {
     "backgroundTextStyle": "light",
