@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/orderReturn/orderReturn",
     "pages/mine/mine",
     "pages/secondIndex/secondIndex",
-    "pages/orderReturn/orderReturn",
     "pages/logs/logs",
     "pages/auth/tologin/tologin",
-    "pages/index/index",
     "pages/shoppingcart/shoppingcart",
     "pages/ordercenter/ordercenter",
     "pages/orderInfo/orderInfo",
