@@ -3,6 +3,7 @@ Page({
 // 地址管理
   /**
   * 页面的初始数据
+
   */
   data: {
     chooseMode: false,

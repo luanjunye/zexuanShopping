@@ -1,209 +1,114 @@
 // pages/ordercenter/ordercenter.
 import Dialog from '../../lib/vant-weapp/dialog/dialog';
+
+const util = require('./../../utils/util.js');
+const api = require('./../../config/url.js');
+
 Page({
-// 订单中心
-  /**
-   * 页面的初始数据
-   */
+  // 订单中心
   data: {
-    active: 0,
+    active: 0, // 0 全部 1 待付款 2 待发货 3 已发货 4 等评价 5 退款售后
     loading: false,
     orderList: [],
-    order: [
-      {
-        id: '1',
-        orderSn: '20180320',
-        createTime: '2019-08-18 18:35',
-        payType: '微信',
-        label: "自营",
-        status: 2,
-        freight: 5.00,
-        productList: [{
-          id: '1',
-          picUrl: 'https://yanxuan.nosdn.127.net/1979054e3a1c8409f10191242165e674.png',
-          title: '常温纯牛奶 250毫升*12盒*2提',
-          specDesc: '纯牛奶 12盒*2提',
-          count: 1,
-          price: 88.00,
-        }],
-        totalPrice: 88.00,
-        expressPrice: 0.00,
-        actualPrice: 88.00,
-        orderStatus: 2
-      },
-      {
-        id: '2',
-        orderSn: '20180321',
-        createTime: '2019-08-18 18:35',
-        payType: '微信',
-        label: "自营",
-        status: 3,
-        freight: 5.00,
-        productList: [{
-          id: '2',
-          picUrl: 'https://yanxuan.nosdn.127.net/22d0a46bac31ad7f882830e698ed5132.png',
-          title: '无损风味 超即溶精品咖啡（24颗入）',
-          specDesc: '24颗精品混合装（1-6号）',
-          count: 1,
-          price: 165.00,
-        }],
-        totalPrice: 165.00,
-        expressPrice: 0.00,
-        actualPrice: 165.00,
-        orderStatus: 3
-      },
-      {
-        id: '3',
-        orderSn: '20180321',
-        createTime: '2019-08-18 18:35',
-        payType: '微信',
-        label: "自营",
-        status: 5,
-        freight: 5.00,
-        productList: [{
-          id: '3',
-          picUrl: 'https://yanxuan.nosdn.127.net/87eb525e1a7998b7a88f45a86b912e01.jpg',
-          title: '有道口袋打印机',
-          specDesc: '口袋打印机',
-          count: 1,
-          price: 239.00,
-        }, {
-          id: '4',
-          picUrl: 'https://yanxuan.nosdn.127.net/604941c1a657e49f4114dabb201ab2aa.png',
-          title: '智能降温保冷杯',
-          specDesc: '帝王黑',
-          count: 1,
-          price: 159.00,
-        }],
-        totalPrice: 398.00,
-        expressPrice: 0.00,
-        actualPrice: 398.00,
-      },
-      {
-        id: '4',
-        orderSn: '20181328',
-        createTime: '2019-08-18 18:35',
-        payType: '微信',
-        label: "自营",
-        freight: 5.00,
-        status: 4,
-        productList: [{
-          id: '5',
-          picUrl: 'https://yanxuan.nosdn.127.net/69a890ff1cfe400c4e2fdaee7d9e598a.png',
-          title: '自动喷香机',
-          specDesc: '主机+4罐芳香喷雾罐',
-          count: 1,
-          price: 99.00,
-          status: 4
-        }],
-        totalPrice: 99.00,
-        expressPrice: 0.00,
-        actualPrice: 99.90,
-        orderStatus: 4
+    order: [],
+    shippingStatus: 0
+  },
+
+
+  /* 订单状态
+  0 订单创建成功等待付款，
+  1xx 表示订单取消和删除等状态  101订单已取消，102订单已删除
+  2xx 表示订单支付状态 201订单已付款，等待发货
+  3xx 表示订单物流相关状态 300订单已发货， 301用户确认收货
+  4xx 表示订单退换货相关的状态 401 没有发货，退款 402 已收货，退款退货
+  */
+
+  onLoad: function(options) {
+    let userId = getApp().getUserId();
+    let that = this;
+    util.request(api.OrderList, {
+      userId: userId,
+      shippingStatus: 0 // 订单发货状态
+    }, "GET").then(function(res) {
+      if (res.code === 0) {
+        let tempOrder = [];
+        if (res.data.list.length > 0) {
+          res.data.list.forEach(item => {
+
+            // 产品列表
+            let goodList = [];
+            item.list.forEach((good, index) => {
+              goodList.push({
+                id: index,
+                picUrl: good.url,
+                title: good.name,
+                specDesc: good.type,
+                count: good.num,
+                price: good.money,
+              })
+            })
+            // console.log('orderGoodList', goodList);
+            // console.log(item.status, item.shippingStatus); // 订单状态
+            tempOrder.push({
+              id: item.id,
+              payType: '微信',
+              shopType: item.shopType,
+              shopName: item.shopName,
+              status: item.status,
+              statusName: item.statusName,
+              productList: goodList,
+              totalPrice: item.money,
+              shippingStatus: item.shippingStatus
+              // actualPrice: 88.00,
+              // expressPrice: 0.00,
+              // createTime: '2019-08-18 18:35',
+              // orderSn: '20180320',
+              // freight: 5.00,
+            })
+          })
+        }
+        that.setData({
+          order: tempOrder
+        });
+        that.loadData(that.data.shippingStatus) // 筛选并显示数据需要在网络请求之后，不可在页面载入时直接调用
       }
-    ]
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    // 获取参数
-    let type = getApp().globalData.type;
-    console.log(type)
-    if (type) {
-      this.setData({
-        active: type
-      })
-    }
-    // 模拟加载数据
-    this.loadData(type)
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    let type = getApp().globalData.type;
-    console.log(type)
-    if (type) {
-      this.setData({
-        active: type
-      })
-    }
-    // 模拟加载数据
-    this.loadData(type)
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  loadData: function (type) {
+  // 载入筛选状态后的订单数据
+  loadData: function(type) {
     this.setData({
       loading: true
     })
-    if (type && type != 0) {
-      let data = this.data.order.filter(item => item.orderStatus == type);
-      this.setData({
-        orderList: data,
-        loading: false
-      })
-    } else {
-      let that = this;
-      setTimeout(function () {
-        that.setData({
-          loading: false,
-          orderList: that.data.order
-        })
-      }, 1000)
-    }
+    let data = this.data.order.filter(item => {
+      if (type === 0) { // 输入 0 时显示所有的订单
+        return true
+      } else {
+        return item.shippingStatus === type
+      }
+    });
+    // console.log('筛选后的数据', data);
+    this.setData({
+      orderList: data,
+      loading: false
+    })
   },
-  changeTab: function (e) {
+
+
+  // 状态标签切换
+  changeTab: function(e) {
+    console.log(e);
     let type = e.detail.index;
-    // 模拟加载数据
+    console.log(typeof type);
     this.loadData(type)
   },
-  scrollListen: function (e) {
+
+
+  scrollListen: function(e) {
     console.log("滑到底部啦 该加载下一页数据啦")
   },
-  cancelOrder: function (e) {
+  cancelOrder: function(e) {
     Dialog.confirm({
       message: '是否取消此订单？'
     }).then(() => {
@@ -221,14 +126,17 @@ Page({
       // on cancel
     });
   },
-  toDelete: function (e) {
+
+
+
+  toDelete: function(e) {
     Dialog.confirm({
       message: '是否删除此订单？'
     }).then(() => {
       // on confirm
       let id = e.currentTarget.dataset.value.id;
       let data = [];
-      this.data.orderList.forEach(function (v) {
+      this.data.orderList.forEach(function(v) {
         if (id != v.id) {
           data.push(v);
         }
@@ -240,7 +148,9 @@ Page({
       // on cancel
     });
   },
-  confirmReceive: function (e) {
+
+
+  confirmReceive: function(e) {
     Dialog.confirm({
       message: '确认收货后钱款会支付给商家'
     }).then(() => {
@@ -259,14 +169,16 @@ Page({
       // on cancel
     });
   },
-  toPay: function (e) {
+
+
+  toPay: function(e) {
     let actualPrice = e.currentTarget.dataset.value.actualPrice;
     wx.showModal({
       title: '提示',
       content: '此处需调用微信支付接口',
       showCancel: false,
       confirmColor: '#b4282d',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           wx.redirectTo({
             url: '/pages/pay-result/pay-result?status=1&actualPrice=' + actualPrice,
@@ -275,29 +187,46 @@ Page({
       }
     })
   },
-  toOrderDetail: function (v) {
+
+
+  toOrderDetail: function(v) {
     let data = v.currentTarget.dataset.value;
     wx.setStorageSync("currOrder", data);
     wx.navigateTo({
-      url: '/pages/ucenter/order-detail/order-detail'
+      url: '/pages/ucenter/order-detail/orderinfo'
     })
   },
-  toComment: function (v) {
+
+
+  toComment: function(v) {
     let data = v.currentTarget.dataset.value;
     wx.setStorageSync("currOrder", data);
     wx.navigateTo({
       url: '/pages/ucenter/to-comment/to-comment'
     })
   },
-  toExpress: function (v) {
+
+
+  toExpress: function(v) {
     wx.navigateTo({
       url: '/pages/ucenter/express/express'
     })
   },
-  toPayAgain: function (e) {
+
+
+  toPayAgain: function(e) {
     let index = e.currentTarget.dataset.index;
     wx.navigateTo({
       url: '/pages/product/product?id=' + this.data.order[index].productList[0].id
     })
-  }
+  },
+
+  // LIFECYCLE METHODS
+  onReady: function() {},
+  onShow: function() {},
+  onHide: function() {},
+  onUnload: function() {},
+  onPullDownRefresh: function() {},
+  onReachBottom: function() {},
+  onShareAppMessage: function() {},
 })

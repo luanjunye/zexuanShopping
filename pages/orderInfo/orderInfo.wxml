@@ -18,7 +18,8 @@
     </view>
   </view>
   <view class="product">
-    <view class="item" wx:for="{{productList}}" wx:key="{{item.id}}">
+  <!-- 单商品模板 -->
+    <view class="item" wx:for="{{order.productList}}" wx:key="{{index}}">
       <view class="title">
         <van-tag wx:if="{{item.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.label}}</van-tag>
         <text class="title_text">屈蜂堂官方商城</text>

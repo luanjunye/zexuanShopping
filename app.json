@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/ordercenter/ordercenter",
+    "pages/orderInfo/orderInfo",
     "pages/orderReturn/orderReturn",
     "pages/mine/mine",
+    "pages/index/index",
     "pages/secondIndex/secondIndex",
     "pages/logs/logs",
     "pages/auth/tologin/tologin",
     "pages/shoppingcart/shoppingcart",
-    "pages/ordercenter/ordercenter",
-    "pages/orderInfo/orderInfo",
     "pages/product/product",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
