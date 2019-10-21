@@ -58,6 +58,10 @@ Page({
         let timeCreate = util.formatTime(new Date(tempOrder.createTime));
         let timePayed = util.formatTime(new Date(tempOrder.payTime));
         let timeShipping = util.formatTime(new Date(tempOrder.deliveryTime));
+
+        // 保存订单信息
+        wx.setStorageSync("currOrder", tempOrder);
+
         that.setData({
           timeCreate: timeCreate,
           timePayed: timePayed,

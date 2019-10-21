@@ -1,58 +1,44 @@
 // pages/ucenter/express/express.js
+
+const util = require('./../../../utils/util.js');
+const api = require('./../../../config/url.js');
+
 Page({
   //物流信息
   /**
    * 页面的初始数据
    */
   data: {
-    express: {
-      company: "顺丰速运",
-      expno: "456388615153",
-      detail: [
-        {
-          text: '已签收(丰巢签收),感谢使用顺丰,期待再次为您服务',
-          desc: '2018-06-01 15:40:38'
-        },
-        {
-          text: '快件交给贺金，正在派送途中（联系电话：15683035597）',
-          desc: '2018-05-31 19:20:44'
-        },
-        {
-          text: '快件已发车',
-          desc: '2018-06-01 06:00:03'
-        },
-        {
-          text: '快件到达 【重庆渝北集散中心】',
-          desc: '2018-06-01 03:38:22'
-        },
-        {
-          text: '快件已发车',
-          desc: '2018-06-01 06:00:03'
-        },
-        {
-          text: '快件到达 【成都双流集散中心】',
-          desc: '2018-05-31 19:20:44'
-        },
-        {
-          text: '包裹已交付顺丰快递',
-          desc: '2018-05-31 20:50:53'
-        },
-        {
-          text: '您的订单打包完成，已出库',
-          desc: '2018-05-31 15:39:42'
-        },
-        {
-          text: '您的订单已经开始拣货',
-          desc: '2018-05-31 14:45:39'
-        },
-        {
-          text: '订单提交成功',
-          desc: '2018-05-31 14:25:57'
-        }
-      ]
-    },
-    
+    order:Object,
+    expressInfo: Object,
+    expressCompany: String,
   },
+
+  // 获取快递信息
+  getPackageInfo(packageId) {
+    let that = this;
+    util.request(api.OrderPackage, {
+      shippingNo: packageId
+    }, "GET").then(res => {
+      if (res.code === 0){
+        let info = JSON.parse(res.courierInfo);
+        let tempArray = [];
+        if (info.list.length > 0){
+          info.list.forEach(item => {
+            tempArray.push({
+              text: item.content,
+              desc: item.time
+            })
+          })
+        }
+        that.setData({
+          expressCompany: info.cname,
+          expressInfo: tempArray,
+        })
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -60,7 +46,16 @@ Page({
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '物流信息',
-    })
+    });
+
+    // 载入订单信息
+    let currentOrder = wx.getStorageSync('currOrder');
+    this.setData({
+      order: currentOrder
+    });
+
+    // 请求快递物流信息
+    this.getPackageInfo(currentOrder.shippingNo)
   },
 
   /**
