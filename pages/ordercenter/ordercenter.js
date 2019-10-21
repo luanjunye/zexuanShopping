@@ -100,6 +100,7 @@ Page({
   changeTab: function(e) {
     console.log(e);
     let type = e.detail.index;
+    this.setData({shippingStatus: type});
     console.log(typeof type);
     this.loadData(type)
   },
@@ -226,7 +227,9 @@ Page({
 
   // LIFECYCLE METHODS
   onReady: function() {},
-  onShow: function() {},
+  onShow: function() {
+    this.loadData(this.data.shippingStatus)
+  },
   onHide: function() {},
   onUnload: function() {},
   onPullDownRefresh: function() {},

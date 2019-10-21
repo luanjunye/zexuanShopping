@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/ordercenter/ordercenter",
-    "pages/orderInfo/orderInfo",
     "pages/ucenter/express/express",
+    "pages/orderInfo/orderInfo",
     "pages/orderReturn/orderReturn",
     "pages/mine/mine",
     "pages/index/index",

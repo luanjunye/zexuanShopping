@@ -1,6 +1,6 @@
 <!--pages/ucenter/express/express.wxml-->
 <view class="delivery">
-  <image src="/assets/deliveryIcon.png" class="icon"></image>
+  <image src="/assets/deliveryIcon.png" mode="aspectFill" class="icon"></image>
   <view class="wrap">
     <view class="companyname">
       <span class="key">物流公司：</span>
