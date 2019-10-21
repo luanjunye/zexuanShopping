@@ -7,7 +7,7 @@ const api = require('./../../config/url.js');
 Page({
   // 订单中心
   data: {
-    active: 0, // 0 全部 1 待付款 2 待发货 3 已发货 4 等评价 5 退款售后
+    active: 0, // shippingStatus : 0 全部 1 待付款 2 待发货 3 已发货 4 待评价 5 退款售后
     loading: false,
     orderList: [],
     order: [],
@@ -15,12 +15,12 @@ Page({
   },
 
 
-  /* 订单状态
+  /* 订单状态 status
   0 订单创建成功等待付款，
-  1xx 表示订单取消和删除等状态  101订单已取消，102订单已删除
-  2xx 表示订单支付状态 201订单已付款，等待发货
-  3xx 表示订单物流相关状态 300订单已发货， 301用户确认收货
-  4xx 表示订单退换货相关的状态 401 没有发货，退款 402 已收货，退款退货
+  1xx 表示订单取消和删除等状态   101订单已取消，         102订单已删除
+  2xx 表示订单支付状态         201订单已付款，等待发货
+  3xx 表示订单物流相关状态      300订单已发货，         301用户确认收货
+  4xx 表示订单退换货相关的状态   401 没有发货，退款      402 已收货，退款退货
   */
 
   onLoad: function(options) {
@@ -128,7 +128,7 @@ Page({
   },
 
 
-
+  // 删除订单
   toDelete: function(e) {
     Dialog.confirm({
       message: '是否删除此订单？'
@@ -150,6 +150,7 @@ Page({
   },
 
 
+  // 确认收货
   confirmReceive: function(e) {
     Dialog.confirm({
       message: '确认收货后钱款会支付给商家'
@@ -171,6 +172,7 @@ Page({
   },
 
 
+  // 去支付
   toPay: function(e) {
     let actualPrice = e.currentTarget.dataset.value.actualPrice;
     wx.showModal({
@@ -188,12 +190,12 @@ Page({
     })
   },
 
-
+  // 订单详情
   toOrderDetail: function(v) {
     let data = v.currentTarget.dataset.value;
     wx.setStorageSync("currOrder", data);
     wx.navigateTo({
-      url: '/pages/ucenter/order-detail/orderinfo'
+      url: '/pages/orderInfo/orderInfo'
     })
   },
 
