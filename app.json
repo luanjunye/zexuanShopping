@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/ordercenter/ordercenter",
     "pages/orderInfo/orderInfo",
+    "pages/ucenter/express/express",
+    "pages/ordercenter/ordercenter",
     "pages/orderReturn/orderReturn",
     "pages/mine/mine",
     "pages/index/index",
@@ -13,7 +14,6 @@
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
-    "pages/ucenter/express/express",
     "pages/ucenter/companyProfile/companyProfile",
     "pages/ucenter/antiCheating/antiCheating"
   ],

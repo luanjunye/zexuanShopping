@@ -46,12 +46,11 @@ Page({
                 count: good.num,
                 price: good.money,
               })
-            })
+            });
             // console.log('orderGoodList', goodList);
             // console.log(item.status, item.shippingStatus); // 订单状态
             tempOrder.push({
               id: item.id,
-              payType: '微信',
               shopType: item.shopType,
               shopName: item.shopName,
               status: item.status,
@@ -59,6 +58,7 @@ Page({
               productList: goodList,
               totalPrice: item.money,
               shippingStatus: item.shippingStatus
+              // payType: '微信',
               // actualPrice: 88.00,
               // expressPrice: 0.00,
               // createTime: '2019-08-18 18:35',
@@ -194,6 +194,7 @@ Page({
   toOrderDetail: function(v) {
     let data = v.currentTarget.dataset.value;
     wx.setStorageSync("currOrder", data);
+    console.log(data);
     wx.navigateTo({
       url: '/pages/orderInfo/orderInfo'
     })

@@ -23,4 +23,6 @@ module.exports = {
   OrderDetail:     API_BASE_URL + 'order/info',           //  订单详情
   OrderPayed:      API_BASE_URL + 'order/confirm/pay',    //  订单列表 - 已付款
   OrderReceived:   API_BASE_URL + 'order/confirm/goods',  //  订单列表 - 已收货
+
+  OrderPackage: API_BASE_URL + 'order/selectcourier',  //  订单快递查询 参数：shippingNo   GET
 };

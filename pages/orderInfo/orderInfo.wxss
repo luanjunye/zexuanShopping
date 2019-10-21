@@ -10,6 +10,10 @@
   flex-direction: column;
 }
 
+
+.orderContainer{
+  padding-bottom: 60px;
+}
 .newLogistics {
   margin-top: 15rpx;
   background: #fff;
