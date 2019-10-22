@@ -11,6 +11,7 @@ Page({
     isLogin: false,
     noChecked: false,
     checkedAll: false,
+    isExpressFree: false,
     totalPrice: 0,
     totalCount: 0,
     freightPrice: 0,
@@ -141,6 +142,23 @@ Page({
     this.setData({
       totalPrice: totalPrice
     })
+    this.judgeExpressFree();
+  },
+  //是否满88包邮
+  judgeExpressFree: function () {
+    if (this.data.totalPrice >= 88) {
+      this.setData({
+        isExpressFree: true,
+        freightPrice : 0
+      })
+    } else {
+      let rest = 88 - this.data.totalPrice;
+      this.setData({
+        isExpressFree: false,
+        restExpressFree: rest,
+        freightPrice : 10
+      })
+    }
   },
   judgeCheckedAll: function() {
     console.log(1)

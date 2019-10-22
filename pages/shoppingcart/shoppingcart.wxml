@@ -1,6 +1,24 @@
 <!--pages/shoppingcart/ShoppingCart.wxml-->
 <view class="ucenter">
 
+<!-- 包邮布局开始 -->
+
+  <view class="service-policy" wx:if="{{noChecked||!isLogin}}">
+    <view class="item">
+      <image class="red-point" src="/assets/redPoint.png"></image>30天无忧退货</view>
+    <view class="item">
+      <image class="red-point" src="/assets/redPoint.png"></image>48小时快速退款</view>
+    <view class="item">
+      <image class="red-point" src="/assets/redPoint.png"></image>满88元免邮费</view>
+  </view>
+  <!-- 包邮显示 -->
+  <view class="notice" wx:if="{{!noChecked&&isLogin}}">
+    <text wx:if="{{isExpressFree}}">已满足包邮条件</text>
+    <text wx:if="{{!isExpressFree}}">再购￥{{restExpressFree}}元可免邮费</text>
+  </view> 
+
+<!-- 包邮布局结束 -->
+
   <!-- 购物车为空布局开始 -->
 
   <view class="{{isLogin ? 'no-cart-small' : 'no-cart'}}" wx:if="{{!isLogin||cartList.length==0}}">

@@ -1,21 +1,25 @@
 {
   "pages": [
+    "pages/mine/mine",
+    "pages/ucenter/evaluate/evaluate",
+    "pages/product/product",
+    "pages/ucenter/invoice/invoice",
+    "pages/shoppingcart/shoppingcart",
     "pages/index/index",
     "pages/orderReturn/orderReturn",
-    "pages/mine/mine",
+    
     "pages/secondIndex/secondIndex",
     "pages/logs/logs",
     "pages/auth/tologin/tologin",
-    "pages/shoppingcart/shoppingcart",
     "pages/ordercenter/ordercenter",
     "pages/orderInfo/orderInfo",
-    "pages/product/product",
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
     "pages/ucenter/express/express",
     "pages/ucenter/companyProfile/companyProfile",
     "pages/ucenter/antiCheating/antiCheating"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -74,6 +78,7 @@
     "van-popup": "lib/vant-weapp/popup/index",
     "tui-nomore": "lib/ThorUI/components/nomore/nomore",
     "i-radio": "lib/iview-weapp/radio/index",
+    "i-radio-group": "lib/iview-weapp/radio-group/index",
     "i-input": "lib/iview-weapp/input/index",
     "van-toast": "lib/vant-weapp/toast/index",
     "i-icon": "lib/iview-weapp/icon/index",
@@ -81,7 +86,10 @@
     "van-cell-group": "lib/vant-weapp/cell-group/index",
     "van-field": "lib/vant-weapp/field/index",
     "van-area": "lib/vant-weapp/area/index",
-    "van-steps": "lib/vant-weapp/steps/index"
+    "van-steps": "lib/vant-weapp/steps/index",
+    "i-avatar": "lib/iview-weapp/avatar/index",
+    "i-rate": "lib/iview-weapp/rate/index",
+    "wux-upload": "lib/wux-weapp/upload/index"
   },
   "sitemapLocation": "sitemap.json"
 }

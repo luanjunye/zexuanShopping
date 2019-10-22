@@ -13,5 +13,6 @@ module.exports = {
   AddressPage: API_BASE_URL + 'address/page',//地址管理
   AddressSave: API_BASE_URL + 'address/save/json',//添加新地址
   AddressUpdate: API_BASE_URL + 'address/update/json',//添加新地址
-  AddressDelete: API_BASE_URL + 'address/delete'//删除地址
+  AddressDelete: API_BASE_URL + 'address/delete',//删除地址
+  CommodityDetails: API_BASE_URL + 'goods/info'//商品详情页
 };

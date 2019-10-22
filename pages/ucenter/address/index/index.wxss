@@ -29,6 +29,7 @@ page {
 
 .address{
   margin-top: 20rpx;
+  height: 100%;
 }
 
 .address-bg {
@@ -113,9 +114,11 @@ page {
   bottom: 0;
   display: flex;
   justify-content: space-around;
-  padding-top: 20rpx;
-  padding-bottom: 30rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
   background: #fff;
+   z-index: 100;
+   
 }
 
 .add-btn {

@@ -23,15 +23,15 @@ Component({
     previewImage: function (e) {
       let index = e.target.dataset.index;
       wx.previewImage({
-        current: this.data.data.pics[index], // 当前显示图片的http链接
-        urls: this.data.data.pics // 需要预览的图片http链接列表
+        current: this.data.data.urlList[index], // 当前显示图片的http链接
+        urls: this.data.data.urlList // 需要预览的图片http链接列表
       })
     },
     previewAddImage: function (e) {
       let index = e.target.dataset.index;
       wx.previewImage({
-        current: this.data.data.addComment.pics[index], // 当前显示图片的http链接
-        urls: this.data.data.addComment.pics // 需要预览的图片http链接列表
+        current: this.data.data.addComment.urlList[index], // 当前显示图片的http链接
+        urls: this.data.data.addComment.urlList // 需要预览的图片http链接列表
       })
     }
   }

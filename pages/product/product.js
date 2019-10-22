@@ -1,7 +1,8 @@
 // pages/commodity/commodity.js
 let WxParse = require("../../lib/wxParse/wxParse.js");
 import Toast from '../../lib/vant-weapp/toast/toast';
-
+const api = require('/../../config/url.js');
+const util = require('/../../utils/util.js');
 Page({
 // 商品详情
   /**
@@ -9,201 +10,15 @@ Page({
    */
   data: {
     isLogin: false,
-    couponShow: false,
     serviceShow: false,
     cartList: [],
     deliveryAddress: {
       address: "北京市东城区东华门街道",
-      time: "23:00",
+      time: "18:00",
       day: "",
-      diff: "明天"
     },
-    product: {
-      id: 0,
-      picUrl: "https://img11.360buyimg.com/n1/s450x450_jfs/t1/62813/33/2131/584186/5d079803E03084b0d/2b4970456b7bf49f.png", // 默认商品图片
-      promotion: 1, // 促销活动 0无 1限时购 2领劵
-      gallery: [{
-        picUrl: "https://img11.360buyimg.com/n1/s450x450_jfs/t1/62813/33/2131/584186/5d079803E03084b0d/2b4970456b7bf49f.png",
-        sortOrder: 1
-      },
-      {
-        picUrl: "https://img10.360buyimg.com/n1/s450x450_jfs/t1/4176/23/3653/281477/5b9a15d4E97e09d00/887e76e6c525324c.jpg",
-        sortOrder: 2
-      },
-      {
-        picUrl: "https://img10.360buyimg.com/n1/s450x450_jfs/t1/5967/33/3617/54427/5b9a15d4Ebe8c2aed/99c9c06b72d356f7.jpg",
-        sortOrder: 3
-      },
-      {
-        picUrl: "https://img10.360buyimg.com/n1/s450x450_jfs/t1/2522/37/3744/128519/5b9a15d4Eb916347a/bef9d7fae9c5d2ae.jpg",
-        sortOrder: 4
-      },
-      {
-        picUrl: "https://img10.360buyimg.com/n1/s450x450_jfs/t1/1508/30/3667/24431/5b9a15d4E61cd63d4/592747ec9cd8ad81.jpg",
-        sortOrder: 5
-      }
-      ], // 轮播图
-      title: "Apple iPhone XS Max (A2104)",
-      description: "A12仿生芯片流畅体验，支持双卡！",
-      defaultPrice: 1.00, // 默认显示价格
-      price: 1.00,
-      originPrice: 9588.00,
-      label:"自营",
-      sales:"已售276件",
-      remark:"煲汤材料炖汤清补凉煲汤材料炖汤清补凉补品干货食材养生汤包鸡汤",
-      detail: '<div><img src="https://img14.360buyimg.com/cms/jfs/t1/25195/1/9487/388554/5c7f80a5E8b8f8f0c/46818404849d6ec6.jpg"><img src="https://img12.360buyimg.com/cms/jfs/t1/15853/18/9628/325164/5c7f80a5E7172b236/ba9f3f63a83a9b65.jpg"></div>', // 商品详情
-      tags: [{
-        id: 1,
-        title: "官方自营品牌"
-      },
-      {
-        id: 2,
-        title: "新品"
-      }
-      ],
-      serviceList: [{
-        id: 1,
-        title: "48小时快速退款",
-        desc: "收到退货包裹并确认无误后，将在48小时内办理退款，退款将原路返回，不同银行处理时间不同，预计1-5个工作日到账。"
-      },
-      {
-        id: 2,
-        title: "满88元免邮费",
-        desc: "单笔订单金额（不含运费），大陆地区满88元免邮，不满88元收取10元邮费；港澳台地区满500元免邮，不满500元收取30元运费；海外地区以下单页提示运费为准。"
-      },
-      {
-        id: 3,
-        title: "官方自营品牌",
-        desc: "官方原创生活类电商品牌，所有商品均为官方自营，品质保证。"
-      },
-      {
-        id: 4,
-        title: "国内部分地区无法配送",
-        desc: "不支持省份: 台湾、香港、澳门、新疆"
-      }
-      ],
-      comment: {
-        goodCommentRate: 100, // 好评率
-        count: 3986, // 评论计数
-        goodComment: {
-          nickname: "Exrick",
-          avatar: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJTqQ5hNKicCNEwW3cATfOTaXk6xMlNEfh1gm0kicPDtJrXwTf5YEqQXYea3m5vsuPyJUXc3U0OicXtA/132",
-          content: "很好，手机很有质感，值得购买。",
-          rate: 5,
-          time: "2019.06.18",
-          spec: "银色 64G",
-          pics: [
-            "https://img30.360buyimg.com/shaidan/s616x405_jfs/t1/65005/20/4818/92581/5d2ffdb6Ebcbf3018/35411a583e29d52d.jpg",
-            "https://img30.360buyimg.com/shaidan/s616x405_jfs/t1/74460/28/4830/96562/5d2ffdb7Ed5e9ce7a/e764b3daa92a9c67.jpg"
-          ]
-        } // 精选评论
-      },
-      attribute: [{
-        name: "品牌",
-        value: "Apple"
-      },
-      {
-        name: "颜色",
-        value: "银色、黑色"
-      },
-      {
-        name: "容量",
-        value: "64G、256G"
-      }
-      ] // 商品属性
-    },
-    recommend: [{
-      id: 1,
-      relateId: 0,
-      title: "各色DNA检测套装",
-      description: "千万级基因位点数据解读",
-      price: 499.00,
-      type: 0,
-      picUrl: "https://resource.smartisan.com/resource/9bffe702b1f0aea221b1f18ddf886958.jpg"
-    },
-    {
-      id: 2,
-      relateId: 0,
-      title: "畅呼吸智能空气净化器",
-      description: "超强净化能力，超低噪音",
-      price: 1299.00,
-      type: 0,
-      picUrl: "https://resource.smartisan.com/resource/6ff92d05a3bfab4fad489ca04d3eea5a.png"
-    },
-    {
-      id: 3,
-      relateId: 0,
-      title: "坚果 Pro 2",
-      description: "漂亮得不像实力派",
-      price: 1799.00,
-      type: 0,
-      picUrl: "https://resource.smartisan.com/resource/c71ce2297b362f415f1e74d56d867aed.png"
-    },
-    {
-      id: 4,
-      relateId: 0,
-      title: "Smartisan 帆布鞋",
-      description: "一双踏实、舒适的帆布鞋",
-      price: 199.00,
-      type: 0,
-      picUrl: "https://resource.smartisan.com/resource/578116bddf1d170c89e9af7ba5073fb6.jpg"
-    },
-    {
-      id: 5,
-      relateId: 0,
-      title: "卫衣 开衫 热血",
-      description: "风格简洁、舒适服帖",
-      price: 299.00,
-      type: 0,
-      picUrl: "https://resource.smartisan.com/resource/ff8106afb5fe0ed8ec23e3594766b4f7.png"
-    }
-    ],
-    hot: [{
-      id: 1,
-      relateId: 0,
-      title: "古希腊银币笔记本套装",
-      description: "大英博物馆系列，用笔墨书写历史",
-      price: 99.00,
-      type: 0,
-      picUrl: "https://yanxuan.nosdn.127.net/d232d0d909ade20eb645dbc44677617b.png"
-    },
-    {
-      id: 2,
-      relateId: 0,
-      title: "婴幼儿卡通棉袜",
-      description: "萌趣动物 0-2岁适用",
-      price: 4.90,
-      type: 0,
-      picUrl: "https://yanxuan.nosdn.127.net/2862a7c31788a61e0862d523f411b498.png"
-    },
-    {
-      id: 3,
-      relateId: 0,
-      title: "W30BT蓝牙耳机",
-      description: "联名款JBL，8小时续航",
-      price: 219.00,
-      type: 0,
-      picUrl: "https://yanxuan.nosdn.127.net/268bcee838996e58c37744a44d99e68d.png"
-    },
-    {
-      id: 4,
-      relateId: 0,
-      title: "Smartisan 帆布鞋",
-      description: "一双踏实、舒适的帆布鞋",
-      price: 199.00,
-      type: 0,
-      picUrl: "https://resource.smartisan.com/resource/578116bddf1d170c89e9af7ba5073fb6.jpg"
-    },
-    {
-      id: 5,
-      relateId: 0,
-      title: "卫衣 开衫 热血",
-      description: "风格简洁、舒适服帖",
-      price: 299.00,
-      type: 0,
-      picUrl: "https://resource.smartisan.com/resource/ff8106afb5fe0ed8ec23e3594766b4f7.png"
-    }
-    ],
+    product:{},
+    specificationList:{},
     sku: {
       show: false, // 显示属性规格
       noneSku: false, // 有无规格选择
@@ -335,10 +150,27 @@ Page({
     wx.setNavigationBarTitle({
       title: '商品详情',
     })
+    let isLogin = wx.getStorageSync('isLogin')
+    let that = this
+    var data = new Object();
+    if(isLogin){
+      this.setData({
+        isLogin: isLogin
+        
+      })
+    }
+    util.request(api.CommodityDetails,{id:1}, "POST").then(function (res) {
+      if (res.code === 0) {
+        data.product = res.product
+        that.setData(data)
+        console.log(res)
+        console.log(typeof res.product.price)
+      }
+    });
     // 初始化配送时间
     let date = new Date();
     let month = date.getMonth() + 1;
-    let day = date.getDate() + 1;
+    let day = date.getDate() + 3;
     this.setData({
       'deliveryAddress.day': month + '月' + day + '日'
     })
@@ -434,16 +266,7 @@ Page({
       url: '/pages/index/index',
     })
   },
-  openCoupon: function () {
-    this.setData({
-      couponShow: true
-    })
-  },
-  closeCoupon: function () {
-    this.setData({
-      couponShow: false
-    })
-  },
+
   openAddress: function () {
     let that = this;
     wx.chooseLocation({
@@ -474,7 +297,7 @@ Page({
   },
   toComment: function () {
     wx.navigateTo({
-      url: '/pages/comment/comment?productId' + this.data.product.id,
+      url: '/pages/comment/comment?productId=' + this.data.product.id,
     })
   },
   toProduct: function (e) {
@@ -736,9 +559,11 @@ Page({
       Toast("加入购物车成功");
     }
   },
-  toVip: function () {
-    wx.navigateTo({
-      url: '/pages/ucenter/vip/vip',
-    })
-  }
+  checkLogin: function () {
+    if (!this.data.isLogin) {
+      wx.navigateTo({
+        url: '/pages/auth/tologin/tologin',
+      })
+    }
+  },
 })

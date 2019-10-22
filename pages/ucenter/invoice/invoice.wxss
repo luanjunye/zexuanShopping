@@ -1,0 +1,89 @@
+/* pages/ucenter/invoice/invoice.wxss */
+
+.ucenter {
+  background: #f7f7f7;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 20rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding: 20rpx 0rpx;
+  margin: 0 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1rpx solid #dcd9d9;
+}
+
+.title .img {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.title .title_right {
+  margin-left: 20rpx;
+}
+
+.title .title_right .key {
+  font-size: 30rpx;
+}
+
+.title .title_right .key .value {
+  font-size: 28rpx;
+}
+
+.title .title_right .key .value_m {
+  font-size: 28rpx;
+  color: #ff432f;
+}
+
+.body {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.body .remark {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.body .remark .wx_input {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.body .remark .wx_input_place {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 25rpx;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  background: #f48f18;
+  font-size: 30rpx;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

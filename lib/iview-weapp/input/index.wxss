@@ -110,10 +110,14 @@
   /* min-height: 22px; */
   height: auto;
   font-size: 14px;
+  /* display: flex;
+  justify-content: flex-end; */
 }
 
 .i-input-placeholder {
   font-size: 14px;
+  /* display: flex;
+  justify-content: flex-end; */
 }
 
 .i-input-input-right {

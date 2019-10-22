@@ -3,9 +3,10 @@ import {
   areaData
 } from "../../../../lib/area.js"
 import Toast from '../../../../lib/vant-weapp/toast/toast';
-
+const api = require('/../../../../config/url.js');
+const util = require('/../../../../utils/util.js');
 Page({
-// 编辑地址
+  // 编辑地址
   /**
    * 页面的初始数据
    */
@@ -16,17 +17,24 @@ Page({
       mobile: "",
       address: "",
       street: "",
-      isDefault: false
+      tdefault: false
     },
     show: false,
     areaList: areaData,
-    edit: false
+    edit: false,
+    userId:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (e) {
+  onLoad: function(e) {
+    var userId = wx.getStorageSync('userId')
+    if(userId){
+      this.setData({
+        userId : userId
+      })
+    }
     wx.setNavigationBarTitle({
       title: '编辑地址',
     })
@@ -49,13 +57,13 @@ Page({
         'form.street': e.street
       })
     }
-    if (e.isDefault == "true") {
+    if (e.tdefault == "true") {
       this.setData({
-        'form.isDefault': true
+        'form.tdefault': true
       })
     } else {
       this.setData({
-        'form.isDefault': false
+        'form.tdefault': false
       })
     }
   },
@@ -63,72 +71,72 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  onChangeName: function (e) {
+  onChangeName: function(e) {
     this.setData({
       'form.name': e.detail
     })
   },
-  onChangeMobile: function (e) {
+  onChangeMobile: function(e) {
     this.setData({
       'form.mobile': e.detail
     })
   },
-  onChangeStreet: function (e) {
+  onChangeStreet: function(e) {
     this.setData({
       'form.street': e.detail
     })
   },
-  changeDefault: function (e) {
+  changeDefault: function(e) {
     this.setData({
-      'form.isDefault': e.detail
+      'form.tdefault': e.detail
     })
   },
-  importAddress: function () {
+  importAddress: function() {
     let that = this;
     wx.chooseAddress({
       success(res) {
@@ -141,17 +149,17 @@ Page({
       }
     })
   },
-  showSelectAddress: function (e) {
+  showSelectAddress: function(e) {
     this.setData({
       show: true
     })
   },
-  cancelSelect: function () {
+  cancelSelect: function() {
     this.setData({
       show: false
     })
   },
-  selectArea: function (e) {
+  selectArea: function(e) {
     let v = e.detail.values;
     let data = v[0].name + " " + v[1].name + " " + v[2].name;
     this.setData({
@@ -159,21 +167,46 @@ Page({
       show: false
     })
   },
-  saveAddress: function () {
+  saveAddress: function() {
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2]; //上一个页面
     let data = prevPage.data.addressList;
     let that = this;
     if (this.data.edit) {
       // 编辑
-      data.forEach(function (v, index) {
+      data.forEach(function(v, index) {
         if (v.id == that.data.form.id) {
           data[index] = that.data.form;
+          util.request(api.AddressUpdate, {
+            id: that.data.form.id,
+            userId: that.data.userId,
+            name: that.data.form.name,
+            mobile: that.data.form.mobile,
+            address: that.data.form.address,
+            street: that.data.form.street,
+            tdefault: that.data.form.tdefault
+          }, "POST").then(function (res) {
+            if (res.code === 0) {
+              console.log(res)
+            }
+          });
         }
       })
     } else {
       // 添加
       data.push(this.data.form)
+      util.request(api.AddressSave, {
+        userId: this.data.userId,
+        name: this.data.form.name,
+        mobile: this.data.form.mobile,
+        address: this.data.form.address,
+        street: this.data.form.street,
+        tdefault: this.data.form.tdefault
+      }, "POST").then(function(res) {
+        if (res.code === 0) {
+          console.log(res)
+        }
+      });
     }
 
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
@@ -184,7 +217,7 @@ Page({
       duration: 0,
       message: '保存成功',
     });
-    setTimeout(function () {
+    setTimeout(function() {
       wx.navigateBack({
         delta: 1
       })

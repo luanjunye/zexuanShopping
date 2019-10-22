@@ -7,8 +7,8 @@
   <!-- banner图布局开始 -->
 
   <swiper class="gallery" indicator-dots indicator-color="#e0e0e0" indicator-active-color="#fff" autoplay interval="3000" duration="1000">
-    <swiper-item wx:for="{{product.gallery}}" wx:key="{{index}}">
-      <image class="image" src="{{item.picUrl}}" background-size="cover"></image>
+    <swiper-item wx:for="{{product.goodsViewVOList}}" wx:key="{{index}}">
+      <image class="image" src="{{item.url}}" background-size="cover"></image>
     </swiper-item>
   </swiper>
 
@@ -18,19 +18,19 @@
 
   <view class="top_title">
     <view class="title_price">
-      <van-tag wx:if="{{product.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{product.label}}</van-tag>
+      <van-tag wx:if="{{goodsInfo.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{product.label}}</van-tag>
       <text class="price">¥{{common.toFix(product.price)}}</text>
-      <text class="origin_price">¥{{common.toFix(product.originPrice)}}</text>
-      <text class="sales">{{product.sales}}</text>
+      <text class="origin_price">¥{{common.toFix(product.originalPrice)}}</text>
+      <text class="sales">已售{{product.sell}}件</text>
     </view>
     <view class="title_text">
-      <view class="title_remark">{{product.remark}}
-        <button open-type="share" class="tui-share-btn tui-share-position">
+      <view class="title_remark">{{product.tiltle}}
+        <!-- <button open-type="share" class="tui-share-btn tui-share-position">
           <tui-tag type="gray" tui-tag-class="tui-tag-share tui-size" shape="circleLeft" size="small">
             <tui-icon name="partake" color="#999" size="15"></tui-icon>
             <text class="tui-share-text tui-gray">分享</text>
           </tui-tag>
-        </button>
+        </button> -->
       </view>
     </view>
     <view class="title_sub" style="color:#999;font-size:24rpx; padding-top:10rpx;">正品保障·极速发货·七天内退换货</view>
@@ -48,23 +48,13 @@
       </view>
     </view>
 
-    <view class="attr-wrap" hover-class="active" bindtap="openCoupon" wx:if="{{product.promotion==2}}">
-      <view class="attr">
-        <view class="left">
-          <text class="title">领劵</text>
-          <van-tag color="#f2826a" plain wx:for="{{couponList}}" wx:key="{{item.id}}">{{item.title}}</van-tag>
-        </view>
-        <image class="arrow" src="/assets/rightArrow.png"></image>
-      </view>
-    </view>
-
     <view class="attr-wrap" hover-class="active" bindtap="openAddress">
       <view class="delivery">
         <view class="title">配送</view>
         <view class="right">
           <view class="info">
             <text class="address wux-ellipsis">{{deliveryAddress.address}}</text>
-            <text class="time">{{deliveryAddress.time}}前完成支付, 预计({{deliveryAddress.diff}}){{deliveryAddress.day}}送达</text>
+            <text class="time">{{deliveryAddress.time}}前完成支付, 预计{{deliveryAddress.day}}送达</text>
           </view>
           <image class="arrow" src="/assets/rightArrow.png"></image>
         </view>
@@ -76,7 +66,7 @@
         <text class="title">服务</text>
         <view class="right">
           <view class="info">
-            <view class="item" wx:for="{{product.serviceList}}" wx:key="{{item.id}}">
+            <view class="item" wx:for="{{product.serviceVOList}}" wx:key="{{item.serviceId}}">
               <view class="red-point"></view>{{item.title}}
             </view>
           </view>
@@ -103,34 +93,12 @@
     <comment data="{{product.comment.goodComment}}"></comment>
   </view>
 
-  <!-- 推荐
-<van-tabs color="#b4282d" class="recommend" active="{{ active }}" bind:change="onChange">
-  <van-tab title="你可能还喜欢">
-    <scroll-view scroll-x class="wrap">
-      <view class="hot-wrap">
-        <view class="item" wx:for="{{recommend}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="toProduct">
-          <product-hot data="{{item}}"></product-hot>
-        </view>
-      </view>
-    </scroll-view>
-  </van-tab>
-  <van-tab title="24小时热销">
-    <scroll-view scroll-x class="wrap">
-      <view class="hot-wrap">
-        <view class="item" wx:for="{{hot}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="toProduct">
-          <product-hot data="{{item}}"></product-hot>
-        </view>
-      </view>
-    </scroll-view>
-  </van-tab>
-</van-tabs> -->
-
   <!-- 商品参数 -->
   <view class="product-attr">
     <view class="tui-nomore-box">
       <tui-nomore text="宝贝详情" visible="{{true}}" bgcolor="#f7f7f7"></tui-nomore>
     </view>
-</view>
+  </view>
 
   <!-- 详情 -->
   <view class="detail">
@@ -154,25 +122,17 @@
     <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
   </view>
 
-  <!-- 优惠券选择 -->
-  <!-- <van-popup show="{{ couponShow }}" class="coupon-pop" position="bottom" bind:close="closeCoupon">
-  <view class="title">领劵</view>
-  <view class="coupon-wrap">
-    <coupon data="{{item}}" wx:for="{{couponList}}" wx:key="{{item.id}}" data-value="{{item}}" bindtap="choose" class="item" />
-  </view>
-</van-popup> -->
-
   <!-- 服务详情 -->
   <van-popup show="{{ serviceShow }}" position="bottom" bind:close="closeService">
     <view class="service-wrap">
       <view class="h">服务</view>
       <scroll-view class="c" scroll-y="true">
-        <view class="desc" wx:for="{{product.serviceList}}" wx:key="{{item.id}}">
+        <view class="desc" wx:for="{{product.serviceVOList}}" wx:key="{{item.serviceId}}">
           <view class="dt">
             {{item.title}}
           </view>
           <view class="dc">
-            {{item.desc}}
+            {{item.context}}
           </view>
         </view>
       </scroll-view>
@@ -186,11 +146,11 @@
       <van-icon name="cross" color="#999" class="close" bindtap="closeSku" />
       <!-- 图片标价 -->
       <view class="info">
-        <image class="img" src="{{product.picUrl}}" bindtap="previewThumb"></image>
+        <image class="img" src="{{product.goodsViewVOList[0].url}}" bindtap="previewThumb"></image>
         <view class="sku-desc">
-          <van-tag wx:if="{{product.promotion==1}}" color="#f48f18" style="margin-bottom: 10rpx">限时购</van-tag>
+          <!-- <van-tag wx:if="{{product.promotion==1}}" color="#f48f18" style="margin-bottom: 10rpx">限时购</van-tag> -->
           <view class="price">价格：￥{{common.toFix(product.price)}}
-            <view class="origin-price">￥{{common.toFix(product.originPrice)}}</view>
+            <view class="origin-price">￥{{common.toFix(product.originalPrice)}}</view>
           </view>
           <view class="spec" wx:if="{{!sku.noneSku}}">{{sku.specText ? '已选择:'+sku.specText : '请选择规格属性'}}</view>
         </view>
