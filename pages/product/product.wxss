@@ -76,7 +76,7 @@
 .top_title .title_text .title_remark .tui-share-btn {
   display: block;
   background: none;
-  margin-right: 30rpx;
+  margin-right: 50rpx;
   padding: 0;
   border-radius: 0;
 }
@@ -509,7 +509,7 @@ font-size: 36rpx;
 .sku .sku-desc {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   height: 180rpx;
   margin-left: 20rpx;
 }

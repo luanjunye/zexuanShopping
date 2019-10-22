@@ -7,7 +7,7 @@
 </view>
 
 <!-- 地址列表 -->
-<view class="address" wx:if="{{addressList.length > 0}}">
+<scroll-view class="address" wx:if="{{addressList.length > 0}}" scroll-y>
   <!-- 顶部彩带 -->
   <!-- <view class="address-bg"></view> -->
   <!-- 列表 -->
@@ -15,7 +15,7 @@
     <view slot="content" class="item {{item.checked ? 'checked' : ''}}">
       <view class="left" data-value="{{item}}" bindtap="chooseAddress">
         <view class="name">{{item.name}}</view>
-        <van-tag color="#b4282d" plain wx:if="{{item.isDefault}}">默认</van-tag>
+        <van-tag color="#b4282d" plain wx:if="{{item.tdefault}}">默认</van-tag>
       </view>
       <view class="middle" data-value="{{item}}" bindtap="chooseAddress">
         <view class="mobile">{{item.mobile}}</view>
@@ -29,7 +29,7 @@
       <image src="/assets/deleteWhite.png" class="image"></image>
     </view>
   </i-swipeout>
-</view>
+</scroll-view>
 
 <!-- 底部按钮 -->
 <view class="bottom">

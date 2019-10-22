@@ -1,0 +1,42 @@
+<!--pages/ucenter/invoice/invoice.wxml-->
+<view class="ucenter">
+  <view class="content">
+    <view class="title">
+      <image class="img" src="/assets/mine.png" />
+      <view class="title_right">
+        <view class="key">订单编号
+          <text class="value">557345607612139695</text>
+        </view>
+        <view class="key">订单编号
+          <text class="value_m">¥59.9</text>
+        </view>
+      </view>
+    </view>
+    <view class="body">
+      <view class="remark">
+        <text class="key">订单编号</text>
+        <text class="value_a">电子发票</text>
+      </view>
+      <view class="remark">
+        <text class="key">抬头类型</text>
+        <i-radio-group current="{{current}}" bindchange="handleTypeChange">
+          <i-radio wx:for="{{type}}" position="{{position}}" wx:key="{{item.id}}" value="{{item.name}}">
+          </i-radio>
+        </i-radio-group>
+      </view>
+      <view class="remark">
+        <text class="key">发票抬头</text>
+        <input class="wx_input" placeholder="抬头名称" size="large" bind:change="onChangeName" placeholder-class="wx_input_place" />
+      </view>
+      <view wx:if="{{currentId == 2}}" class="remark">
+        <text class="key">税号</text>
+        <input class="wx_input" placeholder="纳税人识别号" size="large" bind:change="onChangeNumber" placeholder-class="wx_input_place" />
+      </view>
+      <view class="remark">
+        <text class="key">邮箱</text>
+        <input class="wx_input" placeholder="发票会发送到您留的邮箱里" size="large" bind:change="onChangeEmail" placeholder-class="wx_input_place" />
+      </view>
+    </view>
+  </view>
+  <view class="bottom" bindtap="btn_submit">保存</view>
+</view>
