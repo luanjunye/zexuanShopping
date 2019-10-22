@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/mine/mine",
     "pages/ucenter/evaluate/evaluate",
     "pages/ucenter/invoice/invoice",
     "pages/ordercenter/ordercenter",
     "pages/ucenter/express/express",
     "pages/orderInfo/orderInfo",
     "pages/orderReturn/orderReturn",
-    "pages/mine/mine",
+    
     "pages/index/index",
     "pages/secondIndex/secondIndex",
     "pages/logs/logs",

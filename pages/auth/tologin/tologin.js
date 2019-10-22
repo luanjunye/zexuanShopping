@@ -104,9 +104,11 @@ Page({
                  userInfo: e.detail
                },'POST','application/json').then(res =>{
                  if(res.code === 0){
+                   console.log(res.map)
                    wx.setStorageSync('userInfo', res.map.userInfo);
                    wx.setStorageSync('token', res.map.token);
                    wx.setStorageSync('userId', res.map.userId);
+                   wx.setStorageSync('openId', res.map.openid);
                    wx.setStorageSync('isLogin', true);
                    wx.navigateBack({
                      delta: 1
