@@ -35,7 +35,6 @@ function request(url, data = {}, method, header = "application/json") {
                 'X-Nideshop-Token': wx.getStorageSync('token')
             },
             success: function (res) {
-              console.log(res);
                 wx.hideLoading();
                 if (res.statusCode == 200) {
 

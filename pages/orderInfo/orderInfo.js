@@ -11,7 +11,6 @@ Page({
     timeShipping: String,
     expressInfo: Object,
     lastExpressInfo: Object,
-    pirUrl: "https://resource.smartisan.com/resource/c71ce2297b362f415f1e74d56d867aed.png",
   },
 
   // 获取快递信息

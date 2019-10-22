@@ -24,12 +24,17 @@ Page({
   */
 
   onLoad: function(options) {
+    // this.requestData()
+  },
+
+// 网络请求数据
+  requestData(){
     let userId = getApp().getUserId();
     let that = this;
     util.request(api.OrderList, {
       userId: userId,
       shippingStatus: 0 // 订单发货状态
-    }, "GET").then(function(res) {
+    }, "GET").then(function (res) {
       if (res.code === 0) {
         let tempOrder = [];
         if (res.data.list.length > 0) {
@@ -100,7 +105,9 @@ Page({
   changeTab: function(e) {
     console.log(e);
     let type = e.detail.index;
-    this.setData({shippingStatus: type});
+    this.setData({
+      shippingStatus: type
+    });
     console.log(typeof type);
     this.loadData(type)
   },
@@ -136,15 +143,40 @@ Page({
     }).then(() => {
       // on confirm
       let id = e.currentTarget.dataset.value.id;
-      let data = [];
+      let currentOrder = e.currentTarget.dataset.value;
+
+      util.request(api.OrderRemove, {
+        id: currentOrder.id,
+      }, "POST").then(function(res) {
+        if (res.code === 0) {
+          wx.showToast({
+            title: '删除成功',
+          })
+        } else {
+          wx.showToast({
+            title: '删除失败',
+          })
+        }
+      });
+
+      // 更新处理当前页面数据
+      let tempOrderList = [];
+      let tempOrder = [];
       this.data.orderList.forEach(function(v) {
         if (id != v.id) {
-          data.push(v);
+          tempOrderList.push(v);
+        }
+      });
+      this.data.order.forEach(function(v) {
+        if (id != v.id) {
+          tempOrders.push(v);
         }
       })
       this.setData({
-        orderList: data
+        orderList: tempOrderList,
+        order: tempOrder
       })
+
     }).catch(() => {
       // on cancel
     });
@@ -158,15 +190,36 @@ Page({
     }).then(() => {
       // on confirm
       let index = e.currentTarget.dataset.index;
+      let currentOrder = e.currentTarget.dataset.value;
       console.log(index)
-      this.setData({
-        [`orderList[${index}].orderStatus`]: 4
+
+      util.request(api.OrderConfirm, {
+        id: currentOrder.id,
+      }, "POST").then(function(res) {
+        if (res.code === 0) {
+          wx.showToast({
+            title: '确认收货成功',
+          })
+        } else {
+          wx.showToast({
+            title: '确认收货失败',
+          })
+        }
+      });
+
+      // 更新处理当前页面数据
+      let tempOrder = [];
+      this.data.order.forEach(function(v) {
+        if (id == v.id) {
+          v.shippingStatus = 4;
+        }
+        tempOrder.push(v)
       })
-      for (let i = 0; i < this.data.orderList[index].productList.length; i++) {
-        this.setData({
-          [`orderList[${index}].status`]: 4
-        })
-      }
+      this.setData({
+        order: tempOrder,
+        [`orderList[${index}].shippingStatus`]: 4,
+      })
+
     }).catch(() => {
       // on cancel
     });
@@ -201,7 +254,7 @@ Page({
     })
   },
 
-
+  // 跳转 评价页面
   toComment: function(v) {
     let data = v.currentTarget.dataset.value;
     wx.setStorageSync("currOrder", data);
@@ -210,7 +263,7 @@ Page({
     })
   },
 
-
+  // 跳转 物流页
   toExpress: function(v) {
     wx.navigateTo({
       url: '/pages/ucenter/express/express'
@@ -228,11 +281,14 @@ Page({
   // LIFECYCLE METHODS
   onReady: function() {},
   onShow: function() {
-    this.loadData(this.data.shippingStatus)
+    this.requestData();
   },
   onHide: function() {},
-  onUnload: function() {},
-  onPullDownRefresh: function() {},
+  onUnload: function() {
+  },
+  onPullDownRefresh: function() {
+    this.requestData();
+  },
   onReachBottom: function() {},
   onShareAppMessage: function() {},
-})
+});

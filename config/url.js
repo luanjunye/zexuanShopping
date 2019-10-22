@@ -16,13 +16,12 @@ module.exports = {
   AddressDelete:            API_BASE_URL + 'address/delete',       // 删除地址
 
   // 订单
+  OrderConfirm:    API_BASE_URL + 'order/confirm/goods',  //  确认收货
+  OrderRemove:     API_BASE_URL + 'order/deleteorder',    //  删除订单
   OrderSave:       API_BASE_URL + 'order/save/order',     //  直接从商品添加
   OrderCartSave:   API_BASE_URL + 'order/save/all',       //  从购物车添加
   OrderRefund:     API_BASE_URL + 'order/refund',         //  退款
   OrderList:       API_BASE_URL + 'order/page',           //  订单列表，分布查询   GET
   OrderDetail:     API_BASE_URL + 'order/info',           //  订单详情
-  OrderPayed:      API_BASE_URL + 'order/confirm/pay',    //  订单列表 - 已付款
-  OrderReceived:   API_BASE_URL + 'order/confirm/goods',  //  订单列表 - 已收货
-
-  OrderPackage: API_BASE_URL + 'order/selectcourier',  //  订单快递查询 参数：shippingNo   GET
+  OrderPackage:    API_BASE_URL + 'order/selectcourier',  //  订单快递查询 参数：shippingNo   GET
 };
