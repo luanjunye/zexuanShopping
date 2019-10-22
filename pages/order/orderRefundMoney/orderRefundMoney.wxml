@@ -59,8 +59,6 @@
     </view>
 
 
-
-
     <view class='fix-bottom'>
       <button class='btn-main' bindtap='returnConfired'>提交</button>
     </view>

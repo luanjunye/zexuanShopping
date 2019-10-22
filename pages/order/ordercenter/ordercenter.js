@@ -25,6 +25,7 @@ Page({
 
   onLoad: function(options) {
     // this.requestData()
+    let type = getApp().globalData.type;
   },
 
 // 网络请求数据
@@ -33,7 +34,7 @@ Page({
     let that = this;
     util.request(api.OrderList, {
       userId: userId,
-      shippingStatus: 0 // 订单发货状态
+      shippingStatus: 0
     }, "GET").then(function (res) {
       if (res.code === 0) {
         let tempOrder = [];
@@ -85,7 +86,7 @@ Page({
   loadData: function(type) {
     this.setData({
       loading: true
-    })
+    });
     let data = this.data.order.filter(item => {
       if (type === 0) { // 输入 0 时显示所有的订单
         return true
@@ -116,6 +117,8 @@ Page({
   scrollListen: function(e) {
     console.log("滑到底部啦 该加载下一页数据啦")
   },
+
+
   cancelOrder: function(e) {
     Dialog.confirm({
       message: '是否取消此订单？'
@@ -124,7 +127,7 @@ Page({
       let index = e.currentTarget.dataset.index;
       this.setData({
         [`orderList[${index}].orderStatus`]: 0
-      })
+      });
       for (let i = 0; i < this.data.orderList[index].productList.length; i++) {
         this.setData({
           [`orderList[${index}].productList[${i}].status`]: 0
@@ -282,6 +285,12 @@ Page({
   onReady: function() {},
   onShow: function() {
     this.requestData();
+    let type = getApp().globalData.type;
+    this.setData({
+      shippingStatus: type
+    });
+    this.loadData(type);
+
   },
   onHide: function() {},
   onUnload: function() {
