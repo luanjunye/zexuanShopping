@@ -2,7 +2,7 @@
 <view class="ucenter">
   <!-- tab布局开始 -->
 
-  <van-tabs color="#b4282d" active="{{active}}" tab-class="tab" swipeable animated bind:change="changeTab" class="nav">
+  <van-tabs color="#b4282d" active="{{shippingStatus}}" tab-class="tab" swipeable animated bind:change="changeTab" class="nav">
     <van-tab title="全部"></van-tab>
     <van-tab title="待付款"></van-tab>
     <van-tab title="待发货"></van-tab>
