@@ -42,5 +42,17 @@ App({
     },
     userId:"",
     token:"",
+  },
+  
+
+  getUserId(){
+    let userId = wx.getStorageSync('userId')
+    if (userId){
+      return userId
+    } else {
+      wx.navigateTo({
+        url: '/pages/auth/tologin/tologin',
+      })
+    }
   }
 })

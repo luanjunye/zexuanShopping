@@ -4,8 +4,11 @@ const util = require('/../../../../utils/util.js');
 Page({
   // 地址管理
   /**
-   * 页面的初始数据
-   */
+
+  * 页面的初始数据
+
+  */
+
   data: {
     userId:0,
     chooseMode: false,

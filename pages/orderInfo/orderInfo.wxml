@@ -1,89 +1,99 @@
 <!--pages/orderInfo/orderInfo.wxml-->
 <view class="ucenter">
-  <view class="newLogistics" bindtap="toLogistics">
-    <image src="/assets/deliveryIcon.png" class="icon" />
-    <view class="logisticsInfo">
-      <view class="info">山东省济南市奥体西路公司 已签收 签收人:吴越 快递已送达,如有疑问请联系:13333333333</view>
-      <view class="time">2019-10-12 10:30:37</view>
+
+  <view class="orderContainer">
+
+    <!-- 物流信息 -->
+    <view class="newLogistics" bindtap="toLogistics" wx:if='{{false}}'>
+      <image src="/assets/deliveryIcon.png" class="icon" />
+      <view class="logisticsInfo">
+        <view class="info">{{lastExpressInfo === null? '暂无快递信息': lastExpressInfo.content}}</view>
+        <view class="time" wx:if="lastExpressInfo !== null">{{lastExpressInfo.time}}</view>
+      </view>
     </view>
-  </view>
-  <view class="address">
-    <view class="l">
+
+    <!-- 地址 -->
+    <view class="address">
+      <view class="l">
+        <view class="title">
+          <view class="name">{{order.userName}}
+            <text class="phone">{{order.mobile}}</text>
+          </view>
+        </view>
+        <view class="address_info">{{order.address + order.street}}</view>
+      </view>
+    </view>
+
+    <!-- 产品信息 -->
+    <view class="product">
       <view class="title">
-        <view class="name">吴越
-          <text class="phone">15555555555</text>
-        </view>
+        <van-tag wx:if="{{order.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{order.label}}</van-tag>
+        <text class="title_text">{{order.shopName}}</text>
       </view>
-      <view class="address_info">山东省济南市历下区舜华路街道万达广场写字楼J1-2101</view>
-    </view>
-  </view>
-  <view class="product">
-    <view class="item" wx:for="{{productList}}" wx:key="{{item.id}}">
-      <view class="title">
-        <van-tag wx:if="{{item.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.label}}</van-tag>
-        <text class="title_text">屈蜂堂官方商城</text>
-      </view>
-      <view class="body">
-        <image class="left" src="{{pirUrl}}"></image>
-        <view class="body_top">
-          <view class="body_text">
-            <view class="body_title">煲汤材料炖汤清补凉补品干货食材养生汤包鸡汤</view>
-            <view class="body_money">¥59.9</view>
-          </view>
-          <view class="body_center">
-            <text class="explain">规格:桂圆红枣汤</text>
-            <text class="number">x1</text>
-          </view>
-          <view class="foot">
-            <van-button plain type="default" size="small" class="btn" bindtap="return">退款</van-button>
+      <!-- 单商品模板 -->
+      <view class="item" wx:for="{{order.list}}" wx:key="{{index}}" wx:for-item='good'>
+        <view class="body">
+          <image class="left" src="{{good.url}}"></image>
+          <view class="body_top">
+            <view class="body_text">
+              <view class="body_title">{{good.name}}</view>
+              <view class="body_money">¥{{good.money}}</view>
+            </view>
+            <view class="body_center">
+              <text class="explain">规格:{{good.type}}</text>
+              <text class="number">x{{good.num}}</text>
+            </view>
+            <view class="foot">
+              <van-button plain type="default" size="small" class="btn" bindtap="return">退款</van-button>
+            </view>
           </view>
         </view>
       </view>
+      <view class="bottom">
+        <view class="bottom_remark">订单备注
+          <text class="remark_text">{{order.remark}}</text>
+        </view>
+        <view class="bottom_info">
+          <view class="key">商品总价</view>
+          <view class="value">¥{{order.payMoney}}</view>
+        </view>
+        <view class="bottom_info">
+          <view class="key">运费</view>
+          <view class="value">￥{{order.freight}}</view>
+        </view>
+        <view class="bottom_info">
+          <view class="key">实付款(含运费)</view>
+          <view class="value">¥{{order.actualPrice}}</view>
+        </view>
+      </view>
     </view>
-    <view class="bottom">
-      <view class="bottom_remark">订单备注
-        <text class="remark_text">两盒可以一起发,谢谢</text>
-      </view>
-      <view class="bottom_info">
-        <view class="key">商品总价</view>
-        <view class="value">¥59.9</view>
-      </view>
-      <view class="bottom_info">
-        <view class="key">运费</view>
-        <view class="value">¥0.00</view>
-      </view>
-      <view class="bottom_info">
-        <view class="key">实付款(含运费)</view>
-        <view class="value">¥59.9</view>
-      </view>
-    </view>
-  </view>
-  <view class="order">
-    <view class="order_info">
-      <view class="order_title">订单信息</view>
-      <view class="info_a">
-        <view class="info_b">订单编号:
-          <text class="info_c">560839479832674123</text>
+    <view class="order">
+      <view class="order_info">
+        <view class="order_title">订单信息</view>
+        <view class="info_a">
+          <view class="info_b">订单编号:
+            <text class="info_c">{{order.orderNum}}</text>
+          </view>
         </view>
-      </view>
-      <view class="info_a">
-        <view class="info_b">微信交易号:
-          <text class="info_c">567829379216348741</text>
+        <view class="info_a">
+          <view class="info_b">微信交易号:
+            <text class="info_c">--</text>
+          </view>
         </view>
-      </view>
-      <view class="info_a">
-        <view class="info_b">创建时间:
-          <text class="info_c">2019-10-10 13:55:42</text>
+        <view class="info_a">
+          <view class="info_b">创建时间:
+            <text class="info_c">{{timeCreate}}</text>
+          </view>
         </view>
-      </view>
-      <view class="info_a">
-        <view class="info_b">付款时间:
-          <text class="info_c">2019-10-10 13:55:50</text>
+        <view class="info_a">
+          <view class="info_b">付款时间:
+            <text class="info_c">{{timePayed}}</text>
+          </view>
         </view>
-      </view>
-      <view class="info_a">
-        <view class="info_b">发货时间:
-          <text class="info_c">2019-10-10 16:50:42</text>
+        <view class="info_a">
+          <view class="info_b">发货时间:
+            <text class="info_c">{{timeShipping}}</text>
+          </view>
         </view>
       </view>
     </view>
@@ -91,11 +101,11 @@
 
   <view class="cart-bottom">
     <view class="cart_bottom_left">
-        <image class="customer_icon" src="/assets/customer.png" />
-        <text class="customer_text">1对1客服</text>
+      <image class="customer_icon" src="/assets/customer.png" />
+      <text class="customer_text">1对1客服</text>
     </view>
     <view class="cart_bottom_right">
-      <button plain type="default" size="small" class="cart_btn" bindtap="toLogistics">查看物流</button>
+      <button plain type="default" size="small" class="cart_btn" bindtap="goToShippingInfoPage">查看物流</button>
       <button plain type="default" size="small" class="cart_btn" bindtap="toReceiving">确认收货</button>
     </view>
   </view>

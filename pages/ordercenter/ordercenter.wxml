@@ -35,26 +35,26 @@
     <view class="order" wx:for="{{orderList}}" wx:key="{{item.id}}">
       <view class="order-title">
         <view class="order-title-top">
-          <van-tag wx:if="{{item.label}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.label}}</van-tag>
-          <view class="order-text">屈蜂堂官方商城</view>
+          <van-tag wx:if="{{item.shopType}}" round color="#FFA42F" text-color="FFA42F" class="tlabel">{{item.shopType}}</van-tag>
+          <view class="order-text">{{item.shopName}}</view>
         </view>
         <view class="status">
-          <text class="txt" wx:if="{{item.status==0}}">交易关闭</text>
-          <text class="txt" wx:if="{{item.status==1}}">等待买家付款</text>
-          <text class="txt" wx:if="{{item.status==2}}">买家已付款</text>
-          <text class="txt" wx:if="{{item.status==3}}">卖家已发货</text>
-          <text class="txt-success" wx:if="{{item.status==4||item.status==5}}">交易成功</text>
-          <text class="txt" wx:if="{{item.status==6}}">退货退款</text>
-           <text class="txt" wx:if="{{item.status==7}}">仅退款</text>
+          <text class="txt">{{item.statusName}}</text>
+          <!--          <text class="txt" wx:if="{{item.shippingStatus==1}}">等待买家付款</text>
+          <text class="txt" wx:if="{{item.shippingStatus==2}}">买家已付款</text>
+          <text class="txt" wx:if="{{item.shippingStatus==3}}">卖家已发货</text>
+          <text class="txt-success" wx:if="{{item.shippingStatus==4||item.shippingStatus==5}}">交易成功</text>
+          <text class="txt" wx:if="{{item.shippingStatus==6}}">退货退款</text>
+          <text class="txt" wx:if="{{item.shippingStatus==7}}">仅退款</text>-->
         </view>
       </view>
-      <view class="product" wx:for="{{item.productList}}" wx:key="{{product.id}}" wx:for-item="product" data-value="{{item}}" bindtap="toOrderDetail">
-        <view class="product-remark">
+      <view class="product">
+        <view class="product-remark" wx:for="{{item.productList}}" wx:for-item="product" wx:key='{{index}}' bindtap="toOrderDetail" data-value='{{item}}'>
           <image class="img" src="{{product.picUrl}}"></image>
           <view class="product-info">
             <view class="status">
               <text class="title">{{product.title}}</text>
-              <text class="remark">¥ {{item.actualPrice}}</text>
+              <text class="remark">¥ {{product.price}}</text>
             </view>
             <view class="status_center">
               <text class="title_gray">规格：{{product.specDesc}}</text>
@@ -72,20 +72,20 @@
         <view class="total">
           <view class="surplus"></view>
           <view class="total-foot">
-            <view class="total-title">共{{product.count}}件商品 合计：</view>
-            <view class="total-money"> ¥{{item.totalPrice * product.count}}</view>
+            <view class="total-title">共{{item.productList.length}}件商品 合计：</view>
+            <view class="total-money"> ¥{{item.totalPrice}}</view>
           </view>
         </view>
       </view>
       <view class="foot">
-       <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">申请发票</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">评价</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==0||item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toDelete">删除订单</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==1}}" color="#b4282d" size="small" class="btn" bindtap="toPay">去付款</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==2}}" plain type="default" disabled size="small" hover-class="none">待发货</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==3}}" plain type="default" size="small" class="btn" bindtap="toExpress">查看物流</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.orderStatus==3}}" plain type="default" size="small" class="btn" color="#b4282d" bindtap="confirmReceive">确认收货</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==4||item.status==5}}" plain type="default" size="small" color="#b4282d" class="btn" bindtap="toPayAgain">再次购买</van-button>
+        <!-- <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">申请发票</van-button> -->
+        <!-- <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==4||item.status==5}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">评价</van-button> -->
+        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==0||item.status==301||item.status==402}}" plain type="default" size="small" class="btn" bindtap="toDelete">删除订单</van-button>
+        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==0}}" color="#b4282d" size="small" class="btn" bindtap="toPay">去付款</van-button>
+        <!--        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==201}}" plain type="default" disabled size="small" hover-class="none">待发货</van-button>-->
+        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==300 || item.status==301}}" plain type="default" size="small" class="btn" bindtap="toExpress">查看物流</van-button>
+        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==300}}" plain type="default" size="small" class="btn" color="#b4282d" bindtap="confirmReceive">确认收货</van-button>
+        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==301}}" plain type="default" size="small" color="#b4282d" class="btn" bindtap="toPayAgain">再次购买</van-button>
       </view>
     </view>
   </scroll-view>
