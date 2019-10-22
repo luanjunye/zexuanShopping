@@ -1,19 +1,18 @@
 // pages/orderReturn/index.js
 Page({
   data: {
-    packageListArray: ['-- 请选择 --', '顺丰', '韵达', '中通', '中通'],
-    reasonArray: ['不喜欢/效果差', '质量问题', '材料与商品描述不符', '大小尺寸与商品描述不符', '卖家发错货', '收到商品少件或破损'],
+    reasonArray: ['-- 请选择 --','多拍/拍错/不想要', '快递一直未到', '未按约定时间发货', '快递无跟踪记录', '其它'],
+    packageStatus: ['-- 请选择 --' ,'未收到货','已收到货'],
 
+    freight: Number,
     productName: String,
     productMeta: String,
     productImg: String,
-    returnReason: 0,
-    returnPackageId: '73147861342',
-    returnPackageCompany: 0,
+    returnReasonId: 0,
+    packageStatusId: 0,
     returnPrice: Number,
     returnComment: String,
     returnEvidencePic: [],
-    packagePanelShowed: false,
   },
 
   // 删除当前图片
@@ -29,7 +28,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let that = this;
     if (that.data.returnEvidencePic.length < 1) {
-      return 
+      return
     } else {
       wx.previewImage({
         urls: [that.data.returnEvidencePic[index]],
@@ -49,8 +48,26 @@ Page({
           res.tempFilePaths.forEach(item => {
             choosenPicPaths.push(item)
           })
+
+          // 组合数组
+          let finalPicArray = that.data.returnEvidencePic.concat(choosenPicPaths);
+          
+          // 新旧图片数量
+          let oldPicCount = that.data.returnEvidencePic.length;
+          let newPicCount = res.tempFilePaths.length;
+
+          if (oldPicCount + newPicCount > 5){
+            wx.showToast({
+              icon: 'none',
+              title: '最多上传5张凭证',
+            });
+            finalPicArray.splice(4,finalPicArray.length - 5);
+          } else {
+          }
+
+          // 绑定数据
           that.setData({
-            returnEvidencePic: choosenPicPaths.concat(that.data.returnEvidencePic)
+            returnEvidencePic: finalPicArray
           })
         }
       }
@@ -62,13 +79,6 @@ Page({
     console.log(this.data);
     wx.showToast({
       title: '成功提交',
-    })
-  },
-
-  // 显示 快递修改面板
-  showPackagePanel(e) {
-    this.setData({
-      packagePanelShowed: true
     })
   },
 

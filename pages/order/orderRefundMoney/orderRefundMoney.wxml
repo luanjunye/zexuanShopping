@@ -15,25 +15,19 @@
 
     <view class='list-item'>
       <view class="list-item-content">
-        <view class='list-label'>退款原因</view>
-        <picker class="list-content" mode="selector" bindchange="handleModalChange" value="{{returnReason}}" data-modal='returnReason' range="{{reasonArray}}">
-          <view>{{reasonArray[returnReason]}}</view>
+        <view class='list-label'>货物状态</view>
+        <picker class="list-content" mode="selector" bindchange="handleModalChange" value="{{packageStatusId}}" data-modal='packageStatusId' range="{{packageStatus}}">
+          <view>{{packageStatus[packageStatusId]}}</view>
         </picker>
       </view>
     </view>
 
     <view class='list-item'>
-      <view class="list-item-content" bindtap="showPackagePanel">
-        <view class='list-label'>退货方式</view>
-        <view class='list-content'>自行寄回</view>
-      </view>
       <view class="list-item-content">
-        <view class='list-label'>退货单号</view>
-        <view class='list-content'>{{returnPackageId}}</view>
-      </view>
-      <view class="list-item-content" wx:if="{{returnPackageId}}">
-        <view class='list-label'>快递公司</view>
-        <view class='list-content'>{{packageListArray[returnPackageCompany]}}</view>
+        <view class='list-label'>退款原因</view>
+        <picker class="list-content" mode="selector" bindchange="handleModalChange" value="{{returnReasonId}}" data-modal='returnReasonId' range="{{reasonArray}}">
+          <view>{{reasonArray[returnReasonId]}}</view>
+        </picker>
       </view>
       <view class="list-item-content">
         <view class='list-label'>退款金额</view>
@@ -42,7 +36,7 @@
       <view class="comment">
         最多
         <text>￥{{returnPrice}}</text>，含发货邮费
-        <text>￥1.00</text>
+        <text>￥{{freight}}</text>
       </view>
     </view>
 
@@ -54,13 +48,13 @@
     </view>
 
     <view class="uploader">
-      <view class="uploader-title">上传凭证</view>
+      <view class="uploader-title">上传凭证(最多5张)</view>
       <view class="uploader-content">
         <view class='uploader-content-item' bindtap='showCurrentPic' data-index="{{index}}" wx:for="{{returnEvidencePic}}" wx:key="{{index}}">
-            <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-index="{{index}}"></image>
+          <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-index="{{index}}"></image>
           <image mode='aspectFill' src="{{item}}"></image>
         </view>
-        <view class="img-picker" bindtap="imgPickerTaped"></view>
+        <view wx:if='{{returnEvidencePic.length < 5}}' class="img-picker" bindtap="imgPickerTaped"></view>
       </view>
     </view>
 
@@ -71,33 +65,6 @@
       <button class='btn-main' bindtap='returnConfired'>提交</button>
     </view>
 
-
-
-    <!-- 下弹窗 - 退货信息 -->
-    <view class="mask" wx:if="{{packagePanelShowed}}">
-      <view class='slide-up-panel animated slideInUp'>
-        <view class="header">退货原因</view>
-        <view class="body">
-          <view class='list-item'>
-            <view class="list-item-content">
-              <view class='list-label'>填写快递单号</view>
-              <input class='list-content' placeholder='选填' type='number' bindinput='handleModalChange' data-modal="returnPackageId" value="{{returnPackageId}}">{{}}</input>
-            </view>
-          </view>
-          <view class='list-item'>
-            <view class="list-item-content">
-              <view class='list-label'>选择快递公司</view>
-              <picker class="list-content" mode="selector" bindchange="handleModalChange" data-modal="returnPackageCompany" value="{{returnPackageCompany}}" range="{{packageListArray}}">
-                <view>{{packageListArray[returnPackageCompany]}}</view>
-              </picker>
-            </view>
-          </view>
-        </view>
-        <view class="footer">
-          <button class="btn-full" bindtap='reasonPanelClicked'>确定</button>
-        </view>
-      </view>
-    </view>
 
   </view>
 </view>
