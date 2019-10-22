@@ -7,11 +7,10 @@ const api = require('./../../../config/url.js');
 Page({
   // 订单中心
   data: {
-    active: 0, // shippingStatus : 0 全部 1 待付款 2 待发货 3 已发货 4 待评价 5 退款售后
     loading: false,
     orderList: [],
     order: [],
-    shippingStatus: 0
+    shippingStatus: 0  // shippingStatus: 0 全部 1 待付款 2 待发货 3 已发货 4 待评价 5 退款售后
   },
 
 
@@ -25,7 +24,7 @@ Page({
 
   onLoad: function(options) {
     // this.requestData()
-    let type = getApp().globalData.type;
+    getApp().globalData.type = 0;
   },
 
 // 网络请求数据
@@ -83,18 +82,19 @@ Page({
 
 
   // 载入筛选状态后的订单数据
-  loadData: function(type) {
+  loadData(shippingStatus) {
+    console.log('insideLoadData: ',shippingStatus);
     this.setData({
       loading: true
     });
     let data = this.data.order.filter(item => {
-      if (type === 0) { // 输入 0 时显示所有的订单
+      if (shippingStatus === 0 || shippingStatus === undefined) { // 输入 0 时显示所有的订单
         return true
       } else {
-        return item.shippingStatus === type
+        return item.shippingStatus === shippingStatus
       }
     });
-    // console.log('筛选后的数据', data);
+    console.log('筛选后的数据', data);
     this.setData({
       orderList: data,
       loading: false
@@ -103,23 +103,23 @@ Page({
 
 
   // 状态标签切换
-  changeTab: function(e) {
+  changeTab (e) {
     console.log(e);
-    let type = e.detail.index;
+    let shippingStatus = e.detail.index;
     this.setData({
-      shippingStatus: type
+      shippingStatus: shippingStatus
     });
-    console.log(typeof type);
-    this.loadData(type)
+    console.log(typeof shippingStatus);
+    this.loadData(shippingStatus)
   },
 
 
-  scrollListen: function(e) {
+  scrollListen (e) {
     console.log("滑到底部啦 该加载下一页数据啦")
   },
 
 
-  cancelOrder: function(e) {
+  cancelOrder (e) {
     Dialog.confirm({
       message: '是否取消此订单？'
     }).then(() => {
@@ -140,7 +140,7 @@ Page({
 
 
   // 删除订单
-  toDelete: function(e) {
+  toDelete (e) {
     Dialog.confirm({
       message: '是否删除此订单？'
     }).then(() => {
@@ -187,7 +187,7 @@ Page({
 
 
   // 确认收货
-  confirmReceive: function(e) {
+  confirmReceive (e) {
     Dialog.confirm({
       message: '确认收货后钱款会支付给商家'
     }).then(() => {
@@ -230,7 +230,7 @@ Page({
 
 
   // 去支付
-  toPay: function(e) {
+  toPay (e) {
     let actualPrice = e.currentTarget.dataset.value.actualPrice;
     wx.showModal({
       title: '提示',
@@ -285,12 +285,12 @@ Page({
   onReady: function() {},
   onShow: function() {
     this.requestData();
-    let type = getApp().globalData.type;
+    let shippingStatus = getApp().globalData.type;
     this.setData({
-      shippingStatus: type
+      shippingStatus: shippingStatus
     });
-    this.loadData(type);
-
+    this.loadData(shippingStatus);
+    console.log('onShow: ', shippingStatus);
   },
   onHide: function() {},
   onUnload: function() {
