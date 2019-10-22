@@ -231,7 +231,7 @@ Page({
       this.checkLogin();
       getApp().globalData.type = type;
       wx.switchTab({
-        url: '/pages/ordercenter/ordercenter',
+        url: '/pages/order/ordercenter/ordercenter',
       })
     } else if (type == 6) {
       this.checkLogin();

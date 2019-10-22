@@ -1,15 +1,14 @@
 {
   "pages": [
+    "pages/mine/mine",
     "pages/order/orderRefundMoney/orderRefundMoney",
     "pages/order/orderRefund/orderRefund",
     "pages/order/ordercenter/ordercenter",
     "pages/order/orderRefundGoods/orderRefundGoods",
     "pages/order/orderInfo/orderInfo",
-
     "pages/ucenter/evaluate/evaluate",
     "pages/ucenter/invoice/invoice",
     "pages/ucenter/express/express",
-    "pages/mine/mine",
     "pages/index/index",
     "pages/secondIndex/secondIndex",
     "pages/logs/logs",
