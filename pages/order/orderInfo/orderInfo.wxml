@@ -104,9 +104,37 @@
       <image class="customer_icon" src="/assets/customer.png" />
       <text class="customer_text">1对1客服</text>
     </view>
-    <view class="cart_bottom_right">
+    <view class="cart_bottom_right order-info-btn-group">
       <button plain type="default" size="small" class="cart_btn" bindtap="goToShippingInfoPage">查看物流</button>
       <button plain type="default" size="small" class="cart_btn" bindtap="toReceiving">确认收货</button>
+      <button plain type="default" size="small" class="cart_btn" bindtap="packagePanelShow">去发货</button>
     </view>
   </view>
+
+
+    <!-- 下弹窗 - 退货信息 -->
+    <view class="mask" wx:if="{{packagePanelShowed}}">
+        <view class='slide-up-panel animated slideInUp'>
+            <view class="header">退货原因</view>
+            <view class="body">
+                <view class='list-item'>
+                    <view class="list-item-content">
+                        <view class='list-label'>填写快递单号</view>
+                        <input class='list-content' placeholder='选填' type='number' bindinput='handleModalChange' data-modal="returnPackageId" value="{{returnPackageId}}">{{}}</input>
+                    </view>
+                </view>
+                <view class='list-item'>
+                    <view class="list-item-content">
+                        <view class='list-label'>选择快递公司</view>
+                        <picker class="list-content" mode="selector" bindchange="handleModalChange" data-modal="returnPackageCompany" value="{{returnPackageCompany}}" range="{{packageListArray}}">
+                            <view>{{packageListArray[returnPackageCompany]}}</view>
+                        </picker>
+                    </view>
+                </view>
+            </view>
+            <view class="footer">
+                <button class="btn-full" bindtap='reasonPanelClicked'>确定</button>
+            </view>
+        </view>
+    </view>
 </view>

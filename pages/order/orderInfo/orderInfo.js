@@ -11,6 +11,11 @@ Page({
     timeShipping: String,
     expressInfo: Object,
     lastExpressInfo: Object,
+
+    // refund related
+    packageListArray: ['-- 请选择 --', '顺丰', '韵达', '中通', '中通'],
+    returnPackageId: '73147861342',
+    returnPackageCompany: 0,
   },
 
   // 获取快递信息
@@ -108,6 +113,54 @@ Page({
       }
     })
   },
+
+
+  // 显示 快递修改面板
+  showPackagePanel(e) {
+    this.setData({
+      packagePanelShowed: true
+    })
+  },
+
+  // 处理 input,picker 数据双向绑定
+  handleModalChange: function(e) {
+    let name = e.currentTarget.dataset.modal;
+    let value = e.detail.value;
+    let dataMap = {};
+    dataMap[name] = value;
+    this.setData(dataMap);
+    // console.log(name, ':', this.data[name]) // 显示 page 内 data 的实际数据
+  },
+
+  // 退货面板 确定时
+  reasonPanelClicked: function(e) {
+    if (!this.data.returnPackageId) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写快递单号'
+      })
+    } else if (this.data.returnPackageCompany === 0) {
+      wx.showToast({
+        icon: 'none',
+        title: '未选择快递公司'
+      })
+    } else {
+      this.packagePanelHide();
+    }
+  },
+
+  // 退货信息面板操作方法
+  packagePanelHide: function() {
+    this.setData({
+      packagePanelShowed: false
+    })
+  },
+  packagePanelShow: function() {
+    this.setData({
+      packagePanelShowed: true
+    })
+  },
+
 
 
   onReady: function() {},
