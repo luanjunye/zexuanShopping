@@ -1,0 +1,70 @@
+<!--pages/orderReturn/orderReturn.wxml-->
+
+<view class="content">
+  <view class="order-return">
+    <view class="product">
+      <image class='product-img'></image>
+      <view class='product-info'>
+        <view class='product-name'>{{productName}}</view>
+        <view class="product-meta">
+          <text class='product-meta-title'>规格：</text>
+          <text class='product-meta-content'>{{productMeta}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='list-item'>
+      <view class="list-item-content">
+        <view class='list-label'>货物状态</view>
+        <picker class="list-content" mode="selector" bindchange="handleModalChange" value="{{packageStatusId}}" data-modal='packageStatusId' range="{{packageStatus}}">
+          <view>{{packageStatus[packageStatusId]}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class='list-item'>
+      <view class="list-item-content">
+        <view class='list-label'>退款原因</view>
+        <picker class="list-content" mode="selector" bindchange="handleModalChange" value="{{returnReasonId}}" data-modal='returnReasonId' range="{{reasonArray}}">
+          <view>{{reasonArray[returnReasonId]}}</view>
+        </picker>
+      </view>
+      <view class="list-item-content">
+        <view class='list-label'>退款金额</view>
+        <view class='list-content'>￥{{returnPrice}}</view>
+      </view>
+      <view class="comment">
+        最多
+        <text>￥{{returnPrice}}</text>，含发货邮费
+        <text>￥{{freight}}</text>
+      </view>
+    </view>
+
+    <view class='list-item'>
+      <view class="list-item-content">
+        <view class='list-label'>退款说明</view>
+        <input class='list-content' placeholder='选填' bindinput='handleModalChange' data-modal='returnComment'>{{returnComment}}</input>
+      </view>
+    </view>
+
+    <view class="uploader">
+      <view class="uploader-title">上传凭证(最多5张)</view>
+      <view class="uploader-content">
+        <view class='uploader-content-item' bindtap='showCurrentPic' data-index="{{index}}" wx:for="{{returnEvidencePic}}" wx:key="{{index}}">
+          <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-index="{{index}}"></image>
+          <image mode='aspectFill' src="{{item}}"></image>
+        </view>
+        <view wx:if='{{returnEvidencePic.length < 5}}' class="img-picker" bindtap="imgPickerTaped"></view>
+      </view>
+    </view>
+
+
+
+
+    <view class='fix-bottom'>
+      <button class='btn-main' bindtap='returnConfired'>提交</button>
+    </view>
+
+
+  </view>
+</view>

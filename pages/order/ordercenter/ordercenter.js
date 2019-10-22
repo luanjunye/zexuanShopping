@@ -1,8 +1,8 @@
 // pages/ordercenter/ordercenter.
-import Dialog from '../../lib/vant-weapp/dialog/dialog';
+import Dialog from './../../../lib/vant-weapp/dialog/dialog';
 
-const util = require('./../../utils/util.js');
-const api = require('./../../config/url.js');
+const util = require('./../../../utils/util.js');
+const api = require('./../../../config/url.js');
 
 Page({
   // 订单中心

@@ -1,7 +1,7 @@
 // pages/orderInfo/orderInfo.js
 
-const util = require('./../../utils/util.js');
-const api = require('./../../config/url.js');
+const util = require('./../../../utils/util.js');
+const api = require('./../../../config/url.js');
 
 Page({
   data: {

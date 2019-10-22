@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/mine/mine",
+    "pages/order/orderRefundMoney/orderRefundMoney",
+    "pages/order/orderRefund/orderRefund",
+    "pages/order/ordercenter/ordercenter",
+    "pages/order/orderRefundGoods/orderRefundGoods",
+    "pages/order/orderInfo/orderInfo",
+
     "pages/ucenter/evaluate/evaluate",
     "pages/ucenter/invoice/invoice",
-    "pages/ordercenter/ordercenter",
     "pages/ucenter/express/express",
-    "pages/orderInfo/orderInfo",
-    "pages/orderReturn/orderReturn",
-    
+    "pages/mine/mine",
     "pages/index/index",
     "pages/secondIndex/secondIndex",
     "pages/logs/logs",
@@ -19,7 +21,6 @@
     "pages/ucenter/address/edit/edit",
     "pages/ucenter/companyProfile/companyProfile",
     "pages/ucenter/antiCheating/antiCheating"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,7 +42,7 @@
         "selectedIconPath": "assets/clickshangcheng.png"
       },
       {
-        "pagePath": "pages/ordercenter/ordercenter",
+        "pagePath": "pages/order/ordercenter/ordercenter",
         "text": "订单",
         "iconPath": "assets/order.png",
         "selectedIconPath": "assets/clickorder.png"
