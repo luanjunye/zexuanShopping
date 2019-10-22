@@ -1,9 +1,10 @@
 <!--pages/orderInfo/orderInfo.wxml-->
 <view class="ucenter">
 
-  <!-- 物流信息 -->
   <view class="orderContainer">
-    <view class="newLogistics" bindtap="toLogistics">
+
+    <!-- 物流信息 -->
+    <view class="newLogistics" bindtap="toLogistics" wx:if='{{false}}'>
       <image src="/assets/deliveryIcon.png" class="icon" />
       <view class="logisticsInfo">
         <view class="info">{{lastExpressInfo === null? '暂无快递信息': lastExpressInfo.content}}</view>

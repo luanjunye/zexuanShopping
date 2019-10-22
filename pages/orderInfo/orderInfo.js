@@ -70,7 +70,7 @@ Page({
         });
 
         // 获取快递信息
-        that.getPackageInfo(tempOrder.shippingNo)
+        // that.getPackageInfo(tempOrder.shippingNo)
 
         /*
         let data = {
