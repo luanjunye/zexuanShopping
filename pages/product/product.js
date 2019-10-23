@@ -18,7 +18,7 @@ Page({
       day: "",
     },
     product:{},
-    specificationList:{},
+  
     sku: {
       show: false, // 显示属性规格
       noneSku: false, // 有无规格选择
@@ -48,33 +48,7 @@ Page({
           ],
           ks: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
         },
-        {
-          k: '内存',
-          v: [
-            {
-              id: 3,
-              name: '64GB',
-              picUrl: '',
-              selected: false,
-              disabled: false
-            },
-            {
-              id: 4,
-              name: '256GB',
-              picUrl: '',
-              selected: false,
-              disabled: false
-            },
-            {
-              id: 5,
-              name: '512GB',
-              picUrl: '',
-              selected: false,
-              disabled: false
-            }
-          ],
-          ks: 's2'
-        }
+      
       ],
       // 所有 sku 的组合列表，比如红色、M 码为一个 sku 组合，红色、S 码为另一个组合
       list: [
@@ -82,43 +56,7 @@ Page({
           id: 1, // skuId，下单时后端需要
           price: 1.00, // 价格
           s1: 1, // 规格类目 ks 为 s1 的对应规格值 id
-          s2: 3, // 规格类目 ks 为 s2 的对应规格值 id
           stockNum: 50 // 当前 sku 组合对应的库存
-        },
-        {
-          id: 2,
-          price: 2.00,
-          s1: 1,
-          s2: 4,
-          stockNum: 100
-        },
-        {
-          id: 3,
-          price: 3.00,
-          s1: 1,
-          s2: 5,
-          stockNum: 0
-        },
-        {
-          id: 4,
-          price: 4.00,
-          s1: 2,
-          s2: 3,
-          stockNum: 100
-        },
-        {
-          id: 5,
-          price: 5.00,
-          s1: 2,
-          s2: 4,
-          stockNum: 100
-        },
-        {
-          id: 6,
-          price: 6.00,
-          s1: 2,
-          s2: 5,
-          stockNum: 50
         }
       ],
       // 选择的 sku 组合
@@ -126,21 +64,6 @@ Page({
       },
       count: 1 // 选择的商品数量
     },
-    couponList: [
-      {
-        id: '1',
-        title: '60元直减劵',
-        time: '2019.08.01-2019.08.30',
-        description: '饮食类目专享；限时购等详情页标注不可用券的商品除外不可用券的商品除外',
-        discount: 60, //折扣金额 -1代表全部
-        disabled: false,
-        showAll: false,
-        selected: false,
-        get: false,
-        mode: "get",
-        status: 0 // 0未使用 1已使用 2已失效
-      }
-    ]
   },
 
   /**
@@ -156,7 +79,6 @@ Page({
     if(isLogin){
       this.setData({
         isLogin: isLogin
-        
       })
     }
     util.request(api.CommodityDetails,{id:1}, "POST").then(function (res) {
@@ -164,9 +86,17 @@ Page({
         data.product = res.product
         that.setData(data)
         console.log(res)
-        console.log(typeof res.product.price)
       }
     });
+
+    util.request(api.SpecificationsDetails, { id: 1 }, "POST").then(function (res) {
+      if (res.code === 0) {
+        data.sku = res.product
+        that.setData(data)
+        console.log(res)
+      }
+    });
+   
     // 初始化配送时间
     let date = new Date();
     let month = date.getMonth() + 1;
@@ -219,12 +149,7 @@ Page({
     * 4.target为Page对象,一般为this(必填)
     * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
     */
-    let that = this;
-    WxParse.wxParse('productDetail', 'html', this.data.product.detail, that, 0);
 
-
-    // 初始判断
-    this.judgeAllItem();
   },
 
   /**
@@ -292,7 +217,7 @@ Page({
   },
   openCartPage: function () {
     wx.switchTab({
-      url: '/pages/cart/cart',
+      url: '/pages/shoppingcart/shoppingcart',
     })
   },
   toComment: function () {

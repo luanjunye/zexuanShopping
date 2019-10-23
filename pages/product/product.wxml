@@ -100,9 +100,9 @@
     </view>
   </view>
 
-  <!-- 详情 -->
-  <view class="detail">
-    <template is="wxParse" data="{{wxParseData:productDetail.nodes}}" />
+  <!-- 详情大拉页 -->
+  <view class="detail" >
+    <image mode="widthFix" wx:for="{{product.goodsDetailsList}}" wx:key="{{index}}" src="{{item.url}}" />
   </view>
 
   <!-- 底部按钮 -->
@@ -116,58 +116,58 @@
       </button>
     </view>
     <view class="b-wrap cart" hover-class="active" bindtap="openCartPage">
-      <van-icon custom-class="icon-info" name="shopping-cart-o" info="{{cartList.length>0 ? cartList.length:''}}" color="#777" size="20px" />
-    </view>
-    <view class="buy" hover-class="active" bindtap="buyNow">立即购买</view>
-    <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
+      <van-icon custom-class="icon-info " name="shopping-cart-o" info="{{cartList.length>0 ? cartList.length:''}}" color="#777" size="20px" />
   </view>
+  <view class="buy" hover-class="active" bindtap="buyNow">立即购买</view>
+  <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
+</view>
 
-  <!-- 服务详情 -->
-  <van-popup show="{{ serviceShow }}" position="bottom" bind:close="closeService">
-    <view class="service-wrap">
-      <view class="h">服务</view>
-      <scroll-view class="c" scroll-y="true">
-        <view class="desc" wx:for="{{product.serviceVOList}}" wx:key="{{item.serviceId}}">
-          <view class="dt">
-            {{item.title}}
-          </view>
-          <view class="dc">
-            {{item.context}}
-          </view>
+<!-- 服务详情 -->
+<van-popup show="{{serviceShow}}" position="bottom" bind:close="closeService">
+  <view class="service-wrap">
+    <view class="h">服务</view>
+    <scroll-view class="c" scroll-y="true">
+      <view class="desc" wx:for="{{product.serviceVOList}}" wx:key="{{item.serviceId}}">
+        <view class="dt">
+          {{item.title}}
         </view>
-      </scroll-view>
-    </view>
-  </van-popup>
-
-  <!-- 商品规格选择 -->
-  <van-popup show="{{ sku.show }}" position="bottom" bind:close="closeSku">
-    <view class="sku">
-      <!-- 关闭图标 -->
-      <van-icon name="cross" color="#999" class="close" bindtap="closeSku" />
-      <!-- 图片标价 -->
-      <view class="info">
-        <image class="img" src="{{product.goodsViewVOList[0].url}}" bindtap="previewThumb"></image>
-        <view class="sku-desc">
-          <!-- <van-tag wx:if="{{product.promotion==1}}" color="#f48f18" style="margin-bottom: 10rpx">限时购</van-tag> -->
-          <view class="price">价格：￥{{common.toFix(product.price)}}
-            <view class="origin-price">￥{{common.toFix(product.originalPrice)}}</view>
-          </view>
-          <view class="spec" wx:if="{{!sku.noneSku}}">{{sku.specText ? '已选择:'+sku.specText : '请选择规格属性'}}</view>
+        <view class="dc">
+          {{item.context}}
         </view>
       </view>
-      <view wx:for="{{sku.tree}}" wx:key="{{index}}" data-value="{{item}}">
-        <view class="title">{{item.k}}</view>
-        <view class="wrap">
-          <view class="value {{iitem.selected ? 'selected':''}} {{iitem.disabled ? 'disabled':''}}" wx:for="{{item.v}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="{{iindex}}" data-index="{{index}}" data-iindex="{{iindex}}" data-k="{{item}}" data-value="{{iitem}}"
-            bindtap="selectSku">{{iitem.name}}</view>
+    </scroll-view>
+  </view>
+</van-popup>
+
+<!-- 商品规格选择 -->
+<van-popup show="{{sku.show}}" position="bottom" bind:close="closeSku">
+  <view class="sku">
+    <!-- 关闭图标 -->
+    <van-icon name="cross" color="#999" class="close" bindtap="closeSku" />
+    <!-- 图片标价 -->
+    <view class="info">
+      <image class="img" src="{{product.goodsViewVOList[0].url}}" bindtap="previewThumb"></image>
+      <view class="sku-desc">
+        <!-- <van-tag wx:if="{{product.promotion==1}}" color="#f48f18" style="margin-bottom: 10rpx">限时购</van-tag> -->
+        <view class="price">价格：￥{{common.toFix(product.price)}}
+          <view class="origin-price">￥{{common.toFix(product.originalPrice)}}</view>
         </view>
+        <view class="spec" wx:if="{{!sku.noneSku}}">{{sku.specText ? '已选择:'+sku.specText : '请选择规格属性'}}</view>
       </view>
-
-      <view class="title ">数量</view>
-      <i-input-number value="{{ sku.count }} " min="1 " max="{{sku.quota}}" bindchange="changeCount" />
-      <view style="width: 1rpx;"></view>
     </view>
-  </van-popup>
+    <view wx:for="{{sku.tree}}" wx:key="{{index}}" data-value="{{item}}">
+      <view class="title">{{item.k}}</view>
+      <view class="wrap">
+        <view class="value {{iitem.selected ? 'selected':''}} {{iitem.disabled ? 'disabled':''}}" wx:for="{{item.v}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="{{iindex}}" data-index="{{index}}" data-iindex="{{iindex}}" data-k="{{item}}" data-value="{{iitem}}"
+          bindtap="selectSku">{{iitem.name}}</view>
+      </view>
+    </view>
 
-  <van-toast id="van-toast" />
+    <view class="title">数量</view>
+    <i-input-number value="{{sku.count}}" min="1" max="{{sku.quota}}" bindchange="changeCount" />
+    <view style="width: 1rpx;"></view>
+  </view>
+</van-popup>
+
+<van-toast id="van-toast" />
 </view>

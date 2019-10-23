@@ -1,17 +1,52 @@
 // pages/ucenter/evaluate/evaluate.js
 import Toast from '../../../lib/vant-weapp/toast/toast';
+var util = require('../../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    order: {
+      id: '1',
+      orderSn: '20180320',
+      createTime: '2019-08-18 18:35',
+      payType: '微信',
+      productList: [{
+        id: '1',
+        picUrl: 'https://yanxuan.nosdn.127.net/1979054e3a1c8409f10191242165e674.png',
+        title: '常温纯牛奶 250毫升*12盒*2提',
+        specDesc: '纯牛奶 12盒*2提',
+        price: 88.00,
+        count: 1,
+        status: 1,
+        rate: 5,
+        rateTxt: "非常满意",
+        comment: "",
+        commentStatus: 0
+      }, {
+        id: '3',
+        picUrl: 'https://yanxuan.nosdn.127.net/87eb525e1a7998b7a88f45a86b912e01.jpg',
+        title: '有道口袋打印机',
+        specDesc: '口袋打印机',
+        price: 398.00,
+        count: 1,
+        status: 5,
+        rate: 5,
+        rateTxt: "非常满意",
+        comment: "",
+        commentStatus: 0
+      }],
+      totalPrice: 586.00,
+      expressPrice: 0.00,
+      actualPrice: 586.00,
+      orderStatus: 1
+    }
   },
 
   /**
- * 生命周期函数--监听页面加载
- */
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '评价',
@@ -29,9 +64,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let data = wx.getStorageSync("currOrder");
+    //let data = wx.getStorageSync("currOrder");
     // 初始化
-    data.productList.forEach(v => {
+    this.data.productList.forEach(v => {
       v.rate = 5;
       v.rateTxt = "非常满意";
       v.comment = "";
@@ -105,13 +140,15 @@ Page({
   post: function (e) {
     let index = e.currentTarget.dataset.index;
     let data = this.data.order.productList[index].comment;
+    var time = util.formatTime(new Date());
+    console.log(time)
     if (!data) {
       Toast("请填写评价")
       return;
     }
     this.setData({
       [`order.productList[${index}].commentStatus`]: 1,
-      [`order.productList[${index}].commentTime`]: '2019.08.25 23:27'
+      [`order.productList[${index}].commentTime`]: time
     });
     Toast("评论成功");
   }
