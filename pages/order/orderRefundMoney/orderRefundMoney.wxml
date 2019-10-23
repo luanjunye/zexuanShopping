@@ -2,21 +2,21 @@
 
 <view class="content">
   <view class="order-return">
-    <view class="product">
-      <image class='product-img'></image>
-      <view class='product-info'>
-        <view class='product-name'>{{productName}}</view>
-        <view class="product-meta">
-          <text class='product-meta-title'>规格：</text>
-          <text class='product-meta-content'>{{productMeta}}</text>
-        </view>
+      <view class="product" wx:for="{{goods}}" wx:key="index">
+          <image class='product-img' src="{{item.url}}"></image>
+          <view class='product-info'>
+              <view class='product-name'>{{item.name}}</view>
+              <view class="product-meta">
+                  <text class='product-meta-title'>规格：</text>
+                  <text class='product-meta-content'>{{item.type}}</text>
+              </view>
+          </view>
       </view>
-    </view>
 
     <view class='list-item'>
       <view class="list-item-content">
         <view class='list-label'>货物状态</view>
-        <picker class="list-content" mode="selector" bindchange="handleModalChange" value="{{packageStatusId}}" data-modal='packageStatusId' range="{{packageStatus}}">
+        <picker class="list-content" mode="selector" bindchange="switchPackageStatus" value="{{packageStatusId}}" range="{{packageStatus}}">
           <view>{{packageStatus[packageStatusId]}}</view>
         </picker>
       </view>
@@ -31,13 +31,13 @@
       </view>
       <view class="list-item-content">
         <view class='list-label'>退款金额</view>
-        <view class='list-content'>￥{{returnPrice}}</view>
+        <view class='list-content'>￥{{order.actualPrice}}</view>
       </view>
-      <view class="comment">
+      <!-- <view class="comment">
         最多
         <text>￥{{returnPrice}}</text>，含发货邮费
         <text>￥{{freight}}</text>
-      </view>
+      </view> -->
     </view>
 
     <view class='list-item'>

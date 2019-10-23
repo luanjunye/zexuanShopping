@@ -41,4 +41,6 @@ module.exports = {
   OrderList: API_BASE_URL + 'order/page', //  订单列表，分布查询   GET
   OrderDetail: API_BASE_URL + 'order/info', //  订单详情
   OrderPackage: API_BASE_URL + 'order/selectcourier', //  订单快递查询 参数：shippingNo   GET
+
+  OrderRefundReason: API_BASE_URL + 'returnreason/list', //  订单退款原因 参数:type: 1, 2   GET 
 };

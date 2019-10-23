@@ -22,13 +22,6 @@ Page({
     })
   },
 
-  // 跳转退货
-  toOrderRefundGoods() {
-    wx.navigateTo({
-      url: '/pages/order/orderRefundGoods/orderRefundGoods',
-    })
-  },
-
 
 
   onReady: function() {

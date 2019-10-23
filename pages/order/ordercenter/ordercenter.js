@@ -260,6 +260,7 @@ Page({
   // 跳转 评价页面
   toComment: function(v) {
     let data = v.currentTarget.dataset.value;
+    console.log(v.currentTarget.dataset.value);
     wx.setStorageSync("currOrder", data);
     wx.navigateTo({
       url: '/pages/ucenter/to-comment/to-comment'
