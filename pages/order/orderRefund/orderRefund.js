@@ -19,7 +19,7 @@ Page({
   // 跳转退款
   toOrderRefundMoney() {
     wx.navigateTo({
-      url: '/pages/order/orderRefundMoeny',
+      url: '/pages/order/orderRefundMoneyy',
     })
   },
 

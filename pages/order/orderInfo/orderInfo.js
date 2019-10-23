@@ -114,7 +114,6 @@ Page({
     })
   },
 
-
   // 显示 快递修改面板
   showPackagePanel(e) {
     this.setData({
@@ -146,6 +145,9 @@ Page({
       })
     } else {
       this.packagePanelHide();
+      // 执行确定
+
+
     }
   },
 
@@ -161,7 +163,13 @@ Page({
     })
   },
 
-
+// 跳转到
+  toReturnPage(){
+    // 既然已经到订单详情页了，该订单就已经保存到 storage 中了，不需要再存一次了
+    wx.navigateTo({
+      url: "/pages/order/orderRefund/orderRefund",
+    })
+  },
 
   onReady: function() {},
   onShow: function() {},

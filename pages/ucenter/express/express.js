@@ -55,7 +55,16 @@ Page({
     });
 
     // 请求快递物流信息
-    this.getPackageInfo(currentOrder.shippingNo)
+    if (currentOrder.expressNo){
+      this.getPackageInfo(currentOrder.expressNo)
+    } else if (currentOrder.shippingNo) {
+      this.getPackageInfo(currentOrder.shippingNo)
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '暂无物流信息',
+      })
+    }
   },
 
   /**

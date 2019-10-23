@@ -253,7 +253,7 @@ Page({
     wx.setStorageSync("currOrder", data);
     console.log(data);
     wx.navigateTo({
-      url: '/pages/orderInfo/orderInfo'
+      url: '/pages/order/orderInfo/orderInfo'
     })
   },
 
