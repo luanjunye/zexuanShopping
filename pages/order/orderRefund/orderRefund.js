@@ -1,9 +1,7 @@
 // pages/orderReturn/index.js
 Page({
   data: {
-    productName: String,
-    productMeta: String,
-    productImg: String,
+    goods: []
   },
 
 
@@ -11,22 +9,23 @@ Page({
     let order = wx.getStorageSync('currOrder');
     console.log(order);
     this.setData({
-      productName: '商品名称'
+      goods: order.list
     })
   },
+
 
 
   // 跳转退款
   toOrderRefundMoney() {
     wx.navigateTo({
-      url: '/pages/order/orderRefundMoneyy',
+      url: '/pages/order/orderRefundMoney/orderRefundMoney',
     })
   },
 
   // 跳转退货
   toOrderRefundGoods() {
     wx.navigateTo({
-      url: '/pages/order/orderRefundGoods',
+      url: '/pages/order/orderRefundGoods/orderRefundGoods',
     })
   },
 

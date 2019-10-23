@@ -2,13 +2,13 @@
 
 <view class="content">
   <view class="order-return">
-    <view class="product">
-      <image class='product-img'></image>
+    <view class="product" wx:for="{{goods}}" wx:key="index">
+      <image class='product-img' src="{{item.url}}"></image>
       <view class='product-info'>
-        <view class='product-name'>{{productName}}</view>
+        <view class='product-name'>{{item.name}}</view>
         <view class="product-meta">
           <text class='product-meta-title'>规格：</text>
-          <text class='product-meta-content'>{{productMeta}}</text>
+          <text class='product-meta-content'>{{item.type}}</text>
         </view>
       </view>
     </view>
