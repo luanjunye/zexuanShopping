@@ -14,5 +14,5 @@
 </view>
 
 <view class="detail">
-  <van-steps steps="{{ expressInfo }}" active="{{ active }}" direction="vertical" />
+  <van-steps steps="{{expressInfo}}" active="{{active}}" direction="vertical" />
 </view>

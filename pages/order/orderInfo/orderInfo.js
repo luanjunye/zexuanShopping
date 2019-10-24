@@ -38,9 +38,16 @@ Page({
 
   // 跳转物流信息页面
   goToShippingInfoPage() {
-    wx.navigateTo({
-      url: '/pages/ucenter/express/express',
-    })
+    console.log(this.data.order);
+    if (this.data.order.expressNo) {
+      wx.navigateTo({
+        url: '/pages/ucenter/express/express?expressno=' + this.data.order.expressNo,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/ucenter/express/express?expressno=' + this.data.order.shippingNo,
+      })
+    }
   },
 
   onLoad: function(options) {
@@ -65,6 +72,7 @@ Page({
       console.log(typeof res.code);
       if (res.code === 0) {
         let tempOrder = res.orderInfoVO;
+        // TODO: 修正时间在 safari 上的转换错误
         let timeCreate = util.formatTime(new Date(tempOrder.createTime));
         let timePayed = util.formatTime(new Date(tempOrder.payTime));
         let timeShipping = util.formatTime(new Date(tempOrder.deliveryTime));
