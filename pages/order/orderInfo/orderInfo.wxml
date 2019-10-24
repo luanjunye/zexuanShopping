@@ -111,7 +111,7 @@
     </view>
     <view class="cart_bottom_right order-info-btn-group">
       <button wx:if='{{order.shippingNo}}' plain type="default" size="small" class="cart_btn" bindtap="goToShippingInfoPage">查看物流</button>
-      <button wx:if='{{order.expressNo}}' plain type="default" size="small" class="cart_btn" bindtap="goToShippingInfoPage">查看退货详情</button>
+      <button wx:if='{{order.expressNo}}' plain type="default" size="small" class="cart_btn" bindtap="goToRefundDetail">查看退货详情</button>
       <button wx:if='{{order.status === 300}}' plain type="default" size="small" class="cart_btn" bindtap="toReceiving">确认收货</button>
       <button wx:if='{{order.returnStatus === 2}}' plain type="default" size="small" class="cart_btn" bindtap="packagePanelShow">去发货</button>
     </view>
@@ -126,20 +126,20 @@
         <view class='list-item'>
           <view class="list-item-content">
             <view class='list-label'>填写快递单号</view>
-            <input class='list-content' placeholder='选填' type='number' bindinput='handleModalChange' data-modal="returnPackageId" value="{{returnPackageId}}">{{}}</input>
+            <input class='list-content' placeholder='此处填写快递单号' bindinput='handleModalChange' data-modal="returnPackageId" value="{{returnPackageId}}">{{}}</input>
           </view>
         </view>
-        <view class='list-item'>
+        <!--<view class='list-item'>
           <view class="list-item-content">
             <view class='list-label'>选择快递公司</view>
             <picker class="list-content" mode="selector" bindchange="handleModalChange" data-modal="returnPackageCompany" value="{{returnPackageCompany}}" range="{{packageListArray}}">
               <view>{{packageListArray[returnPackageCompany]}}</view>
             </picker>
           </view>
-        </view>
+        </view>-->
       </view>
       <view class="footer">
-        <button class="btn-full" bindtap='reasonPanelClicked'>确定</button>
+        <button class="btn-full" bindtap='confirmPackageInfo'>确定</button>
       </view>
     </view>
     <view class="mask" bindtap="packagePanelHide"></view>

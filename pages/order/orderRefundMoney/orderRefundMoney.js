@@ -108,7 +108,7 @@ Page({
   // 确认退货
   returnConfired() {
     console.log(this.data.packageStatusId);
-    if(this.data.packageStatusId === 0){
+    if (this.data.packageStatusId === 0) {
       wx.showToast({
         icon: 'none',
         title: '请先选择是否收到货'
@@ -121,15 +121,14 @@ Page({
         url: this.data.returnEvidencePic // 图片列表
       };
 
-      util.request(api.OrderRefund, requestData, "POST").then(function (res) {
-        console.log(res)
+      util.request(api.OrderRefund, requestData, "POST").then(function(res) {
+        if(res.code === 0){
+          wx.showToast({
+            title: '成功提交申请'
+          })
+        }
       });
-
-      wx.showToast({
-        title: '成功提交',
-      })
     }
-    
   },
 
   // 处理 input,picker 数据双向绑定
