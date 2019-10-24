@@ -2,13 +2,13 @@
 
 <view class="content">
   <view class="order-return">
-    <view class="product">
-      <image class='product-img'></image>
+    <view class="product" wx:for="{{goods}}" wx:key="index">
+      <image class='product-img' src="{{item.url}}"></image>
       <view class='product-info'>
-        <view class='product-name'>{{productName}}</view>
+        <view class='product-name'>{{item.name}}</view>
         <view class="product-meta">
           <text class='product-meta-title'>规格：</text>
-          <text class='product-meta-content'>{{productMeta}}</text>
+          <text class='product-meta-content'>{{item.type}}</text>
         </view>
       </view>
     </view>
@@ -18,7 +18,7 @@
       <view class="comment">没收到货，或与卖家协商同意不用退货只退款</view>
     </view>
 
-    <view class='list-item' bindtap="toOrderRefundGoods">
+    <view class='list-item' bindtap="toOrderRefundMoney">
       <view>我要退货退款</view>
       <view class="comment">已收到货，需要退还收到的货物</view>
     </view>

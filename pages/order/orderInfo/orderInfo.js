@@ -11,6 +11,11 @@ Page({
     timeShipping: String,
     expressInfo: Object,
     lastExpressInfo: Object,
+
+    // refund related
+    packageListArray: ['-- 请选择 --', '顺丰', '韵达', '中通', '中通'],
+    returnPackageId: '73147861342',
+    returnPackageCompany: 0,
   },
 
   // 获取快递信息
@@ -19,10 +24,10 @@ Page({
     util.request(api.OrderPackage, {
       shippingNo: packageId
     }, "GET").then(res => {
-      if (res.code === 0){
+      if (res.code === 0) {
         let info = JSON.parse(res.courierInfo);
         console.log(info);
-        let lastInfo = info.list.length > 0? info.list[info.list.length - 1]: null;
+        let lastInfo = info.list.length > 0 ? info.list[info.list.length - 1] : null;
         that.setData({
           expressInfo: info,
           lastExpressInfo: lastInfo
@@ -32,10 +37,17 @@ Page({
   },
 
   // 跳转物流信息页面
-  goToShippingInfoPage(){
-    wx.navigateTo({
-      url: '/pages/ucenter/express/express',
-    })
+  goToShippingInfoPage() {
+    console.log(this.data.order);
+    if (this.data.order.expressNo) {
+      wx.navigateTo({
+        url: '/pages/ucenter/express/express?expressno=' + this.data.order.expressNo,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/ucenter/express/express?expressno=' + this.data.order.shippingNo,
+      })
+    }
   },
 
   onLoad: function(options) {
@@ -46,7 +58,13 @@ Page({
     });
     console.log(currentOrder);
 
-    // 请求订单数据
+    this.loadData();
+  },
+
+
+  // 请求订单数据
+  loadData() {
+    let currentOrder = wx.getStorageSync('currOrder');
     let that = this;
     util.request(api.OrderDetail, {
       id: currentOrder.id
@@ -54,9 +72,11 @@ Page({
       console.log(typeof res.code);
       if (res.code === 0) {
         let tempOrder = res.orderInfoVO;
+        // TODO: 修正时间在 safari 上的转换错误
         let timeCreate = util.formatTime(new Date(tempOrder.createTime));
         let timePayed = util.formatTime(new Date(tempOrder.payTime));
         let timeShipping = util.formatTime(new Date(tempOrder.deliveryTime));
+        tempOrder.id = currentOrder.id;
 
         // 保存订单信息
         wx.setStorageSync("currOrder", tempOrder);
@@ -109,12 +129,70 @@ Page({
     })
   },
 
+  // 显示 快递修改面板
+  showPackagePanel(e) {
+    this.setData({
+      packagePanelShowed: true
+    })
+  },
+
+  // 处理 input,picker 数据双向绑定
+  handleModalChange: function(e) {
+    let name = e.currentTarget.dataset.modal;
+    let value = e.detail.value;
+    let dataMap = {};
+    dataMap[name] = value;
+    this.setData(dataMap);
+    // console.log(name, ':', this.data[name]) // 显示 page 内 data 的实际数据
+  },
+
+  // 退货面板 确定时
+  reasonPanelClicked: function(e) {
+    if (!this.data.returnPackageId) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写快递单号'
+      })
+    } else if (this.data.returnPackageCompany === 0) {
+      wx.showToast({
+        icon: 'none',
+        title: '未选择快递公司'
+      })
+    } else {
+      this.packagePanelHide();
+      // 执行确定
+
+
+    }
+  },
+
+  // 退货信息面板操作方法
+  packagePanelHide: function() {
+    this.setData({
+      packagePanelShowed: false
+    })
+  },
+  packagePanelShow: function() {
+    this.setData({
+      packagePanelShowed: true
+    })
+  },
+
+  // 跳转到
+  toReturnPage() {
+    // 既然已经到订单详情页了，该订单就已经保存到 storage 中了，不需要再存一次了
+    wx.navigateTo({
+      url: "/pages/order/orderRefund/orderRefund",
+    })
+  },
 
   onReady: function() {},
   onShow: function() {},
   onHide: function() {},
   onUnload: function() {},
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function() {
+    this.loadData()
+  },
   onReachBottom: function() {},
   onShareAppMessage: function() {}
 });

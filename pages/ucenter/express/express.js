@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order:Object,
     expressInfo: Object,
     expressCompany: String,
   },
@@ -48,15 +47,21 @@ Page({
       title: '物流信息',
     });
 
-    // 载入订单信息
-    let currentOrder = wx.getStorageSync('currOrder');
-    this.setData({
-      order: currentOrder
-    });
-
     // 请求快递物流信息
-    this.getPackageInfo(currentOrder.shippingNo)
+    let expressNo = options.expressno;
+    if (expressNo){
+      this.getPackageInfo(expressNo)
+    }  else {
+      wx.showToast({
+        icon: 'none',
+        title: '暂无物流信息',
+      })
+    }
   },
+
+
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

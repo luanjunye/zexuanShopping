@@ -1,0 +1,86 @@
+.text-money {
+  color: #F1A84B;
+}
+
+.content {
+  padding: 10px 0 0;
+  background-color: #F5F6F7;
+}
+
+.section-title {
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.order-return {
+  font-size: 0.9rem;
+  background-color: #fff;
+  padding: 15px 15px 80px;
+}
+
+.product {
+  padding: 10px 0;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1rpx solid #dadada;
+}
+
+.product-img {
+  background-color: #cccccc;
+  flex-shrink: 0;
+  height: 70px;
+  width: 70px;
+}
+
+.product-info {
+  padding: 10px;
+  flex-grow: 1;
+}
+.product-info .product-name {
+  line-height: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product-info .product-meta {
+  padding: 2px 5px;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 20px;
+  color: #848484;
+  background-color: #F6F6F6;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.list-item {
+  padding: 10px 0;
+  border-bottom: 1rpx solid #dadada;
+}
+
+.list-item-content {
+  margin-bottom: 5px;
+  justify-content: space-between;
+  display: flex;
+}
+.list-item-content:last-child {
+  margin-bottom: 0;
+}
+.list-item-content .list-content {
+  flex-grow: 1;
+  text-align: right;
+  color: #848484;
+}
+
+.comment {
+  font-size: 0.7rem;
+  color: #848484;
+  padding: 5px 0;
+}
+
+.refund-info view {
+  padding: 3px 0;
+  font-size: 13px;
+  color: #848484;
+}
