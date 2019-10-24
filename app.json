@@ -1,14 +1,14 @@
 {
   "pages": [
+    "pages/product/product",
+      "pages/ucenter/evaluate/evaluate",
     "pages/mine/mine",
-    "pages/order/ordercenter/ordercenter",
-    "pages/order/orderInfo/orderInfo",
     "pages/order/orderRefundMoney/orderRefundMoney",
     "pages/order/orderRefund/orderRefund",
     "pages/order/ordercenter/ordercenter",
     "pages/order/orderRefundGoods/orderRefundGoods",
     "pages/order/orderInfo/orderInfo",
-    "pages/ucenter/evaluate/evaluate",
+  
     "pages/ucenter/invoice/invoice",
     "pages/ucenter/express/express",
     "pages/index/index",
@@ -16,7 +16,7 @@
     "pages/logs/logs",
     "pages/auth/tologin/tologin",
     "pages/shoppingcart/shoppingcart",
-    "pages/product/product",
+    
     "pages/settlement/settlement",
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",

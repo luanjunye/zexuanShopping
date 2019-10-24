@@ -38,11 +38,11 @@
 
   <!-- 商品布局结束 -->
   <view class="sprcifications">
-    <view class="attr-wrap" hover-class="active" bindtap="showSku">
+    <view class="attr-wrap" hover-class="active">
       <view class="attr">
         <view class="left">
-          <text class="title">{{sku.specText ? '已选' : '请选择数量规格'}}</text>
-          <text class="txt">{{sku.specText ? sku.specText : ''}}</text>
+          <text class="title">{{specificationList.label + ":" + specificationList.name}}</text>
+          <!-- <text class="txt">{{sku.specText ? sku.specText : ''}}</text> -->
         </view>
         <image class="arrow" src="/assets/rightArrow.png"></image>
       </view>
@@ -81,7 +81,7 @@
     <view class="header">
       <text class="title">用户评价({{product.comment.count}})</text>
       <view class="right">
-        <text class="rate">{{product.comment.goodCommentRate}}%</text>
+        <text class="rate">{{product.comment.goodCommentRate}}</text>
         <text class="text">好评率</text>
         <image class="arrow" src="/assets/rightArrow.png"></image>
       </view>
@@ -106,17 +106,17 @@
   </view>
 
   <!-- 底部按钮 -->
-  <view class="bottom">
-    <view class="b-wrap collect" hover-class="active" bindtap="openIndexPage">
-      <van-icon name="wap-home-o" color="#777" size="20px" />
-    </view>
-    <view class="b-wrap service-icon" hover-class="active">
-      <button open-type="contact" hover-class="none" class="wxbtn">
-        <van-icon name="service-o" color="#777" size="20px" />
-      </button>
-    </view>
-    <view class="b-wrap cart" hover-class="active" bindtap="openCartPage">
-      <van-icon custom-class="icon-info " name="shopping-cart-o" info="{{cartList.length>0 ? cartList.length:''}}" color="#777" size="20px" />
+ <view class="bottom">
+  <view class="b-wrap collect" hover-class="active" bindtap="openIndexPage">
+    <van-icon name="wap-home-o" color="#777" size="20px" />
+  </view>
+  <view class="b-wrap service-icon" hover-class="active">
+    <button open-type="contact" hover-class="none" class="wxbtn">
+      <van-icon name="service-o" color="#777" size="20px" />
+    </button>
+  </view>
+  <view class="b-wrap cart" hover-class="active" bindtap="openCartPage">
+    <van-icon custom-class="icon-info" name="shopping-cart-o" info="{{cartList.length>0 ? cartList.length:''}}" color="#777" size="20px" />
   </view>
   <view class="buy" hover-class="active" bindtap="buyNow">立即购买</view>
   <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
