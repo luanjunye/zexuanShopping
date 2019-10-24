@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/order/ordercenter/ordercenter",
+    "pages/order/orderRefundExpress/orderRefundExpress",
     "pages/order/orderRefundMoney/orderRefundMoney",
     "pages/order/orderRefund/orderRefund",
     "pages/order/orderInfo/orderInfo",

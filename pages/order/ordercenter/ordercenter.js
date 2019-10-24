@@ -237,6 +237,9 @@ Page({
   // 去支付
   toPay (e) {
     let actualPrice = e.currentTarget.dataset.value.actualPrice;
+    let currentOrder = e.currentTarget.dataset.value;
+    let index = e.currentTarget.dataset.index;
+
     wx.showModal({
       title: '提示',
       content: '此处需调用微信支付接口',
@@ -244,9 +247,7 @@ Page({
       confirmColor: '#b4282d',
       success: function(res) {
         if (res.confirm) {
-          wx.redirectTo({
-            url: '/pages/pay-result/pay-result?status=1&actualPrice=' + actualPrice,
-          })
+          
         }
       }
     })
