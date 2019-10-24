@@ -397,15 +397,14 @@ font-size: 36rpx;
 } */
 
 .detail {
-  display: flex;
-  justify-content: center;
   background: #fff;
   padding-bottom: 100rpx;
 }
 
 .detail image {
   display: block !important;
-  width: 750rpx;
+  height: auto;
+  width: 100%;
 }
 
 .bottom {
