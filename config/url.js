@@ -29,6 +29,7 @@ module.exports = {
   OrderSave: API_BASE_URL + 'order/save/order', //  直接从商品添加
   OrderCartSave: API_BASE_URL + 'order/save/all', //  从购物车添加
   OrderRefund: API_BASE_URL + 'order/refund', //  退款
+  OrderRefundExpressNo: API_BASE_URL + 'order/addexpressno', //  填写退货的快递单号
   OrderList: API_BASE_URL + 'order/page', //  订单列表，分布查询   GET
   OrderDetail: API_BASE_URL + 'order/info', //  订单详情
   OrderPackage: API_BASE_URL + 'order/selectcourier', //  订单快递查询 参数：shippingNo   GET

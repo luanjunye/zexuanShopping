@@ -13,9 +13,9 @@ Page({
     lastExpressInfo: Object,
 
     // refund related
-    packageListArray: ['-- 请选择 --', '顺丰', '韵达', '中通', '中通'],
-    returnPackageId: '73147861342',
-    returnPackageCompany: 0,
+    // packageListArray: ['-- 请选择 --', '顺丰', '韵达', '中通', '中通'],
+    returnPackageId: String,
+    // returnPackageCompany: 0,
   },
 
   // 获取快递信息
@@ -39,27 +39,18 @@ Page({
   // 跳转物流信息页面
   goToShippingInfoPage() {
     console.log(this.data.order);
-    if (this.data.order.expressNo) {
-      wx.navigateTo({
-        url: '/pages/ucenter/express/express?expressno=' + this.data.order.expressNo,
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/ucenter/express/express?expressno=' + this.data.order.shippingNo,
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/ucenter/express/express?expressno=' + this.data.order.expressNo,
+    })
   },
 
-  onLoad: function(options) {
-    // 载入订单信息
-    let currentOrder = wx.getStorageSync('currOrder');
-    this.setData({
-      order: currentOrder
-    });
-    console.log(currentOrder);
-
-    this.loadData();
+  // 跳转到退货详情页
+  goToRefundDetail(){
+    wx.navigateTo({
+      url: '/pages/order/orderRefundExpress/orderRefundExpress',
+    })
   },
+
 
 
   // 请求订单数据
@@ -146,23 +137,31 @@ Page({
     // console.log(name, ':', this.data[name]) // 显示 page 内 data 的实际数据
   },
 
-  // 退货面板 确定时
-  reasonPanelClicked: function(e) {
+  // 填写退货信息 确定时
+  confirmPackageInfo: function(e) {
+    let that = this;
     if (!this.data.returnPackageId) {
       wx.showToast({
         icon: 'none',
         title: '请填写快递单号'
       })
-    } else if (this.data.returnPackageCompany === 0) {
-      wx.showToast({
-        icon: 'none',
-        title: '未选择快递公司'
-      })
     } else {
       this.packagePanelHide();
+      util.request(api.OrderRefundExpressNo, {
+        id: that.data.order.id,
+        expressNo: that.data.returnPackageId
+      }, "POST").then(res => {
+        if (res.code === 0) {
+          wx.showToast({
+            title: '添加成功',
+          })
+          // 1.5s 后刷新页面
+          setTimeout(function() {
+            that.loadData();
+          }, 1500)
+        }
+      })
       // 执行确定
-
-
     }
   },
 
@@ -186,8 +185,19 @@ Page({
     })
   },
 
+  onLoad: function() {},
   onReady: function() {},
-  onShow: function() {},
+  onShow: function() {
+    // 载入订单信息
+    let currentOrder = wx.getStorageSync('currOrder');
+    this.setData({
+      order: currentOrder
+    });
+    console.log(currentOrder);
+
+    this.loadData();
+    this.loadData();
+  },
   onHide: function() {},
   onUnload: function() {},
   onPullDownRefresh: function() {
