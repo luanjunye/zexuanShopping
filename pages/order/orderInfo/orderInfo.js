@@ -24,10 +24,10 @@ Page({
     util.request(api.OrderPackage, {
       shippingNo: packageId
     }, "GET").then(res => {
-      if (res.code === 0){
+      if (res.code === 0) {
         let info = JSON.parse(res.courierInfo);
         console.log(info);
-        let lastInfo = info.list.length > 0? info.list[info.list.length - 1]: null;
+        let lastInfo = info.list.length > 0 ? info.list[info.list.length - 1] : null;
         that.setData({
           expressInfo: info,
           lastExpressInfo: lastInfo
@@ -37,7 +37,7 @@ Page({
   },
 
   // 跳转物流信息页面
-  goToShippingInfoPage(){
+  goToShippingInfoPage() {
     wx.navigateTo({
       url: '/pages/ucenter/express/express',
     })
@@ -51,7 +51,13 @@ Page({
     });
     console.log(currentOrder);
 
-    // 请求订单数据
+    this.loadData();
+  },
+
+
+  // 请求订单数据
+  loadData() {
+    let currentOrder = wx.getStorageSync('currOrder');
     let that = this;
     util.request(api.OrderDetail, {
       id: currentOrder.id
@@ -164,8 +170,8 @@ Page({
     })
   },
 
-// 跳转到
-  toReturnPage(){
+  // 跳转到
+  toReturnPage() {
     // 既然已经到订单详情页了，该订单就已经保存到 storage 中了，不需要再存一次了
     wx.navigateTo({
       url: "/pages/order/orderRefund/orderRefund",
@@ -176,7 +182,9 @@ Page({
   onShow: function() {},
   onHide: function() {},
   onUnload: function() {},
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function() {
+    this.loadData()
+  },
   onReachBottom: function() {},
   onShareAppMessage: function() {}
 });

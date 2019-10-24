@@ -141,6 +141,7 @@ Page({
 
   // 删除订单
   toDelete (e) {
+    let that = this;
     Dialog.confirm({
       message: '是否删除此订单？'
     }).then(() => {
@@ -154,6 +155,26 @@ Page({
         if (res.code === 0) {
           wx.showToast({
             title: '删除成功',
+          });
+            // 更新处理当前页面数据
+          let tempOrderList = [];
+          let tempOrder = [];
+          that.data.orderList.forEach(function (v) {
+            if (id != v.id) {
+              tempOrderList.push(v);
+            }
+          });
+          that.data.order.forEach(function (v) {
+            if (id != v.id) {
+              tempOrder.push(v);
+            }
+          })
+
+          console.log('after delete: ', 'orderList - ', that.orderList, 'order', that.order);
+
+          that.setData({
+            orderList: tempOrderList,
+            order: tempOrder
           })
         } else {
           wx.showToast({
@@ -162,23 +183,7 @@ Page({
         }
       });
 
-      // 更新处理当前页面数据
-      let tempOrderList = [];
-      let tempOrder = [];
-      this.data.orderList.forEach(function(v) {
-        if (id != v.id) {
-          tempOrderList.push(v);
-        }
-      });
-      this.data.order.forEach(function(v) {
-        if (id != v.id) {
-          tempOrders.push(v);
-        }
-      })
-      this.setData({
-        orderList: tempOrderList,
-        order: tempOrder
-      })
+     
 
     }).catch(() => {
       // on cancel
@@ -286,7 +291,8 @@ Page({
   onReady: function() {},
   onShow: function() {
     this.requestData();
-    let shippingStatus = getApp().globalData.type;
+    console.log('globalData: type: ', typeof getApp().globalData.type);
+    let shippingStatus = Number(getApp().globalData.type);
     this.setData({
       shippingStatus: shippingStatus
     });
