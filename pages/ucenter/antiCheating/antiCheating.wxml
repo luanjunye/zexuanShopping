@@ -1,2 +1,45 @@
-<!--pages/ucenter/antiCheating/antiCheating.wxml-->
-<image class="img" src="/assets/company.jpg" />
+<!--pages/ucenter/companyProfile/companyProfile.wxml-->
+<view class="article-bg">
+    <view class="article-container">
+        <view class="article-content">
+            <view class="title">
+                <text class="bold">泽轩集团屈蜂堂商城</text>
+                <text class="subtitle">反作弊声明</text>
+            </view>
+            <view class="p">
+                一、泽轩集团旗下屈蜂堂微信小程序商城，目前主要销售“屈蜂堂·阿胶营养羹”和“屈蜂堂·银耳百合莲子羹”等两个爆款产品系列。请消费者认准“屈蜂堂”品牌。
+            </view>
+            <view class="p">
+                二、泽轩集团成立“平台反作弊领导小组”，对会员和消费者的举报进行查证核实，对有确凿证据的作弊行为进行惩罚，对属实举报者进行奖励。我们鼓励大家共同行动，携手共建“公平、公正、公开”的平台环境。
+            </view>
+            <view class="p">
+                三、如果发现未经授权使用“屈蜂堂”品牌的行为、本公司的在职员工的违法违规行为等，欢迎大家在第一时间向我们举报，举报邮件发送至山东泽轩集团有限公司邮箱：zexuan@zexuanchuanmei.com（集团办公室）
+            </view>
+            <view class="p">
+                四、对作弊行为的惩罚规定
+                <view class="li">
+                    1、针对未经授权使用“屈蜂堂”品牌的行为，我公司将第一时间向政府有关部门举报，并通过法律手段维护自身合法权益。
+                </view>
+                <view class="li">
+                    2、针对集团员工本人或者其配合社会人员利用平台的软件漏洞等进行刷单或者其它恶意使用平台、对我公司利益造成损失的行为，一经发现就解除该员工的劳动合同，同时，我们将向公安机关报案，通过法律手段维护公司的合法权益。
+                </view>
+            </view>
+            <view class="p">
+                五、举报者奖励
+            </view>
+            <view class="p">
+                泽轩集团公司投入资金壹万元，建立《平台反作弊专项基金》，凡是举报的信息查证属实，举报者将获得最高价值1000元的奖励，其他协助查证、提供线索者都将获得不同程度的奖励。最终奖励权限在泽轩集团“平台反作弊领导小组”。
+            </view>
+            <view class="p">
+                本公告于2019年11月11日生效。
+            </view>
+            <view class="sign">
+                <text>山东泽轩集团有限公司</text>
+                <text>2019年11月11日</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+

@@ -1,4 +1,4 @@
-// pages/ucenter/antiCheating/antiCheating.js
+// pages/ucenter/companyProfile/companyProfile.js
 Page({
 
   /**
