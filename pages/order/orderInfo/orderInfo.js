@@ -64,9 +64,9 @@ Page({
       if (res.code === 0) {
         let tempOrder = res.orderInfoVO;
         // TODO: 修正时间在 safari 上的转换错误
-        let timeCreate = util.formatTime(new Date(tempOrder.createTime));
-        let timePayed = util.formatTime(new Date(tempOrder.payTime));
-        let timeShipping = util.formatTime(new Date(tempOrder.deliveryTime));
+        let timeCreate = util.formatTime(new Date(tempOrder.createTime.slice(0, 19)));
+        let timePayed = util.formatTime(new Date(tempOrder.payTime.slice(0, 19)));
+let timeShipping = util.formatTime(new Date(tempOrder.deliveryTime.slice(0, 19)));
         tempOrder.id = currentOrder.id;
 
         // 保存订单信息
@@ -78,6 +78,8 @@ Page({
           timeShipping: timeShipping,
           order: tempOrder
         });
+
+        console.log('currentOrder: ', tempOrder);
 
         // 获取快递信息
         // that.getPackageInfo(tempOrder.shippingNo)
@@ -174,6 +176,41 @@ Page({
   packagePanelShow: function() {
     this.setData({
       packagePanelShowed: true
+    })
+  },
+
+  // 去支付
+  toPay(e) {
+
+    let that = this;
+    let actualPrice = this.data.order.actualPrice; // 实际价格
+    let currentOrder = this.data.order; // 当前订单
+
+    util.request(api.Pay, {
+      id: currentOrder.id,
+    }, "POST").then(function (res) {
+      console.log(res);
+      if (res.success) {
+        let entity = res.entity;
+        wx.requestPayment({
+          timeStamp: entity.timeStamp,
+          nonceStr: entity.nonceStr,
+          package: entity.package,
+          signType: 'MD5',
+          paySign: entity.sign,
+          success(res) {
+            wx.showToast({
+              title: '支付成功',
+            });
+            setTimeout(function () {
+              that.requestData();
+            }, 1500);
+          },
+          fail(res) {
+            console.log('fail: ', res)
+          }
+        })
+      }
     })
   },
 

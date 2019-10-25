@@ -4,16 +4,17 @@ $red: #DD8083;
 
 .article-bg{
   background-color: $red;
-  padding: 8px;
+  padding: 8px 8px 18px 8px ;
+
 }
 .article-container {
   padding: 8px;
   background-color: white;
-  @include border-radius(23px 23px 0 0 );
+  @include border-radius(23px);
 }
 .article-content{
   font-family:'宋体',sans-serif;
-  @include border-radius(18px 18px 0 0 );
+  @include border-radius(18px);
   border: 1rpx solid $red;
   padding: 10px;
 }

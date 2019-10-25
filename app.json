@@ -1,13 +1,16 @@
 {
   "pages": [
-    "pages/ucenter/antiCheating/antiCheating",
-    "pages/ucenter/companyProfile/companyProfile",
-    
+
+  
     "pages/order/ordercenter/ordercenter",
     "pages/order/orderRefundExpress/orderRefundExpress",
     "pages/order/orderRefundMoney/orderRefundMoney",
     "pages/order/orderRefund/orderRefund",
     "pages/order/orderInfo/orderInfo",
+
+
+    "pages/ucenter/antiCheating/antiCheating",
+    "pages/ucenter/companyProfile/companyProfile",
 
 
     "pages/product/product",

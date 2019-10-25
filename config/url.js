@@ -1,4 +1,6 @@
 const API_BASE_URL = 'http://192.168.0.174:8081/freeter-api/';
+// const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeter-api/';
+
 module.exports = {
   //首页
   IndexUrlBanner: API_BASE_URL + 'index/bannerlist', //首页banner图
@@ -37,6 +39,6 @@ module.exports = {
 
   // 支付
 
-  Pay: 'http://192.168.0.105:8081/freeter-api/' + 'wx/wechatPay', // 微信支付请求接口  POST: orderId
+  Pay: 'https://shop.zexuanchuanmei.com/freeter-api/' + 'wx/wechatPay', // 微信支付请求接口  POST: orderId
 
 };

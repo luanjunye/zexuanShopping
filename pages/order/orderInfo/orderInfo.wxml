@@ -112,8 +112,10 @@
     <view class="cart_bottom_right order-info-btn-group">
       <button wx:if='{{order.shippingNo}}' plain type="default" size="small" class="cart_btn" bindtap="goToShippingInfoPage">查看物流</button>
       <button wx:if='{{order.expressNo}}' plain type="default" size="small" class="cart_btn" bindtap="goToRefundDetail">查看退货详情</button>
-      <button wx:if='{{order.status === 300}}' plain type="default" size="small" class="cart_btn" bindtap="toReceiving">确认收货</button>
+      <button wx:if='{{order.shippingStatus === 3}}' plain type="default" size="small" class="cart_btn" bindtap="toReceiving">确认收货</button>
       <button wx:if='{{order.returnStatus === 2}}' plain type="default" size="small" class="cart_btn" bindtap="packagePanelShow">去发货</button>
+      <button wx:if='{{order.shippingStatus === 0}}' plain type="default" size="small" class="cart_btn" bindtap="toPay">去支付</button>
+
     </view>
   </view>
 
