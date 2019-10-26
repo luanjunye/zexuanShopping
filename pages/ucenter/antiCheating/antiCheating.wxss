@@ -1,6 +1,62 @@
-/* pages/ucenter/antiCheating/antiCheating.wxss */
-.img{
-  width: 750rpx;
-  height: 100%;
-  position: absolute;
+@charset "UTF-8";
+.article-bg {
+  background-color: #DD8083;
+  padding: 8px 8px 18px 8px;
+}
+
+.article-container {
+  padding: 8px;
+  background-color: white;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  border-radius: 23px;
+}
+
+.article-content {
+  font-family: "宋体", sans-serif;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+  border: 1rpx solid #DD8083;
+  padding: 10px;
+}
+
+.title {
+  margin-bottom: 20px;
+  border-bottom: 1rpx solid #DD8083;
+  line-height: 1;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #EA3732;
+}
+.title text {
+  line-height: 1.2;
+  display: block;
+}
+
+.subtitle {
+  margin-top: 5px;
+  font-size: 1rem;
+}
+
+.p {
+  line-height: 1.5;
+  font-size: 0.9rem;
+  text-indent: 2rem;
+  margin-bottom: 5px;
+}
+
+.sign {
+  font-size: 0.8rem;
+  padding: 20px;
+  text-align: right;
+}
+.sign text {
+  line-height: 1.5;
+  display: block;
+}
+
+.bold {
+  font-weight: bold;
 }

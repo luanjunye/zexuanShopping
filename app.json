@@ -1,5 +1,6 @@
 {
   "pages": [
+<<<<<<< HEAD
       "pages/product/product",
     "pages/mine/mine",
   
@@ -7,11 +8,24 @@
     
     "pages/ucenter/evaluate/evaluate",
     
+=======
+
+  
+>>>>>>> f5404893750cb04e57ffb93a3714e969383d7876
     "pages/order/ordercenter/ordercenter",
     "pages/order/orderRefundExpress/orderRefundExpress",
     "pages/order/orderRefundMoney/orderRefundMoney",
     "pages/order/orderRefund/orderRefund",
     "pages/order/orderInfo/orderInfo",
+
+
+    "pages/ucenter/antiCheating/antiCheating",
+    "pages/ucenter/companyProfile/companyProfile",
+
+
+    "pages/product/product",
+    "pages/ucenter/evaluate/evaluate",
+    "pages/mine/mine",
     "pages/ucenter/invoice/invoice",
     "pages/ucenter/express/express",
     "pages/index/index",
@@ -19,11 +33,13 @@
     "pages/logs/logs",
     "pages/auth/tologin/tologin",
     "pages/shoppingcart/shoppingcart",
+<<<<<<< HEAD
  
+=======
+    "pages/settlement/settlement",
+>>>>>>> f5404893750cb04e57ffb93a3714e969383d7876
     "pages/ucenter/address/index/index",
-    "pages/ucenter/address/edit/edit",
-    "pages/ucenter/companyProfile/companyProfile",
-    "pages/ucenter/antiCheating/antiCheating"
+    "pages/ucenter/address/edit/edit"
   ],
   "window": {
     "backgroundTextStyle": "light",

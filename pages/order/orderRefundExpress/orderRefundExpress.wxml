@@ -35,15 +35,15 @@
 
     <view class='list-item refund-info'>
       <view>退款原因：
-        <text>拍错</text> </view>
+        <text>{{order.returnReason}}</text> </view>
       <view>退款金额：
         <text>￥59.9</text> </view>
       <view>退款件数：
         <text>{{order.list.length}}</text> </view>
-      <view>申请时间：
+      <!-- <view>申请时间：
         <text>2019-10-23 23:40</text> </view>
       <view>退款编号：
-        <text>21937658175623</text> </view>
+        <text>21937658175623</text> </view> -->
     </view>
   </view>
 </view>
