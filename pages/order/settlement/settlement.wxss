@@ -60,9 +60,7 @@
   background: #fff;
   margin: 0rpx 30rpx;
   border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  overflow: hidden;
 }
 
 .product .item {
@@ -110,12 +108,13 @@
   width: 350rpx;
 }
 
+
 .product .item .body .body_top .body_center {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   font-size: 30rpx;
-  padding-top: 10rpx;
+  padding: 10rpx 0;
 }
 
 .product .item .body .body_top .body_center .explain {
@@ -125,6 +124,10 @@
   display: flex;
   justify-content: center;
   border-radius: 5px;
+}
+
+.product .item .body .body_top .body_text .number {
+  color: #a8a9aa;
 }
 
 .product .item .body .body_top .body_center .number {
@@ -137,7 +140,8 @@
   flex-direction: column;
 }
 
-.product .item .bottom .bottom_list {
+.bottom_list {
+    padding-top: 20rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;

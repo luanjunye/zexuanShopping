@@ -90,6 +90,9 @@
 }
 
 /* 购物车列表 */
+.cart-wrap{
+  padding-bottom: 65px;
+}
 
 .cart-wrap .item {
   height: 240rpx;

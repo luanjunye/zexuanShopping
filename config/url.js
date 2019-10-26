@@ -14,7 +14,7 @@ module.exports = {
   MineUrlIconThird: API_BASE_URL + 'icon/third', //个人中心第三排icon
   //购物车
   CartPage: API_BASE_URL + 'cart/page', //购物车
-  CartSave: API_BASE_URL + 'cart//save/json', //购物车
+  CartSave: API_BASE_URL + 'cart//save/json', //添加购物车
   //地址管理
   AddressPage: API_BASE_URL + 'address/page', //地址管理
   AddressSave: API_BASE_URL + 'address/save/json', //添加新地址
@@ -26,7 +26,8 @@ module.exports = {
   // 订单
   OrderConfirm: API_BASE_URL + 'order/confirm/goods', //  确认收货
   OrderRemove: API_BASE_URL + 'order/deleteorder', //  删除订单
-  OrderSave: API_BASE_URL + 'order/save/order', //  直接从商品添加
+  OrderProduct: API_BASE_URL + 'order/bayinfo', // 从商品详情进入 确认订单
+  OrderSave: API_BASE_URL + 'order/save/order', //  生成订单
   OrderCartSave: API_BASE_URL + 'order/save/all', //  从购物车添加
   OrderRefund: API_BASE_URL + 'order/refund', //  退款
   OrderRefundExpressNo: API_BASE_URL + 'order/addexpressno', //  填写退货的快递单号

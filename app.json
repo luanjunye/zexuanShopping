@@ -1,8 +1,12 @@
 {
   "pages": [
-    "pages/product/product",
-      "pages/ucenter/evaluate/evaluate",
+      "pages/product/product",
     "pages/mine/mine",
+  
+    "pages/order/settlement/settlement",
+    
+    "pages/ucenter/evaluate/evaluate",
+    
     "pages/order/ordercenter/ordercenter",
     "pages/order/orderRefundExpress/orderRefundExpress",
     "pages/order/orderRefundMoney/orderRefundMoney",
@@ -15,8 +19,7 @@
     "pages/logs/logs",
     "pages/auth/tologin/tologin",
     "pages/shoppingcart/shoppingcart",
-    
-    "pages/settlement/settlement",
+ 
     "pages/ucenter/address/index/index",
     "pages/ucenter/address/edit/edit",
     "pages/ucenter/companyProfile/companyProfile",

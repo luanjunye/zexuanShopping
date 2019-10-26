@@ -52,7 +52,7 @@ Page({
     let cartList = wx.getStorageSync("cartList");
     console.log(cartList)
     // 模拟数据
-    if (!cartList) {
+    if (cartList) {
       util.request(api.CartPage, {
         userId: userId
       }, "GET").then(function(res) {
@@ -156,7 +156,7 @@ Page({
       this.setData({
         isExpressFree: false,
         restExpressFree: rest,
-        freightPrice : 10
+        freightPrice : 5
       })
     }
   },
@@ -238,8 +238,9 @@ Page({
     // 购物车数据存入缓存
     wx.setStorageSync("cartList", this.data.cartList);
     wx.setStorageSync("totalPrice", this.data.totalPrice);
+    wx.setStorageSync("isExpressFree", this.data.isExpressFree)
     wx.navigateTo({
-      url: '/pages/checkout/checkout'
+      url: '/pages/order/settlement/settlement'
     });
   },
   //商品详情页

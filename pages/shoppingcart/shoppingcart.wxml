@@ -69,8 +69,9 @@
     </i-swipeout>
 
     <!-- 购物车布局结束 -->
+  </view>
 
-    <!-- 底部统计菜单布局开始 -->
+  <!-- 底部统计菜单布局开始 -->
 
     <view class="cart-bottom">
       <van-checkbox class="left" label-class="checked-all" value="{{ checkedAll }}" checked-color="#E9A23D" bind:change="changeCheckedAll">
@@ -87,5 +88,4 @@
     </view>
 
     <!-- 底部统计菜单布局结束 -->
-  </view>
 </view>

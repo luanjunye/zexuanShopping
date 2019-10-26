@@ -4,14 +4,14 @@
   <!-- 地址栏布局开始 -->
 
   <view class="address_box" bindtap="chooseAddress">
-    <image class="image" src="/pages/settlement/assets/address.png" />
+    <image class="image" src="/pages/order/settlement/assets/address.png" />
     <view class="information">
       <view class="name">{{address.name}}
         <text class="phone">{{address.phone}}</text>
       </view>
       <text class="address_text">{{address.address + address.street}}</text>
     </view>
-    <image class="right" src="../../assets/rightArrow.png" />
+    <image class="right" src="../../../assets/rightArrow.png" />
   </view>
 
   <!-- 地址栏布局结束 -->
@@ -25,29 +25,33 @@
         <text class="title_text">屈蜂堂官方商城</text>
       </view>
       <view class="body">
-        <image class="left" src="{{pirUrl}}"></image>
+        <image class="left" src="{{item.picUrl}}"></image>
         <view class="body_top">
           <view class="body_text">
-            <view class="body_title">煲汤材料炖汤清补凉补品干货食材养生汤包鸡汤</view>
-            <view class="body_money">¥59.9</view>
+            <view class="body_title">{{item.title}}</view>
+            <view class="body_money">{{item.price}}</view>
           </view>
           <view class="body_center">
-            <text class="explain">规格:桂圆红枣汤</text>
-            <text class="number">x1</text>
+            <text class="explain">规格:{{item.spec}}</text>
+            <text class="number">x{{item.count}}</text>
+          </view>
+          <view class="body_text">
+            <view class="body_title">运费:</view>
+            <view class="number">¥{{expressPrice}}</view>
           </view>
         </view>
       </view>
-      <view class="bottom">
-        <!-- <view class="bottom_list">
+      <!-- <view class="bottom">
+        <view class="bottom_list">
           <view class="bottom_text">运费险
             <text class="text_body">退换货可自动理赔</text>
           </view>
           <i-radio value="¥5.00" ></i-radio>
-        </view> -->
-        <view class="bottom_list">
-          <i-input class="input_text" title="订单备注" type="textarea" placeholder="选填" bindtap="remark_input" />
-        </view>
-      </view>
+        </view>  
+      </view> -->
+    </view>
+    <view class="bottom_list">
+      <i-input class="input_text" title="订单备注" type="textarea" placeholder="选填" bind:change="remark_input" />
     </view>
   </view>
 

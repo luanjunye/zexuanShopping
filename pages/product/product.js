@@ -18,7 +18,8 @@ Page({
       day: "",
     },
     product:{},
-    specificationList:{}
+    specificationList:{},
+    userId:"",
   },
 
   /**
@@ -29,11 +30,13 @@ Page({
       title: '商品详情',
     })
     let isLogin = wx.getStorageSync('isLogin')
+    let userId = wx.getStorageSync('userId')
     let that = this
     var data = new Object();
-    if(isLogin){
+    if (isLogin && userId){
       this.setData({
-        isLogin: isLogin
+        isLogin: isLogin,
+        userId: userId
       })
     }
     util.request(api.CommodityDetails,{id:1}, "POST").then(function (res) {
@@ -170,7 +173,14 @@ Page({
     })
   },
   buyNow: function(){
-    
+    this.checkLogin();
+    // 跳转checkout页面
+    wx.setStorageSync("checkoutProduct", this.data.product);
+    wx.setStorageSync("specification", this.data.specificationList);
+    wx.setStorageSync("count", 1);
+    wx.navigateTo({
+      url: '/pages/order/settlement/settlement?from=product',
+    })
   },
   openCartPage: function(){
     wx.switchTab({
@@ -191,6 +201,11 @@ Page({
         maxNum: 99,
         price: this.data.product.price
       });
+    util.request(api.CartSave, { goodsId: 1, userId: 4, number:1 }, "POST").then(function (res) {
+      if (res.code === 0) {
+        console.log(res)
+      }
+    });
     wx.setStorageSync("cartList", cartList)
       this.setData({
         cartList: cartList
