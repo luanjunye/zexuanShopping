@@ -121,7 +121,7 @@ Page({
         })
       } else {
         this.setData({
-          expressPrice: 5
+          expressPrice: 0
         })
       }
       // 实际价格总计
@@ -211,7 +211,35 @@ Page({
       type:this.data.type
     }, "POST").then(function(res) {
       if (res.code === 0) {
-        console.log(res)
+        let id = res.id
+        util.request(api.Pay, {
+          id: id,
+        }, "POST").then(function (res) {
+          console.log(res);
+          if (res.success) {
+            let entity = res.entity;
+            wx.requestPayment({
+              timeStamp: entity.timeStamp,
+              nonceStr: entity.nonceStr,
+              package: entity.package,
+              signType: 'MD5',
+              paySign: entity.sign,
+              success(res) {
+                wx.showToast({
+                  title: '支付成功',
+                });
+                setTimeout(function () {
+                  wx.switchTab({
+                    url: '/pages/order/ordercenter/ordercenter',
+                  })
+                }, 1500);
+              },
+              fail(res) {
+                console.log('fail: ', res)
+              }
+            })
+          }
+        })
       }
     });
   }

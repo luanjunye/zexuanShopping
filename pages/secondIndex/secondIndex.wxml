@@ -1,7 +1,7 @@
 <!--pages/secondIndex/secondIndex.wxml-->
 <view class="ucenter">
   <scroll-view bindscrolltolower="scrollListen" scroll-y enable-flex class="pick">
-    <view class="details" wx:for="{{details.list}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="handleClick">
+    <view class="details" wx:for="{{details.list}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="gotoProduct">
       <product-big data="{{item}}" />
     </view>
   </scroll-view>

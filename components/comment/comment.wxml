@@ -3,7 +3,7 @@
   <view class="header">
     <i-avatar src="{{data.avatar}}" size="default"></i-avatar>
     <text class="name">{{data.nickname}}</text>
-    <i-rate class="rate" value="{{data.starClass}}"></i-rate>
+    <i-rate class="rate" value="{{data.rate}}"></i-rate>
   </view>
   <view class="spec">
     <text class="time">{{data.time}}</text>

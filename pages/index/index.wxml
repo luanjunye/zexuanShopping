@@ -29,7 +29,7 @@
 <!-- 快捷频道点击后所对应的产品 -->
 
 <view class="pick">
-  <view class="details" wx:for="{{details}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="handleClick">
+  <view class="details" wx:for="{{details}}" wx:for-index="index" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="gotoProduct">
     <product-big data="{{item}}" />
   </view>
 </view>

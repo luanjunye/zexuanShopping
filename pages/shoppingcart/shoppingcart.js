@@ -52,7 +52,7 @@ Page({
     let cartList = wx.getStorageSync("cartList");
     console.log(cartList)
     // 模拟数据
-    if (cartList) {
+    if (!cartList) {
       util.request(api.CartPage, {
         userId: userId
       }, "GET").then(function(res) {
@@ -67,9 +67,22 @@ Page({
         }
       });
     } else {
-      that.setData({
-        cartList: cartList
-      })
+      // that.setData({
+      //   cartList: cartList
+      // })
+      util.request(api.CartPage, {
+        userId: userId
+      }, "GET").then(function (res) {
+        if (res.code === 0) {
+          console.log(res.data.list)
+          data.cartList = res.data.list
+          that.setData(data)
+          wx.setStorageSync("cartList", cartList);
+          that.setCheckedTotalPrice();
+          that.setCheckedTotalCount();
+          that.judgeCheckedAll();
+        }
+      });
       that.setCheckedTotalPrice();
       that.setCheckedTotalCount();
       that.judgeCheckedAll();
@@ -161,7 +174,6 @@ Page({
     }
   },
   judgeCheckedAll: function() {
-    console.log(1)
     let noChecked = true;
     this.data.cartList.forEach(function(v) {
       if (v.checked) {

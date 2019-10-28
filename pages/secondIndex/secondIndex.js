@@ -95,7 +95,12 @@ Page({
       }
     });
   },
-  scrollListen: function(e) {
-  
+  gotoProduct: function (e) {
+    let data = e.currentTarget.dataset.value;
+    if (data.id) {
+      wx.navigateTo({
+        url: '/pages/product/product?id=' + data.id,
+      })
+    }
   }
 })

@@ -21,7 +21,7 @@
 
 .pick .details {
   width: 320rpx;
-  height: auto;
+  height: 480rpx;
   /* overflow图片使用自定义样式 */
   overflow: hidden;
   margin-top: 20rpx;

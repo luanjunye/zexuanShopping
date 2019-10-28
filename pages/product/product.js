@@ -20,6 +20,7 @@ Page({
     product:{},
     specificationList:{},
     userId:"",
+    id:"",
   },
 
   /**
@@ -31,6 +32,12 @@ Page({
     })
     let isLogin = wx.getStorageSync('isLogin')
     let userId = wx.getStorageSync('userId')
+    let id = options.id
+    if(id){
+      this.setData({
+        id: id
+      })
+    }
     let that = this
     var data = new Object();
     if (isLogin && userId){
@@ -39,7 +46,7 @@ Page({
         userId: userId
       })
     }
-    util.request(api.CommodityDetails,{id:1}, "POST").then(function (res) {
+    util.request(api.CommodityDetails,{id:this.data.id}, "POST").then(function (res) {
       if (res.code === 0) {
         data.product = res.product
         that.setData(data)
@@ -47,7 +54,7 @@ Page({
       }
     });
 
-    util.request(api.SpecificationsDetails, { id: 1 }, "POST").then(function (res) {
+    util.request(api.SpecificationsDetails, { id: this.data.id }, "POST").then(function (res) {
       if (res.code === 0) {
         data.specificationList = res.specificationList
         that.setData(data)
@@ -201,7 +208,7 @@ Page({
         maxNum: 99,
         price: this.data.product.price
       });
-    util.request(api.CartSave, { goodsId: 1, userId: 4, number:1 }, "POST").then(function (res) {
+    util.request(api.CartSave, { goodsId: this.data.id, userId: this.data.userId, number:1 }, "POST").then(function (res) {
       if (res.code === 0) {
         console.log(res)
       }

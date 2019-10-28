@@ -1,5 +1,5 @@
-const API_BASE_URL = 'http://192.168.0.174:8081/freeter-api/';
-// const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeter-api/';
+const API_BASE_URL = 'http://192.168.0.174:8081/freeterapi/';
+//const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeter-api/';
 
 module.exports = {
   //首页
@@ -25,6 +25,8 @@ module.exports = {
   //商品详情页
   CommodityDetails: API_BASE_URL + 'goods/info', //商品详情页
   SpecificationsDetails: API_BASE_URL + 'goods/selectspecification',//规格详情
+  EvaluateList: API_BASE_URL + 'goods/goodsappraise',//评价列表
+  EvaluateListInfo: API_BASE_URL + 'goods/selectAppraise',//评价类型数量
   // 订单
   OrderConfirm: API_BASE_URL + 'order/confirm/goods', //  确认收货
   OrderRemove: API_BASE_URL + 'order/deleteorder', //  删除订单
@@ -40,7 +42,7 @@ module.exports = {
   OrderRefundReason: API_BASE_URL + 'returnreason/list', //  订单退款原因 参数:type: 1, 2   GET 
 
   // 支付
-
-  Pay: 'https://shop.zexuanchuanmei.com/freeter-api/' + 'wx/wechatPay', // 微信支付请求接口  POST: orderId
+  // 'https://shop.zexuanchuanmei.com/freeter-api/' 
+  Pay: API_BASE_URL + 'wx/wechatPay', // 微信支付请求接口  POST: orderId
 
 };

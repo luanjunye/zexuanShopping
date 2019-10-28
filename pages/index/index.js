@@ -47,5 +47,13 @@ Page({
         url: '/pages/secondIndex/secondIndex?type=' + data.type + '&&name=' + data.name,
       })
     }
+  },
+  gotoProduct:function(e){
+    let data = e.currentTarget.dataset.value;
+    if (data.id){
+      wx.navigateTo({
+        url: '/pages/product/product?id=' + data.id,
+      })
+    }
   }
 })
