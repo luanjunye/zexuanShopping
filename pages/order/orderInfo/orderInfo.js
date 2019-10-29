@@ -40,7 +40,7 @@ Page({
   goToShippingInfoPage() {
     console.log(this.data.order);
     wx.navigateTo({
-      url: '/pages/ucenter/express/express?expressno=' + this.data.order.expressNo,
+      url: '/pages/ucenter/express/express?expressno=' + this.data.order.shippingNo,
     })
   },
 

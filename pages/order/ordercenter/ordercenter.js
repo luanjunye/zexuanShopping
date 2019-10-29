@@ -54,22 +54,26 @@ Page({
             });
             // console.log('orderGoodList', goodList);
             // console.log(item.status, item.shippingStatus); // 订单状态
-            tempOrder.push({
-              id: item.id,
-              shopType: item.shopType,
-              shopName: item.shopName,
-              status: item.status,
-              statusName: item.statusName,
-              productList: goodList,
-              totalPrice: item.money,
-              shippingStatus: item.shippingStatus
-              // payType: '微信',
-              // actualPrice: 88.00,
-              // expressPrice: 0.00,
-              // createTime: '2019-08-18 18:35',
-              // orderSn: '20180320',
-              // freight: 5.00,
-            })
+            tempOrder.push(
+                {
+                  id: item.id,
+                  shopType: item.shopType,
+                  shopName: item.shopName,
+                  status: item.status,
+                  statusName: item.statusName,
+                  productList: goodList,
+                  totalPrice: item.money,
+                  shippingStatus: item.shippingStatus,
+                  shippingNo: item.shippingNo,
+                  expressNo: item.expressNo
+                  // payType: '微信',
+                  // actualPrice: 88.00,
+                  // expressPrice: 0.00,
+                  // createTime: '2019-08-18 18:35',
+                  // orderSn: '20180320',
+                  // freight: 5.00,
+                }
+            )
           })
         }
         that.setData({
@@ -301,8 +305,9 @@ Page({
 
   // 跳转 物流页
   toExpress: function(e) {
+    console.log('clicked order: ',e.currentTarget.dataset.value);
     wx.navigateTo({
-      url: '/pages/ucenter/express/express?expressno=' + e.currentTarget.dataset.value.expressNo
+      url: '/pages/ucenter/express/express?expressno=' + e.currentTarget.dataset.value.shippingNo
     })
   },
 

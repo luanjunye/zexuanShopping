@@ -49,9 +49,11 @@ Page({
 
     // 请求快递物流信息
     let expressNo = options.expressno;
-    if (expressNo){
+    console.log('ExpressNo:',expressNo);
+    if (expressNo !== undefined){
       this.getPackageInfo(expressNo)
-    }  else {
+      console.log('Has Request ExpressNo Info')
+    } else {
       wx.showToast({
         icon: 'none',
         title: '暂无物流信息',
