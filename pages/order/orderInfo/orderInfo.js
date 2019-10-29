@@ -64,9 +64,11 @@ Page({
       if (res.code === 0) {
         let tempOrder = res.orderInfoVO;
         // TODO: 修正时间在 safari 上的转换错误
+        
         let timeCreate = util.formatTime(new Date(tempOrder.createTime.slice(0, 19)));
-        let timePayed = util.formatTime(new Date(tempOrder.payTime.slice(0, 19)));
-let timeShipping = util.formatTime(new Date(tempOrder.deliveryTime.slice(0, 19)));
+        let timeShipping = tempOrder.deliveryTime? util.formatTime(new Date(tempOrder.deliveryTime.slice(0, 19))): '';
+        let timePayed = tempOrder.payTime? util.formatTime(new Date(tempOrder.payTime.slice(0, 19))): '';
+
         tempOrder.id = currentOrder.id;
 
         // 保存订单信息
