@@ -44,7 +44,7 @@ Page({
             let goodList = [];
             item.list.forEach((good, index) => {
               goodList.push({
-                id: index,
+                id: good.goodsId,
                 picUrl: good.url,
                 title: good.name,
                 specDesc: good.type,

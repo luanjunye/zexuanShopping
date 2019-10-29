@@ -45,17 +45,17 @@ Page({
 
   onChangeName: function(e) {
     this.setData({
-      'form.name': e.detail
+      'form.name': e.detail.value
     })
   },
   onChangeNumber: function(e) {
     this.setData({
-      'form.dutyParagraph': e.detail
+      'form.dutyParagraph': e.detail.value
     })
   },
   onChangeEmail: function(e) {
     this.setData({
-      'form.email': e.detail
+      'form.email': e.detail.value
     })
   },
 
@@ -67,14 +67,13 @@ Page({
     if(currentOrder){
       let productList = [];
       currentOrder.productList.forEach(item =>{
-        productList.push({
-          id: item.id
-        })
+        productList.push(item.id)
       })
       this.setData({
         order: currentOrder,
         productList: productList
       });
+      console.log(typeof this.data.productList)
       console.log(this.data.productList)
     }
  
@@ -173,5 +172,11 @@ console.log(this.data.order)
         }
       });
     }
+    wx.showToast({
+      title: '提交成功',
+    })
+    wx.switchTab({
+      url: 'pages/index/index',
+    })
   }
 })

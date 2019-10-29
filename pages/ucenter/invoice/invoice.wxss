@@ -67,6 +67,7 @@
 .body .remark .wx_input {
   display: flex;
   justify-content: flex-end;
+  text-align: right;
 }
 
 .body .remark .wx_input_place {

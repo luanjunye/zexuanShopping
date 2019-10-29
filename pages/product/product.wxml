@@ -89,7 +89,7 @@
   </view>
 
   <!-- 精选评论 -->
-  <view class="select-comment">
+  <view class="select-comment" wx:if="{{!product.comment.goodComment}}">
     <comment data="{{product.comment.goodComment}}"></comment>
   </view>
 
