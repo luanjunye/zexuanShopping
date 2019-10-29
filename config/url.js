@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://192.168.0.174:8081/freeterapi/';
+const API_BASE_URL = 'http://192.168.0.175:8081/freeterapi/';
 //const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeter-api/';
 
 module.exports = {
@@ -44,5 +44,7 @@ module.exports = {
   // 支付
   // 'https://shop.zexuanchuanmei.com/freeter-api/' 
   Pay: API_BASE_URL + 'wx/wechatPay', // 微信支付请求接口  POST: orderId
-
+  // 发票
+  ApplicationInvoice: API_BASE_URL + 'invoice/save/json',//申请发票
+  InvoiceList: API_BASE_URL + 'invoice/list',//获取发票基本信息
 };

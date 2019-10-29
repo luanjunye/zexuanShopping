@@ -78,7 +78,7 @@
         </view>
       </view>
       <view class="foot">
-         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==201 || item.status==300 || item.status==301}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">申请发票</van-button>
+         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==201 || item.status==300 || item.status==301 || item.status==0}}" plain type="default" size="small" class="btn" bindtap="toInvoice">申请发票</van-button>
          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==301}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">评价</van-button>
         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==0||item.status==301||item.status==402}}" plain type="default" size="small" class="btn" bindtap="toDelete">删除订单</van-button>
         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==0}}" color="#b4282d" size="small" class="btn" bindtap="toPay">去付款</van-button>

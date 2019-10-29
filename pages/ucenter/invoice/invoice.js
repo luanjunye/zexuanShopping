@@ -1,34 +1,39 @@
 // pages/ucenter/invoice/invoice.js
+const api = require('/../../../config/url.js');
+const util = require('/../../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    current:'个人',
-    type:[{
-      id:1,
-      name:'个人'
-    },{
-      id:2,
-      name:'企业'
+    current: '个人',
+    type: [{
+      id: 1,
+      name: '个人'
+    }, {
+      id: 2,
+      name: '企业'
     }],
-    position:'left',
-    currentId:1,
-    form:{
-      name:"",
-      mobile:"",
-      email:"",
-    }
+    position: 'left',
+    currentId: 1,
+    form: {
+      name: "",
+      mobile: "",
+      email: "",
+    },
+    order: Object,
   },
 
-  handleTypeChange({ detail = {} }) {
-    if(detail.value === '个人'){
+  handleTypeChange({
+    detail = {}
+  }) {
+    if (detail.value === '个人') {
       this.setData({
         current: detail.value,
-        currentId : 1
+        currentId: 1
       });
-    }else{
+    } else {
       this.setData({
         current: detail.value,
         currentId: 2
@@ -36,17 +41,17 @@ Page({
     }
   },
 
-  onChangeName: function (e) {
+  onChangeName: function(e) {
     this.setData({
       'form.name': e.detail
     })
   },
-  onChangeNumber: function (e) {
+  onChangeNumber: function(e) {
     this.setData({
       'form.mobile': e.detail
     })
   },
-  onChangeEmail: function (e) {
+  onChangeEmail: function(e) {
     this.setData({
       'form.email': e.detail
     })
@@ -55,56 +60,77 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    let currentOrder = wx.getStorageSync('currOrder');
+    this.setData({
+      order: currentOrder
+    });
+    console.log(currentOrder)
+    // let that = this;
+    // var data = new Object();
+    // let userId = wx.getStorageSync('userId')
+    // if (userId) {
+    //   util.request(api.InvoiceList, {
+    //     userId: userId
+    //   }, "GET").then(function (res) {
+    //     if (res.code === 0) {
+    //       console.log(res)
+    //       data.commentList = res.commentList
+    //       that.setData(data)
+    //     }
+    //   });
+    // }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function() {
+console.log(this.data.order)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
+
+  },
+  btn_submit: function() {
 
   }
 })

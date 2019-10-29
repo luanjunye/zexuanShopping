@@ -289,6 +289,16 @@ Page({
     })
   },
 
+  // 跳转 申请开票页面
+  toInvoice: function(e){
+    let data = v.currentTarget.dataset.value;
+    console.log(v.currentTarget.dataset.value);
+    wx.setStorageSync("currOrder", data);
+    wx.navigateTo({
+      url: '/pages/ucenter/invoice/invoice'
+    })
+  },
+
   // 跳转 物流页
   toExpress: function(e) {
     wx.navigateTo({
