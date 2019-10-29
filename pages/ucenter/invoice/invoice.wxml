@@ -1,14 +1,14 @@
 <!--pages/ucenter/invoice/invoice.wxml-->
 <view class="ucenter">
   <view class="content">
-    <view class="title" wx:for="{{order}}" wx:key="{{index}}" wx:for-item='good'>
-      <image class="img" src="{{good.url}}" />
+    <view class="title" wx:for="{{order.productList}}" wx:key="{{index}}" wx:for-item='good'>
+      <image class="img" src="{{good.picUrl}}" />
       <view class="title_right">
         <view class="key">订单编号
-          <text class="value">{{good.orderNum}}</text>
+          <text class="value">{{order.id}}</text>
         </view>
         <view class="key">订单价格
-          <text class="value_m">¥{{good.actualPrice}}</text>
+          <text class="value_m">¥{{order.totalPrice}}</text>
         </view>
       </view>
     </view>

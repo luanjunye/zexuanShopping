@@ -19,10 +19,12 @@ Page({
     currentId: 1,
     form: {
       name: "",
-      mobile: "",
+      dutyParagraph: "",
       email: "",
     },
     order: Object,
+    productList:[],
+    userId:""
   },
 
   handleTypeChange({
@@ -48,7 +50,7 @@ Page({
   },
   onChangeNumber: function(e) {
     this.setData({
-      'form.mobile': e.detail
+      'form.dutyParagraph': e.detail
     })
   },
   onChangeEmail: function(e) {
@@ -62,13 +64,29 @@ Page({
    */
   onLoad: function(options) {
     let currentOrder = wx.getStorageSync('currOrder');
-    this.setData({
-      order: currentOrder
-    });
+    if(currentOrder){
+      let productList = [];
+      currentOrder.productList.forEach(item =>{
+        productList.push({
+          id: item.id
+        })
+      })
+      this.setData({
+        order: currentOrder,
+        productList: productList
+      });
+      console.log(this.data.productList)
+    }
+ 
     console.log(currentOrder)
     // let that = this;
     // var data = new Object();
-    // let userId = wx.getStorageSync('userId')
+     let userId = wx.getStorageSync('userId')
+     if(userId){
+       this.setData({
+         userId: userId
+       })
+     }
     // if (userId) {
     //   util.request(api.InvoiceList, {
     //     userId: userId
@@ -131,6 +149,29 @@ console.log(this.data.order)
 
   },
   btn_submit: function() {
+    let that = this;
+    var data = new Object();
+    if(this.data.currentId === 1){
+      util.request(api.ApplicationInvoice, {
+        userId: this.data.userId, revenueNum: "", invoiceTitle:that.data.form.name,
+        status: this.data.currentId, email: that.data.form.email, goodsId: this.data.productList, orderId: this.data.order.id
+      }, "POST").then(function (res) {
+        if (res.code === 0) {
+          console.log(res)
+      
+        }
+      });
+    }else{
+      util.request(api.ApplicationInvoice, {
+        userId: this.data.userId, revenueNum: that.data.form.dutyParagraph, invoiceTitle: that.data.form.name,
+        status: this.data.currentId, email: that.data.form.email, goodsId: this.data.productList, orderId: this.data.order.id
 
+      }, "POST").then(function (res) {
+        if (res.code === 0) {
+          console.log(res)
+   
+        }
+      });
+    }
   }
 })

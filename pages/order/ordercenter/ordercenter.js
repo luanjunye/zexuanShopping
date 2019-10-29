@@ -290,7 +290,7 @@ Page({
   },
 
   // 跳转 申请开票页面
-  toInvoice: function(e){
+  toInvoice: function(v){
     let data = v.currentTarget.dataset.value;
     console.log(v.currentTarget.dataset.value);
     wx.setStorageSync("currOrder", data);
