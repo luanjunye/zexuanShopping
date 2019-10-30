@@ -1,5 +1,16 @@
 /* pages/orderInfo/orderInfo.wxss */
 
+/* modal */
+.modal-img{
+ width: 100%;
+}
+.modal-text{
+    display: block;
+    padding: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
 .ucenter {
   background: #f7f7f7;
   width: 750rpx;
@@ -8,10 +19,6 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-}
-
-.modal-img{
- width: 100%;
 }
 
 .orderContainer {

@@ -1,0 +1,72 @@
+<!--pages/ucenter/companyProfile/companyProfile.wxml-->
+<view class="article-bg">
+    <view class="article-container">
+        <view class="article-content">
+            <view class="title bold">常见问题答疑</view>
+
+            <view class="section-title">订单类：</view>
+            <view class="ask">1.	关于运费</view>
+            <view class="answer">
+                屈蜂堂全场满88元包邮，订单不满足包邮条件的，将收取10元运费。
+            </view>
+            <view class="ask">2.	订单如何取消？</view>
+            <view class="answer">
+                登录屈蜂堂官方商城小程序，进入个人中心-查看我的订单-未付款订单-取消订单。
+                已付款订单仅限质量原因方可取消订单，具体规则参考屈蜂堂商城退换货规则。
+            </view>
+            <view class="ask">3.	取消订单时效是多久？</view>
+            <view class="answer">
+                未付款订单在生成订单一小时内手动取消订单，一小时内未付款自动关闭交易，取消订单。
+            </view>
+
+            <view class="ask">4.	发票如何获取？</view>
+            <view class="answer">屈蜂堂默认发货不开注发票。客户如需开注发票，需在备注中注明，并填写发票抬头（姓名或单位名称+税号），屈蜂堂仅可开注普通发票。</view>
+
+
+            <view class="ask">5.	关于快递</view>
+            <view class="answer">屈蜂堂默认使用申通快递，不支持指定快递，如需其他快递，请联系在线客服，协商差价后下单。</view>
+
+
+
+            <view class="section-title">售后类：</view>
+
+            <view class="ask">1.	屈蜂堂商城退换货规则</view>
+            <view class="answer">屈蜂堂商品仅支持因商品质量问题退换货，来回运费由屈蜂堂承担。</view>
+
+            <view class="ask">2.	办理退换货需要什么证明</view>
+            <view class="answer">
+                屈蜂堂所有产品均经过国家正规检测，如客户质疑质量问题，可交由国家承认正规检测机构检测，如检测结果不合格，出示检测证明，联系屈蜂堂客服办理无理由退换货，并由屈蜂堂承担检测费用及相关责任。
+            </view>
+
+            <view class="ask">3.	如退换货成功，处理时效是多久？</view>
+            <view class="answer">
+                屈蜂堂在收到检测证明24小时内为客户办理退款，退款在1-7个工作日（银行处理退款周期）返回原渠道，如订单使用优惠券，优惠券返回账户，按原优惠券使用规则使用。
+            </view>
+
+            <view class="ask">4.	退款多久到账？</view>
+            <view class="answer">
+                退款周期为屈蜂堂处理退款周期+银行处理退款周期，具体到账时间，以银行处理为准。
+            </view>
+
+            <view class="ask">5.	退货后导致之前购买订单金额不满足免运费条件，是否扣除运费？</view>
+            <view class="answer">
+                屈蜂堂仅支持因商品质量退换货，如退换后订单金额不满足运费条件的，将从退款中扣除寄出费用，退货邮费由屈蜂堂承担。
+            </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </view>
+    </view>
+</view>

@@ -3,6 +3,7 @@
 
 <modal title='微信客服' hidden="{{!modalShow}}" bindcancel='hideModal' bindconfirm='hideModal'>
     <image class="modal-img" src="{{serviceQrUrl}}" mode="aspectFit"></image>
+    <text class="modal-text">长按识别二维码</text>
 </modal>
 
   <view class="orderContainer">
