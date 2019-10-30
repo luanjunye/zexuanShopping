@@ -1,0 +1,9 @@
+<!--pages/ucenter/companyProfile/companyProfile.wxml-->
+<view class="article-bg">
+    <view class="article-container">
+        <view class="article-content">
+            <view class="title bold">用户协议</view>
+            <view class="p">balabalabalalbala            </view>
+        </view>
+    </view>
+</view>

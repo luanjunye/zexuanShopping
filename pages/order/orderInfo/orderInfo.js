@@ -12,6 +12,9 @@ Page({
     expressInfo: Object,
     lastExpressInfo: Object,
 
+    modalShow: false,
+    serviceQrUrl: '',
+
     // refund related
     // packageListArray: ['-- 请选择 --', '顺丰', '韵达', '中通', '中通'],
     returnPackageId: String,
@@ -45,9 +48,30 @@ Page({
   },
 
   // 跳转到退货详情页
-  goToRefundDetail(){
+  goToRefundDetail() {
     wx.navigateTo({
       url: '/pages/order/orderRefundExpress/orderRefundExpress',
+    })
+  },
+
+
+
+  // 客服微信二维码
+  showModal() {
+    let that = this;
+    util.request(api.Service, {
+    }, "GET").then(res => {
+      console.log(res);
+      that.setData({
+        serviceQrUrl: res.data,
+        modalShow: true
+      })
+    })
+  },
+
+  hideModal() {
+    this.setData({
+      modalShow: false
     })
   },
 
@@ -64,10 +88,10 @@ Page({
       if (res.code === 0) {
         let tempOrder = res.orderInfoVO;
         // TODO: 修正时间在 safari 上的转换错误
-        
+
         let timeCreate = util.formatTime(new Date(tempOrder.createTime.slice(0, 19)));
-        let timeShipping = tempOrder.deliveryTime? util.formatTime(new Date(tempOrder.deliveryTime.slice(0, 19))): '';
-        let timePayed = tempOrder.payTime? util.formatTime(new Date(tempOrder.payTime.slice(0, 19))): '';
+        let timeShipping = tempOrder.deliveryTime ? util.formatTime(new Date(tempOrder.deliveryTime.slice(0, 19))) : '';
+        let timePayed = tempOrder.payTime ? util.formatTime(new Date(tempOrder.payTime.slice(0, 19))) : '';
 
         tempOrder.id = currentOrder.id;
 
@@ -190,7 +214,7 @@ Page({
 
     util.request(api.Pay, {
       id: currentOrder.id,
-    }, "POST").then(function (res) {
+    }, "POST").then(function(res) {
       console.log(res);
       if (res.success) {
         let entity = res.entity;
@@ -204,7 +228,7 @@ Page({
             wx.showToast({
               title: '支付成功',
             });
-            setTimeout(function () {
+            setTimeout(function() {
               that.requestData();
             }, 1500);
           },
@@ -233,8 +257,6 @@ Page({
       order: currentOrder
     });
     console.log(currentOrder);
-
-    this.loadData();
     this.loadData();
   },
   onHide: function() {},

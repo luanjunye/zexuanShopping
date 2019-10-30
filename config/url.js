@@ -1,6 +1,6 @@
-//const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
+const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
 //const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
-const API_BASE_URL = 'https://shop.zexuanshipin.com/freeterapi/';
+// const API_BASE_URL = 'https://shop.zexuanshipin.com/freeterapi/';
 
 module.exports = {
   //首页
@@ -49,4 +49,7 @@ module.exports = {
   // 发票
   ApplicationInvoice: API_BASE_URL + 'invoice/save/json',//申请发票
   InvoiceList: API_BASE_URL + 'invoice/list',//获取发票基本信息
+
+  // 客服二维码
+  Service: API_BASE_URL + 'icon/customer',// 获取二维码图片
 };
