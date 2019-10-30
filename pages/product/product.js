@@ -21,6 +21,7 @@ Page({
     specificationList: {},
     userId: "",
     id: "",
+    count:0
   },
 
   /**
@@ -73,13 +74,24 @@ Page({
     this.setData({
       'deliveryAddress.day': month + '月' + day + '日'
     })
+
+    // util.request(api.ProductInCart, {
+    //   userId: this.data.userId,
+    //   goodsId: this.data.id
+    // }, "POST").then(function (res) {
+    //   if (res.code === 0) {
+    //     data.count = res.count
+    //     that.setData(data)
+    //   }
+    // });
     // 读取购物车
-    let cartList = wx.getStorageSync("cartList");
-    if (cartList) {
-      this.setData({
-        cartList: cartList
-      })
-    }
+    // let cartList = wx.getStorageSync("cartList");
+    // console.log(cartList)
+    // if (cartList) {
+    //   this.setData({
+    //     cartList: cartList
+    //   })
+    // }
   },
 
   /**
@@ -104,12 +116,14 @@ Page({
      */
     let isLogin = wx.getStorageSync('isLogin')
     let userId = wx.getStorageSync('userId')
+   console.log(userId)
     if (isLogin && userId) {
       this.setData({
         isLogin: isLogin,
         userId: userId
       })
     }
+    this.selectCart()
   },
 
   /**
@@ -234,6 +248,7 @@ Page({
       this.setData({
         cartList: cartList
       });
+      this.selectCart()
       Toast("加入购物车成功")
     } 
   },
@@ -245,5 +260,17 @@ Page({
     }else{
       return true
     }
+  },
+  selectCart: function(){
+    let that = this
+    var data = new Object();
+    util.request(api.ProductInCart, {
+      userId: this.data.userId,
+    }, "POST").then(function (res) {
+      if (res.code === 0) {
+        data.count = res.count
+        that.setData(data)
+      }
+    });
   }
 })

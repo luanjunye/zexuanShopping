@@ -269,7 +269,7 @@ Page({
   //商品详情页
   toProduct: function(e) {
     wx.navigateTo({
-      url: '/pages/product/product?id=' + e.currentTarget.dataset.value.id
+      url: '/pages/product/product?id=' + e.currentTarget.dataset.value.goodsId
     })
   }
 })

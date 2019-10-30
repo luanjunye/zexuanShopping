@@ -228,11 +228,11 @@ Page({
                 wx.showToast({
                   title: '支付成功',
                 });
-                setTimeout(function () {
-                  wx.switchTab({
-                    url: '/pages/order/ordercenter/ordercenter',
-                  })
-                }, 1500);
+                // setTimeout(function () {
+                //   wx.switchTab({
+                //     url: '/pages/order/ordercenter/ordercenter',
+                //   })
+                // }, 1500);
               },
               fail(res) {
                 console.log('fail: ', res)

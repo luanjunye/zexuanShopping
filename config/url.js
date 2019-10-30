@@ -16,7 +16,7 @@ module.exports = {
   MineUrlIconSecond: API_BASE_URL + 'icon/second', //个人中心第二排icon
   MineUrlIconThird: API_BASE_URL + 'icon/third', //个人中心第三排icon
   //购物车
-  CartPage: API_BASE_URL + 'cart/page', //购物车
+  CartPage: API_BASE_URL + 'cart/page', //查询购物车
   CartSave: API_BASE_URL + 'cart/save/json', //添加购物车
   CartDelete: API_BASE_URL + 'cart/delete',//删除购物车
   //地址管理
@@ -29,6 +29,7 @@ module.exports = {
   SpecificationsDetails: API_BASE_URL + 'goods/selectspecification',//规格详情
   EvaluateList: API_BASE_URL + 'goods/goodsappraise',//评价列表
   EvaluateListInfo: API_BASE_URL + 'goods/selectAppraise',//评价类型数量
+  ProductInCart: API_BASE_URL + 'goods/goodscount',//查询对应商品在购物车的数量
   // 订单
   OrderConfirm: API_BASE_URL + 'order/confirm/goods', //  确认收货
   OrderRemove: API_BASE_URL + 'order/deleteorder', //  删除订单
