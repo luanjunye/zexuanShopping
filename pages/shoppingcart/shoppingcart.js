@@ -15,7 +15,8 @@ Page({
     totalPrice: 0,
     totalCount: 0,
     freightPrice: 0,
-    cartList: []
+    cartList: [],
+    ids: []
   },
 
   /**
@@ -72,7 +73,7 @@ Page({
       // })
       util.request(api.CartPage, {
         userId: userId
-      }, "GET").then(function (res) {
+      }, "GET").then(function(res) {
         if (res.code === 0) {
           console.log(res.data.list)
           data.cartList = res.data.list
@@ -158,18 +159,18 @@ Page({
     this.judgeExpressFree();
   },
   //是否满88包邮
-  judgeExpressFree: function () {
+  judgeExpressFree: function() {
     if (this.data.totalPrice >= 88) {
       this.setData({
         isExpressFree: true,
-        freightPrice : 0
+        freightPrice: 0
       })
     } else {
       let rest = 88 - this.data.totalPrice;
       this.setData({
         isExpressFree: false,
         restExpressFree: rest,
-        freightPrice : 5
+        freightPrice: 5
       })
     }
   },
@@ -225,14 +226,24 @@ Page({
   deleteProduct: function(e) {
     let id = e.currentTarget.dataset.value.id;
     let data = [];
+    let ids = [];
     this.data.cartList.forEach(function(v) {
       if (id != v.id) {
         data.push(v);
       }
     })
     this.setData({
-      cartList: data
+      cartList: data,
+      ids: id
     })
+    util.request(api.CartDelete, {
+      id: this.data.ids
+    }, "POST").then(function(res) {
+      if (res.code === 0) {
+        console.log(res)
+
+      }
+    });
     this.setCheckedTotalPrice();
     this.setCheckedTotalCount();
     this.judgeCheckedAll();

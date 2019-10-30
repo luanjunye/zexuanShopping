@@ -4,7 +4,7 @@ import Toast from '../../lib/vant-weapp/toast/toast';
 const api = require('/../../config/url.js');
 const util = require('/../../utils/util.js');
 Page({
-// 商品详情
+  // 商品详情
   /**
    * 页面的初始数据
    */
@@ -17,36 +17,38 @@ Page({
       time: "18:00",
       day: "",
     },
-    product:{},
-    specificationList:{},
-    userId:"",
-    id:"",
+    product: {},
+    specificationList: {},
+    userId: "",
+    id: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.setNavigationBarTitle({
       title: '商品详情',
     })
     let isLogin = wx.getStorageSync('isLogin')
     let userId = wx.getStorageSync('userId')
     let id = options.id
-    if(id){
+    if (id) {
       this.setData({
         id: id
       })
     }
     let that = this
     var data = new Object();
-    if (isLogin && userId){
+    if (isLogin && userId) {
       this.setData({
         isLogin: isLogin,
         userId: userId
       })
     }
-    util.request(api.CommodityDetails,{id:this.data.id}, "POST").then(function (res) {
+    util.request(api.CommodityDetails, {
+      id: this.data.id
+    }, "POST").then(function(res) {
       if (res.code === 0) {
         data.product = res.product
         that.setData(data)
@@ -54,14 +56,16 @@ Page({
       }
     });
 
-    util.request(api.SpecificationsDetails, { id: this.data.id }, "POST").then(function (res) {
+    util.request(api.SpecificationsDetails, {
+      id: this.data.id
+    }, "POST").then(function(res) {
       if (res.code === 0) {
         data.specificationList = res.specificationList
         that.setData(data)
         console.log(res)
       }
     });
-   
+
     // 初始化配送时间
     let date = new Date();
     let month = date.getMonth() + 1;
@@ -81,70 +85,77 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (e) {
+  onShow: function(e) {
     // 加载商品详情数据
     /**
-    * WxParse.wxParse(bindName , type, data, target,imagePadding)
-    * 1.bindName绑定的数据名(必填)
-    * 2.type可以为html或者md(必填)
-    * 3.data为传入的具体数据(必填)
-    * 4.target为Page对象,一般为this(必填)
-    * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
-    */
-
+     * WxParse.wxParse(bindName , type, data, target,imagePadding)
+     * 1.bindName绑定的数据名(必填)
+     * 2.type可以为html或者md(必填)
+     * 3.data为传入的具体数据(必填)
+     * 4.target为Page对象,一般为this(必填)
+     * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
+     */
+    let isLogin = wx.getStorageSync('isLogin')
+    let userId = wx.getStorageSync('userId')
+    if (isLogin && userId) {
+      this.setData({
+        isLogin: isLogin,
+        userId: userId
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  openIndexPage: function () {
+  openIndexPage: function() {
     wx.switchTab({
       url: '/pages/index/index',
     })
   },
 
-  openAddress: function () {
+  openAddress: function() {
     let that = this;
     wx.chooseLocation({
-      success: function (res) {
+      success: function(res) {
         if (!res.address) {
           return;
         }
@@ -154,50 +165,52 @@ Page({
       },
     })
   },
-  openService: function () {
+  openService: function() {
     this.setData({
       serviceShow: true
     })
   },
-  closeService: function () {
+  closeService: function() {
     this.setData({
       serviceShow: false
     })
   },
-  showSku: function (e) {
+  showSku: function(e) {
     this.setData({
       'sku.show': true
     })
   },
-  closeSku: function (e) {
+  closeSku: function(e) {
     this.setData({
       'sku.show': false
     })
   },
-  toComment: function () {
+  toComment: function() {
     wx.navigateTo({
       url: '/pages/comment/comment?productId=' + this.data.product.id,
     })
   },
-  buyNow: function(){
-    this.checkLogin();
-    // 跳转checkout页面
-    wx.setStorageSync("checkoutProduct", this.data.product);
-    wx.setStorageSync("specification", this.data.specificationList);
-    wx.setStorageSync("count", 1);
-    wx.navigateTo({
-      url: '/pages/order/settlement/settlement?from=product',
-    })
+  buyNow: function() {
+    if (this.checkLogin()) {
+      // 跳转checkout页面
+      wx.setStorageSync("checkoutProduct", this.data.product);
+      wx.setStorageSync("specification", this.data.specificationList);
+      wx.setStorageSync("count", 1);
+      wx.navigateTo({
+        url: '/pages/order/settlement/settlement?from=product',
+      })
+    }
   },
-  openCartPage: function(){
+  openCartPage: function() {
     wx.switchTab({
       url: '/pages/shoppingcart/shoppingcart',
     })
   },
-  addToCart:function(){
+  addToCart: function() {
+    if (this.checkLogin()) {
       let cartList = this.data.cartList;
       cartList.push({
-        id:this.data.product.id,
+        id: this.data.product.id,
         label: this.data.product.label,
         checked: true,
         picUrl: this.data.product.goodsViewVOList[0].url,
@@ -208,22 +221,29 @@ Page({
         maxNum: 99,
         price: this.data.product.price
       });
-    util.request(api.CartSave, { goodsId: this.data.id, userId: this.data.userId, number:1 }, "POST").then(function (res) {
-      if (res.code === 0) {
-        console.log(res)
-      }
-    });
-    wx.setStorageSync("cartList", cartList)
+      util.request(api.CartSave, {
+        goodsId: this.data.id,
+        userId: this.data.userId,
+        number: 1
+      }, "POST").then(function(res) {
+        if (res.code === 0) {
+          console.log(res)
+        }
+      });
+      wx.setStorageSync("cartList", cartList)
       this.setData({
         cartList: cartList
       });
       Toast("加入购物车成功")
+    } 
   },
-  checkLogin: function () {
+  checkLogin: function() {
     if (!this.data.isLogin) {
       wx.navigateTo({
         url: '/pages/auth/tologin/tologin',
       })
+    }else{
+      return true
     }
-  },
+  }
 })

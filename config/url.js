@@ -1,4 +1,4 @@
-//const API_BASE_URL = 'http://192.168.0.175:8081/freeterapi/';
+//const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
 //const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
 const API_BASE_URL = 'https://shop.zexuanshipin.com/freeterapi/';
 
@@ -17,7 +17,8 @@ module.exports = {
   MineUrlIconThird: API_BASE_URL + 'icon/third', //个人中心第三排icon
   //购物车
   CartPage: API_BASE_URL + 'cart/page', //购物车
-  CartSave: API_BASE_URL + 'cart//save/json', //添加购物车
+  CartSave: API_BASE_URL + 'cart/save/json', //添加购物车
+  CartDelete: API_BASE_URL + 'cart/delete',//删除购物车
   //地址管理
   AddressPage: API_BASE_URL + 'address/page', //地址管理
   AddressSave: API_BASE_URL + 'address/save/json', //添加新地址

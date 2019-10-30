@@ -85,6 +85,11 @@
   width: 15rpx;
 }
 
+.img{
+  width: 50rpx;
+  height: 50rpx;
+}
+
 .order .line {
   background: #ececec;
   height: 1rpx;

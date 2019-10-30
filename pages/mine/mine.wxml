@@ -26,7 +26,8 @@
     <view class="myStatus">
       <view class="status" wx:for="{{status}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" id="{{item.id}}" bindtap="toOrder">
         <badge count="{{item.content}}">
-          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="iconLoad" data-index="{{ index }}" style="width:{{ icons[index].width }}rpx; height:{{ icons[index].height }}rpx;"></image>
+          <!-- <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="iconLoad" data-index="{{ index }}" style="width:{{ icons[index].width }}rpx; height:{{ icons[index].height }}rpx;"></image> -->
+          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" data-index="{{ index }}" />
         </badge>
         <text class="text">{{item.title}}</text>
       </view>
@@ -81,7 +82,8 @@
     <view class="other_info_first">
       <view class="myStatus_other">
         <view class="status" wx:for="{{other_f}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" id="{{item.id}}" bindtap="toOrder">
-          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="otherfLoad" data-index="{{ index }}" style="width:{{ otherFirst[index].width }}rpx; height:{{ otherFirst[index].height }}rpx;"></image>
+          <!-- <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="otherfLoad" data-index="{{ index }}" style="width:{{ otherFirst[index].width }}rpx; height:{{ otherFirst[index].height }}rpx;"></image> -->
+          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" data-index="{{ index }}" />
           <text class="text">{{item.title}}</text>
         </view>
       </view>
@@ -89,7 +91,8 @@
     <view class="other_info_second">
       <view class="myStatus_other">
         <view class="status" wx:for="{{other_s}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" id="{{item.id}}" bindtap="toOrder">
-          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="othersLoad" data-index="{{ index }}" style="width:{{ otherSecond[index].width }}rpx; height:{{ otherSecond[index].height }}rpx;"></image>
+          <!-- <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" bindload="othersLoad" data-index="{{ index }}" style="width:{{ otherSecond[index].width }}rpx; height:{{ otherSecond[index].height }}rpx;"></image> -->
+          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" data-index="{{ index }}" />
           <text class="text">{{item.title}}</text>
         </view>
       </view>
