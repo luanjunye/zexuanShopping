@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/ucenter/questions/questions",
+    "pages/ucenter/agreement/agreement",
+    
     "pages/index/index",
     "pages/ucenter/invoice/invoice",
-   
     "pages/product/product",
     "pages/order/ordercenter/ordercenter",
     "pages/order/orderRefundExpress/orderRefundExpress",
@@ -13,7 +15,6 @@
     "pages/ucenter/companyProfile/companyProfile",
     "pages/ucenter/evaluate/evaluate",
     "pages/mine/mine",
-   
     "pages/ucenter/express/express",
     "pages/secondIndex/secondIndex",
     "pages/logs/logs",

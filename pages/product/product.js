@@ -250,7 +250,7 @@ Page({
       });
       this.selectCart()
       Toast("加入购物车成功")
-    } 
+    }
   },
   checkLogin: function() {
     if (!this.data.isLogin) {
