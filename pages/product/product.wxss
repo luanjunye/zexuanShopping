@@ -55,7 +55,6 @@
 }
 
 .top_title .title_text {
-  margin-top: 30rpx;
   display: flex;
   align-items: center;
 }
