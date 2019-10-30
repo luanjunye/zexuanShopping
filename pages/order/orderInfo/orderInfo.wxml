@@ -48,7 +48,7 @@
         </view>
       </view>
       <view class="foot">
-        <van-button wx:if='{{!order.returnStatus}}' plain type="default" size="small" class="btn pull-right" bindtap="toReturnPage">退款</van-button>
+        <van-button wx:if='{{!order.returnStatus && order.shoppingStatus !== 1}}' plain type="default" size="small" class="btn pull-right" bindtap="toReturnPage">退款</van-button>
         <van-button wx:if='{{order.returnStatus === 1}}' plain type="default" size="small" class="btn pull-right">退款申请审核中</van-button>
         <van-button wx:if='{{order.returnStatus === 3}}' plain type="default" size="small" class="btn pull-right">退货中</van-button>
         <van-button wx:if='{{order.returnStatus === 4}}' plain type="default" size="small" class="btn pull-right" >退货完成</van-button>
