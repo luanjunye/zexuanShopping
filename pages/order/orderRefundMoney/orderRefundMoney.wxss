@@ -10,7 +10,7 @@
 }
 
 .product {
-  padding: 10px 0;
+  padding-bottom: 15px;
   display: flex;
   align-items: stretch;
   border-bottom: 1rpx solid #dadada;
