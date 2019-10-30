@@ -57,15 +57,14 @@
   color: #999;
 }
 
-.titop_titletle .title_text {
+.top_title .title_text {
+  margin-top: 30rpx;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #fff;
 }
 
 .top_title .title_text .title_remark {
-  padding-top: 10rpx;
+  margin-top: 10rpx;
   font-size: 32rpx;
   font-weight: 500;
   position: relative;

@@ -83,7 +83,7 @@ Page({
         })
       } else {
         this.setData({
-          expressPrice: 5
+          expressPrice: 0
         })
       }
       // 实际价格总计
@@ -134,7 +134,7 @@ Page({
 
   remark_input: function(e) {
     this.setData({
-      'remark': e.detail
+      'remark': e.detail.value
     })
   },
 

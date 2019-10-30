@@ -5,13 +5,13 @@
 
   <view class="address_box" bindtap="chooseAddress">
     <image class="image" src="/pages/order/settlement/assets/address.png" />
-    <view class="information" wx:if="{{address}}">
+    <view class="information" wx:if="{{address.name}}">
       <view class="name">{{address.name}}
         <text class="phone">{{address.phone}}</text>
       </view>
       <text class="address_text">{{address.address + address.street}}</text>
     </view>
-    <view class="information" wx:if="{{!address}}">
+    <view class="information" wx:if="{{!address.name}}">
       <text>请先添加地址</text>
     </view>
     <image class="right" src="../../../assets/rightArrow.png" />
