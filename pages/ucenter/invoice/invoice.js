@@ -23,8 +23,8 @@ Page({
       email: "",
     },
     order: Object,
-    productList:[],
-    userId:""
+    productList: [],
+    userId: ""
   },
 
   handleTypeChange({
@@ -40,6 +40,34 @@ Page({
         current: detail.value,
         currentId: 2
       });
+    }
+  },
+
+
+  // 验证输入
+  verifyInput: function() {
+    let name = this.data.form.name;
+    let mail = this.data.form.email;
+    let dutyParagraph = this.data.form.dutyParagraph;
+
+    let mailReg = new RegExp('w*@\w*\.(\w*|\w*\.\w*)','g');
+    if (name.trim().length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写抬头名称',
+      })
+    } else if (dutyParagraph.trim().length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写纳税人识别号',
+      })
+    } else if (!mailReg.test(mail)) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入正确的邮箱地址',
+      })
+    } else {
+      return true;
     }
   },
 
@@ -59,14 +87,58 @@ Page({
     })
   },
 
+  // 提交
+  btn_submit: function() {
+    let that = this;
+    if (this.data.currentId === 1) {
+      util.request(api.ApplicationInvoice, {
+        userId: this.data.userId,
+        revenueNum: "",
+        invoiceTitle: that.data.form.name,
+        status: this.data.currentId,
+        email: that.data.form.email,
+        goodsId: this.data.productList,
+        orderId: this.data.order.id
+      }, "POST").then(function(res) {
+        if (res.code === 0) {
+          console.log(res)
+        }
+      });
+    } else {
+      util.request(api.ApplicationInvoice, {
+        userId: this.data.userId,
+        revenueNum: that.data.form.dutyParagraph,
+        invoiceTitle: that.data.form.name,
+        status: this.data.currentId,
+        email: that.data.form.email,
+        goodsId: this.data.productList,
+        orderId: this.data.order.id
+
+      }, "POST").then(function(res) {
+        if (res.code === 0) {
+          console.log(res)
+
+        }
+      });
+    }
+    wx.showToast({
+      title: '提交成功',
+    })
+    wx.switchTab({
+      url: 'pages/index/index',
+    })
+  },
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     let currentOrder = wx.getStorageSync('currOrder');
-    if(currentOrder){
+    if (currentOrder) {
       let productList = [];
-      currentOrder.productList.forEach(item =>{
+      currentOrder.productList.forEach(item => {
         productList.push(item.id)
       })
       this.setData({
@@ -76,16 +148,16 @@ Page({
       console.log(typeof this.data.productList)
       console.log(this.data.productList)
     }
- 
+
     console.log(currentOrder)
     // let that = this;
     // var data = new Object();
-     let userId = wx.getStorageSync('userId')
-     if(userId){
-       this.setData({
-         userId: userId
-       })
-     }
+    let userId = wx.getStorageSync('userId')
+    if (userId) {
+      this.setData({
+        userId: userId
+      })
+    }
     // if (userId) {
     //   util.request(api.InvoiceList, {
     //     userId: userId
@@ -110,7 +182,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-console.log(this.data.order)
+    console.log(this.data.order)
   },
 
   /**
@@ -147,36 +219,4 @@ console.log(this.data.order)
   onShareAppMessage: function() {
 
   },
-  btn_submit: function() {
-    let that = this;
-    var data = new Object();
-    if(this.data.currentId === 1){
-      util.request(api.ApplicationInvoice, {
-        userId: this.data.userId, revenueNum: "", invoiceTitle:that.data.form.name,
-        status: this.data.currentId, email: that.data.form.email, goodsId: this.data.productList, orderId: this.data.order.id
-      }, "POST").then(function (res) {
-        if (res.code === 0) {
-          console.log(res)
-      
-        }
-      });
-    }else{
-      util.request(api.ApplicationInvoice, {
-        userId: this.data.userId, revenueNum: that.data.form.dutyParagraph, invoiceTitle: that.data.form.name,
-        status: this.data.currentId, email: that.data.form.email, goodsId: this.data.productList, orderId: this.data.order.id
-
-      }, "POST").then(function (res) {
-        if (res.code === 0) {
-          console.log(res)
-   
-        }
-      });
-    }
-    wx.showToast({
-      title: '提交成功',
-    })
-    wx.switchTab({
-      url: 'pages/index/index',
-    })
-  }
 })
