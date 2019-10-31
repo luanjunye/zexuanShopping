@@ -3,11 +3,7 @@
 .ucenter {
   background: #f7f7f7;
   width: 100%;
-  height: 100%;
   z-index: -1;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
 }
 
 .ucenter .nav {
@@ -54,8 +50,7 @@
 
 
 .orders {
-  height: 100%;
-  margin-top: 90rpx;
+  padding: 90rpx 0 10px;
 }
 
 .order {

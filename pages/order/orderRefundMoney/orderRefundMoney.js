@@ -126,11 +126,11 @@ Page({
           wx.showToast({
             title: '成功提交申请'
           })
-          setTimeout(()=>{
-            wx.navigateTo({
-              url: '/pages/order/ordercenter/ordercenter'
+          setTimeout(function () {
+            wx.switchTab({
+              url: '/pages/order/ordercenter/ordercenter',
             })
-          },1500)
+          }, 1500);
         }
       });
     }

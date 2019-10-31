@@ -31,7 +31,7 @@
   <!-- 无订单布局结束 -->
 
   <!-- 订单列表布局开始 -->
-  <scroll-view bindscrolltolower="scrollListen" scroll-y enable-flex class="orders" wx:if="{{orderList.length > 0&&!loading}}">
+  <view class="orders" wx:if="{{orderList.length > 0&&!loading}}">
     <view class="order" wx:for="{{orderList}}" wx:key="{{item.id}}">
       <view class="order-title">
         <view class="order-title-top">
@@ -78,19 +78,19 @@
         </view>
       </view>
       <view class="foot">
-         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==201 || item.status==300 || item.status==301 || item.status==0}}" plain type="default" size="small" class="btn" bindtap="toInvoice">申请发票</van-button>
+         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.Invoice === 0}}" plain type="default" size="small" class="btn" bindtap="toInvoice">申请发票</van-button>
          <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==301}}" plain type="default" size="small" class="btn" bindtap="toEvaluate">评价</van-button>
         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==0||item.status==301||item.status==402}}" plain type="default" size="small" class="btn" bindtap="toDelete">删除订单</van-button>
-        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==0}}" color="#b4282d" size="small" class="btn" bindtap="toPay">去付款</van-button>
+        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==0 && item.orderStatus !== 101}}" color="#b4282d" size="small" class="btn" bindtap="toPay">去付款</van-button>
         <!--        <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==201}}" plain type="default" disabled size="small" hover-class="none">待发货</van-button>-->
         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==300 || item.status==301}}" plain type="default" size="small" class="btn" bindtap="toExpress">查看物流</van-button>
         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==300}}" plain type="default" size="small" class="btn" color="#b4282d" bindtap="confirmReceive">确认收货</van-button>
         <van-button data-value="{{item}}" data-index="{{index}}" wx:if="{{item.status==301}}" plain type="default" size="small" color="#b4282d" class="btn" bindtap="toPayAgain">再次购买</van-button>
       </view>
     </view>
-  </scroll-view>
+  </view>
 
   <!-- 订单列表布局结束 -->
 
-  <van-dialog confirm-button-color="#b4282d" id="van-dialog" />
+  <!-- <van-dialog confirm-button-color="#b4282d" id="van-dialog" /> -->
 </view>

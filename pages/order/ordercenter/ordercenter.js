@@ -65,7 +65,11 @@ Page({
                   totalPrice: item.money,
                   shippingStatus: item.shippingStatus,
                   shippingNo: item.shippingNo,
-                  expressNo: item.expressNo
+                  expressNo: item.expressNo,
+                  orderStauts: item.orderStatus,
+                  createTime: item.createTime,
+                  invoice: item.Invoice,
+      
                   // payType: '微信',
                   // actualPrice: 88.00,
                   // expressPrice: 0.00,
@@ -80,6 +84,7 @@ Page({
           order: tempOrder
         });
         that.loadData(that.data.shippingStatus) // 筛选并显示数据需要在网络请求之后，不可在页面载入时直接调用
+        wx.stopPullDownRefresh() // 停止下拉刷新：恢复
       }
     });
   },
