@@ -1,5 +1,5 @@
-// const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
-const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
+const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
+// const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
 // const API_BASE_URL = 'https://shop.zexuanshipin.com/freeterapi/';
 
 module.exports = {
@@ -42,10 +42,10 @@ module.exports = {
   OrderDetail: API_BASE_URL + 'order/info', //  订单详情
   OrderPackage: API_BASE_URL + 'order/selectcourier', //  订单快递查询 参数：shippingNo   GET
 
-  OrderRefundReason: API_BASE_URL + 'returnreason/list', //  订单退款原因 参数:type: 1, 2   GET 
+  OrderRefundReason: API_BASE_URL + 'returnreason/list', //  订单退款原因 参数:type: 1, 2   GET
 
   // 支付
-  // 'https://shop.zexuanchuanmei.com/freeter-api/' 
+  // 'https://shop.zexuanchuanmei.com/freeter-api/'
   Pay: API_BASE_URL + 'wx/wechatPay', // 微信支付请求接口  POST: orderId
   // 发票
   ApplicationInvoice: API_BASE_URL + 'invoice/save/json',//申请发票

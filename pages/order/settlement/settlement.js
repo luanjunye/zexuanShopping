@@ -198,6 +198,12 @@ Page({
     })
   },
 
+  toAgreement:function(){
+    wx.navigateTo({
+      url: '/pages/ucenter/agreement/agreement',
+    })
+  },
+
   submitOrder: function() {
     let that = this
     // var data = new Object();
