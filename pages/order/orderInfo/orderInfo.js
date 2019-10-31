@@ -145,6 +145,7 @@ Page({
         }
         */
       }
+      wx.stopPullDownRefresh(); // 恢复下拉刷新
     })
   },
 
