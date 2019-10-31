@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/ucenter/questions/questions",
     "pages/ucenter/agreement/agreement",
     
-    "pages/index/index",
+   
     "pages/ucenter/invoice/invoice",
     "pages/product/product",
     "pages/order/ordercenter/ordercenter",
