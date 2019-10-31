@@ -215,16 +215,13 @@ Page({
   },
 
   submitOrder: function() {
-    let that = this
-    // var data = new Object();
-
     util.request(api.OrderSave, {
       listModels: this.data.goodsIdCount,
       userId: this.data.userId,
       addressId: this.data.address.id,
-      remark: that.data.remark,
-      freight: that.data.expressPrice,
-      type:this.data.type
+      remark: this.data.remark,
+      freight: this.data.expressPrice,
+      type: this.data.type
     }, "POST").then(function(res) {
       if (res.code === 0) {
         let id = res.id

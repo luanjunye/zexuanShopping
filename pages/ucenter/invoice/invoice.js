@@ -56,7 +56,7 @@ Page({
         icon: 'none',
         title: '请填写抬头名称',
       })
-    } else if (dutyParagraph.trim().length < 1) {
+    } else if (this.data.currentId !== 1 && dutyParagraph.trim().length < 1) {
       wx.showToast({
         icon: 'none',
         title: '请填写纳税人识别号',
@@ -105,9 +105,11 @@ Page({
           wx.showToast({
             title: '提交成功',
           })
-          wx.switchTab({
-            url: 'pages/index/index',
-          })
+          setTimeout(function () {
+            wx.switchTab({
+              url: '/pages/order/ordercenter/ordercenter',
+            })
+          }, 1500);
         }
       });
     }

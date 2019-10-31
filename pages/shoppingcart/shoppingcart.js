@@ -262,6 +262,7 @@ Page({
   updateHistory: function(e) {
     wx.setStorageSync("cartList", this.data.cartList);
   },
+  
   //底部统计栏下单事件
   checkout: function() {
     if (this.data.noChecked) {
