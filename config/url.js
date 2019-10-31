@@ -6,6 +6,7 @@ module.exports = {
   IndexUrlBanner: API_BASE_URL + 'index/bannerlist', //首页banner图
   IndexUrlQuick: API_BASE_URL + 'index/categoryindex', //首页快捷频道
   IndexUrlOrder: API_BASE_URL + 'index/goodsindex', //首页全部商品
+  IndexUrlFreight: API_BASE_URL + 'login/yunfei',//满多少包邮和运费多少
   //二级商品页wx2042f106a5b6f6f1
   SecondIndexUrlCommodity: API_BASE_URL + 'goods/page', //二级商品页
   //个人中心
@@ -14,6 +15,7 @@ module.exports = {
   MineUrlIconFirst: API_BASE_URL + 'icon/first', //个人中心第一排icon
   MineUrlIconSecond: API_BASE_URL + 'icon/second', //个人中心第二排icon
   MineUrlIconThird: API_BASE_URL + 'icon/third', //个人中心第三排icon
+  MineUrlIconFourth: API_BASE_URL + 'icon/fourth', //个人中心第四排icon
   //购物车
   CartPage: API_BASE_URL + 'cart/page', //查询购物车
   CartSave: API_BASE_URL + 'cart/save/json', //添加购物车
