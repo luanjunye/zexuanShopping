@@ -89,11 +89,12 @@ Page({
 
   // 提交
   btn_submit: function() {
+
     let that = this;
-    if (this.data.currentId === 1) {
+    if (this.verifyInput()) {
       util.request(api.ApplicationInvoice, {
         userId: this.data.userId,
-        revenueNum: "",
+        revenueNum: this.data.currentId === 1 ? "" : this.data.form.dutyParagraph,
         invoiceTitle: that.data.form.name,
         status: this.data.currentId,
         email: that.data.form.email,
@@ -101,32 +102,16 @@ Page({
         orderId: this.data.order.id
       }, "POST").then(function(res) {
         if (res.code === 0) {
-          console.log(res)
-        }
-      });
-    } else {
-      util.request(api.ApplicationInvoice, {
-        userId: this.data.userId,
-        revenueNum: that.data.form.dutyParagraph,
-        invoiceTitle: that.data.form.name,
-        status: this.data.currentId,
-        email: that.data.form.email,
-        goodsId: this.data.productList,
-        orderId: this.data.order.id
-
-      }, "POST").then(function(res) {
-        if (res.code === 0) {
-          console.log(res)
-
+          wx.showToast({
+            title: '提交成功',
+          })
+          wx.switchTab({
+            url: 'pages/index/index',
+          })
         }
       });
     }
-    wx.showToast({
-      title: '提交成功',
-    })
-    wx.switchTab({
-      url: 'pages/index/index',
-    })
+
   },
 
 

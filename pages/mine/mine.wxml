@@ -97,7 +97,21 @@
         </view>
       </view>
     </view>
+    <view class="other_info_third">
+      <view class="myStatus_other_f">
+        <view class="status" wx:for="{{other_t}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" id="{{item.id}}" bindtap="toOrder">
+          <image class="img" src="{{item.url}}" background-size="cover" data-value="{{item}}" data-index="{{ index }}" />
+          <text class="text">{{item.title}}</text>
+        </view>
+      </view>
+    </view>
   </view>
+
+  <modal title='微信客服' hidden="{{!modalShow}}" bindcancel='hideModal' bindconfirm='hideModal'>
+    <image class="modal-img" src="{{serviceQrUrl}}" mode="aspectFit"></image>
+    <text class="modal-text">长按识别二维码</text>
+</modal>
+
 </view>
 
 <!-- 其他功能结束 -->

@@ -165,6 +165,10 @@
   align-items: center;
 }
 
+.agreement .agreement_text{
+  color: #80C7FA
+}
+
 .checked {
   color: #333;
   font-size: 26rpx;

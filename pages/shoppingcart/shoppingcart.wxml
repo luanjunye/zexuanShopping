@@ -5,11 +5,7 @@
 
   <view class="service-policy" wx:if="{{noChecked||!isLogin}}">
     <view class="item">
-      <image class="red-point" src="/assets/redPoint.png"></image>30天无忧退货</view>
-    <view class="item">
-      <image class="red-point" src="/assets/redPoint.png"></image>48小时快速退款</view>
-    <view class="item">
-      <image class="red-point" src="/assets/redPoint.png"></image>满88元免邮费</view>
+      <image class="red-point" src="/assets/redPoint.png"></image>满{{shipping}}元免邮费</view>
   </view>
   <!-- 包邮显示 -->
   <view class="notice" wx:if="{{!noChecked&&isLogin}}">

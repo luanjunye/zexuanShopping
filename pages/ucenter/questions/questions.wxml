@@ -7,7 +7,7 @@
             <view class="section-title">订单类：</view>
             <view class="ask">1.	关于运费</view>
             <view class="answer">
-                屈蜂堂全场满88元包邮，订单不满足包邮条件的，将收取10元运费。
+                屈蜂堂全场满{{shipping}}元包邮，订单不满足包邮条件的，将收取{{freight}}元运费。
             </view>
             <view class="ask">2.	订单如何取消？</view>
             <view class="answer">

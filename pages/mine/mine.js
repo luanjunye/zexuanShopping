@@ -12,12 +12,15 @@ Page({
     userInfo: {},
     isLogin: false,
     images: {},
-    icons: {},
-    otherSecond: {},
-    otherFirst: {},
+    // icons: {},
+    // otherSecond: {},
+    // otherFirst: {},
     other_f: [],
     other_s: [],
-    status: []
+    other_t:[],
+    status: [],
+    modalShow: false,
+    serviceQrUrl: '',
   },
 
   imageLoad: function(e) {
@@ -95,6 +98,26 @@ Page({
   //     otherSecond: others,
   //   })
   // },
+
+  // 客服微信二维码
+  showModal() {
+    let that = this;
+    util.request(api.Service, {
+    }, "GET").then(res => {
+      console.log(res);
+      that.setData({
+        serviceQrUrl: res.data,
+        modalShow: true
+      })
+    })
+  },
+
+  hideModal() {
+    this.setData({
+      modalShow: false
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -140,6 +163,12 @@ Page({
     util.request(api.MineUrlIconThird, "GET").then(function(res) {
       if (res.code === 0) {
         data.other_s = res.other_s
+        that.setData(data)
+      }
+    });
+    util.request(api.MineUrlIconFourth, "GET").then(function (res) {
+      if (res.code === 0) {
+        data.other_t = res.data
         that.setData(data)
       }
     });
@@ -241,9 +270,16 @@ Page({
       wx.navigateTo({
         url: '/pages/ucenter/antiCheating/antiCheating',
       })
-    } else if (type == 11) {
+    }else if(type == 10){
+      this.showModal()
+    }
+     else if (type == 11) {
       wx.navigateTo({
         url: '/pages/ucenter/companyProfile/companyProfile',
+      })
+    } else if (type == 17) {
+      wx.navigateTo({
+        url: '/pages/ucenter/questions/questions',
       })
     } else {
       wx.showToast({

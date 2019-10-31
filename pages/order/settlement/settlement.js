@@ -25,7 +25,9 @@ Page({
     userId: "",
     remark: "",
     goodsIdCount: [],
-    type:0
+    type:0,
+    shipping: 0,
+    freight: 0
   },
 
   /**
@@ -42,6 +44,14 @@ Page({
     this.setData({
       userId: userId
     })
+    let freight = wx.getStorageSync('freight');
+    let shipping = wx.getStorageSync('shipping');
+    if (freight && shipping) {
+      this.setData({
+        freight: freight,
+        shipping: shipping
+      });
+    }
     util.request(api.OrderProduct, {
       userId: this.data.userId
     }, "POST").then(function(res) {
@@ -77,13 +87,13 @@ Page({
       })
 
       // 判断运费
-      if (product.price >= 88) {
+      if (product.price >= this.data.shipping) {
         this.setData({
           expressPrice: 0
         })
       } else {
         this.setData({
-          expressPrice: 0
+          expressPrice: this.data.freight
         })
       }
       // 实际价格总计
@@ -121,7 +131,7 @@ Page({
         })
       } else {
         this.setData({
-          expressPrice: 0
+          expressPrice: this.data.freight
         })
       }
       // 实际价格总计
@@ -149,7 +159,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
 
   },
 

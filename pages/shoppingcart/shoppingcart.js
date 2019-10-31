@@ -16,7 +16,9 @@ Page({
     totalCount: 0,
     freightPrice: 0,
     cartList: [],
-    ids: []
+    ids: [],
+    shipping:0,
+    freight:0
   },
 
   /**
@@ -41,12 +43,19 @@ Page({
     var data = new Object();
     let isLogin = wx.getStorageSync('isLogin');
     let userId = wx.getStorageSync('userId');
-
+    let freight = wx.getStorageSync('freight');
+    let shipping = wx.getStorageSync('shipping');
     // 页面显示
     if (isLogin && userId) {
       this.setData({
         isLogin: isLogin,
         userId: userId
+      });
+    }
+    if (freight && shipping){
+      this.setData({
+        freight: freight,
+        shipping: shipping
       });
     }
     // 读取购物车缓存数据
@@ -158,19 +167,19 @@ Page({
     })
     this.judgeExpressFree();
   },
-  //是否满88包邮
+  //是否包邮
   judgeExpressFree: function() {
-    if (this.data.totalPrice >= 88) {
+    if (this.data.totalPrice >= this.data.shipping) {
       this.setData({
         isExpressFree: true,
         freightPrice: 0
       })
     } else {
-      let rest = 88 - this.data.totalPrice;
+      let rest = this.data.shipping - this.data.totalPrice;
       this.setData({
         isExpressFree: false,
         restExpressFree: rest,
-        freightPrice: 5
+        freightPrice: this.data.freight
       })
     }
   },

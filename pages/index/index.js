@@ -38,6 +38,12 @@ Page({
         data.details = res.goodsIndexVOList
         that.setData(data);
       }
+    });
+    util.request(api.IndexUrlFreight, "GET").then(function (res) {
+      if (res.code === 0) {
+        wx.setStorageSync('freight', res.map.yunfei)
+        wx.setStorageSync('shipping', res.map.baoyou)
+      }
     })
   },
   handleClick:function(e){

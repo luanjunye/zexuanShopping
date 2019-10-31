@@ -205,10 +205,14 @@
 
 .other .other_info_first{
   padding-bottom: 20rpx;
-
 }
 
 .other .other_info_second{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.other .other_info_third{
   padding-top: 20rpx;
 }
 
@@ -232,6 +236,40 @@
   font-size: 24rpx;
   color: #666;
   padding-top: 15rpx;
+}
+
+.myStatus_other_f {
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+  justify-content: flex-start;
+}
+
+.myStatus_other_f .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 120rpx;
+  height: auto;
+}
+
+.myStatus_other_f .status .text {
+  font-size: 24rpx;
+  color: #666;
+  padding-top: 15rpx;
+}
+
+/* 官方客服 */
+.modal-img{
+ width: 100%;
+}
+.modal-text{
+    display: block;
+    padding: 5px;
+    text-align: center;
+    font-size: 1rem;
 }
 
 /* 其他功能布局结束 */

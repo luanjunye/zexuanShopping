@@ -111,7 +111,8 @@
     <van-icon name="wap-home-o" color="#777" size="20px" />
   </view>
   <view class="b-wrap service-icon" hover-class="active">
-    <button open-type="contact" hover-class="none" class="wxbtn">
+  <!-- open-type="contact" -->
+    <button  bindtap="customerService" hover-class="none" class="wxbtn">
       <van-icon name="service-o" color="#777" size="20px" />
     </button>
   </view>
@@ -168,6 +169,11 @@
     <view style="width: 1rpx;"></view>
   </view>
 </van-popup>
+
+  <modal title='微信客服' hidden="{{!modalShow}}" bindcancel='hideModal' bindconfirm='hideModal'>
+    <image class="modal-img" src="{{serviceQrUrl}}" mode="aspectFit"></image>
+    <text class="modal-text">长按识别二维码</text>
+</modal>
 
 <van-toast id="van-toast" />
 </view>

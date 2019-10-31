@@ -21,7 +21,9 @@ Page({
     specificationList: {},
     userId: "",
     id: "",
-    count:0
+    count:0,
+    modalShow: false,
+    serviceQrUrl: ''
   },
 
   /**
@@ -261,6 +263,30 @@ Page({
       return true
     }
   },
+
+  // 客服微信二维码
+  showModal() {
+    let that = this;
+    util.request(api.Service, {
+    }, "GET").then(res => {
+      console.log(res);
+      that.setData({
+        serviceQrUrl: res.data,
+        modalShow: true
+      })
+    })
+  },
+
+  hideModal() {
+    this.setData({
+      modalShow: false
+    })
+  },
+
+  customerService:function(){
+    this.showModal()
+  },
+
   selectCart: function(){
     let that = this
     var data = new Object();

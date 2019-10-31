@@ -15,7 +15,8 @@
   background: #eee;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+  padding-left: 20rpx;
 }
 
 .service-policy .red-point {

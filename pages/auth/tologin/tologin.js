@@ -69,6 +69,13 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  toAgreement: function(){
+    wx.navigateTo({
+      url: '/pages/ucenter/agreement/agreement',
+    })
+  },
+
   getUserInfo: function () {
     wx.getUserInfo({
       success: function (res) {

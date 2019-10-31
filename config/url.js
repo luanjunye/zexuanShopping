@@ -7,6 +7,7 @@ module.exports = {
   IndexUrlBanner: API_BASE_URL + 'index/bannerlist', //首页banner图
   IndexUrlQuick: API_BASE_URL + 'index/categoryindex', //首页快捷频道
   IndexUrlOrder: API_BASE_URL + 'index/goodsindex', //首页全部商品
+  IndexUrlFreight: API_BASE_URL + 'login/yunfei',//满多少包邮和运费多少
   //二级商品页
   SecondIndexUrlCommodity: API_BASE_URL + 'goods/page', //二级商品页
   //个人中心
@@ -15,6 +16,7 @@ module.exports = {
   MineUrlIconFirst: API_BASE_URL + 'icon/first', //个人中心第一排icon
   MineUrlIconSecond: API_BASE_URL + 'icon/second', //个人中心第二排icon
   MineUrlIconThird: API_BASE_URL + 'icon/third', //个人中心第三排icon
+  MineUrlIconFourth: API_BASE_URL + 'icon/fourth', //个人中心第四排icon
   //购物车
   CartPage: API_BASE_URL + 'cart/page', //查询购物车
   CartSave: API_BASE_URL + 'cart/save/json', //添加购物车
@@ -42,10 +44,10 @@ module.exports = {
   OrderDetail: API_BASE_URL + 'order/info', //  订单详情
   OrderPackage: API_BASE_URL + 'order/selectcourier', //  订单快递查询 参数：shippingNo   GET
 
-  OrderRefundReason: API_BASE_URL + 'returnreason/list', //  订单退款原因 参数:type: 1, 2   GET
+  OrderRefundReason: API_BASE_URL + 'returnreason/list', //  订单退款原因 参数:type: 1, 2   GET 
 
   // 支付
-  // 'https://shop.zexuanchuanmei.com/freeter-api/'
+  // 'https://shop.zexuanchuanmei.com/freeter-api/' 
   Pay: API_BASE_URL + 'wx/wechatPay', // 微信支付请求接口  POST: orderId
   // 发票
   ApplicationInvoice: API_BASE_URL + 'invoice/save/json',//申请发票

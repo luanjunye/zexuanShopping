@@ -22,7 +22,40 @@ Page({
     show: false,
     areaList: areaData,
     edit: false,
-    userId:0
+    userId: 0
+  },
+
+  // 验证输入
+  verifyInput: function() {
+    let name = this.data.form.name;
+    let mobile = this.data.form.mobile;
+    let address = this.data.form.address;
+    let street = this.data.form.street;
+
+    let mailReg = new RegExp('w*@\w*\.(\w*|\w*\.\w*)', 'g');
+    if (name.trim().length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写姓名',
+      })
+    } else if (mobile.trim().length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写手机号',
+      })
+    } else if (address.trim().length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写正确地址',
+      })
+    } else if (street.trim().length < 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写正确地址',
+      })
+    } else {
+      return true;
+    }
   },
 
   /**
@@ -30,9 +63,9 @@ Page({
    */
   onLoad: function(e) {
     var userId = wx.getStorageSync('userId')
-    if(userId){
+    if (userId) {
       this.setData({
-        userId : userId
+        userId: userId
       })
     }
     wx.setNavigationBarTitle({
@@ -168,60 +201,60 @@ Page({
     })
   },
   saveAddress: function() {
-    let pages = getCurrentPages();
-    let prevPage = pages[pages.length - 2]; //上一个页面
-    let data = prevPage.data.addressList;
-    let that = this;
-    if (this.data.edit) {
-      // 编辑
-      data.forEach(function(v, index) {
-        if (v.id == that.data.form.id) {
-          data[index] = that.data.form;
-          util.request(api.AddressUpdate, {
-            id: that.data.form.id,
-            userId: that.data.userId,
-            name: that.data.form.name,
-            mobile: that.data.form.mobile,
-            address: that.data.form.address,
-            street: that.data.form.street,
-            tdefault: that.data.form.tdefault
-          }, "POST").then(function (res) {
-            if (res.code === 0) {
-              console.log(res)
-            }
-          });
-        }
+    if (this.verifyInput()) {
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2]; //上一个页面
+      let data = prevPage.data.addressList;
+      let that = this;
+      if (this.data.edit) {
+        // 编辑
+        data.forEach(function(v, index) {
+          if (v.id == that.data.form.id) {
+            data[index] = that.data.form;
+            util.request(api.AddressUpdate, {
+              id: that.data.form.id,
+              userId: that.data.userId,
+              name: that.data.form.name,
+              mobile: that.data.form.mobile,
+              address: that.data.form.address,
+              street: that.data.form.street,
+              tdefault: that.data.form.tdefault
+            }, "POST").then(function(res) {
+              if (res.code === 0) {
+                console.log(res)
+              }
+            });
+          }
+        })
+      } else {
+        // 添加
+        data.push(this.data.form)
+        util.request(api.AddressSave, {
+          userId: this.data.userId,
+          name: this.data.form.name,
+          mobile: this.data.form.mobile,
+          address: this.data.form.address,
+          street: this.data.form.street,
+          tdefault: this.data.form.tdefault
+        }, "POST").then(function(res) {
+          if (res.code === 0) {
+            console.log(res)
+          }
+        });
+      }
+      //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+      prevPage.setData({
+        addressList: data
       })
-    } else {
-      // 添加
-      data.push(this.data.form)
-      util.request(api.AddressSave, {
-        userId: this.data.userId,
-        name: this.data.form.name,
-        mobile: this.data.form.mobile,
-        address: this.data.form.address,
-        street: this.data.form.street,
-        tdefault: this.data.form.tdefault
-      }, "POST").then(function(res) {
-        if (res.code === 0) {
-          console.log(res)
-        }
+      Toast.success({
+        duration: 0,
+        message: '保存成功',
       });
+      setTimeout(function() {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 1000)
     }
-
-    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-    prevPage.setData({
-      addressList: data
-    })
-    Toast.success({
-      duration: 0,
-      message: '保存成功',
-    });
-    setTimeout(function() {
-      wx.navigateBack({
-        delta: 1
-      })
-    }, 1000)
-
   }
 })

@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    shipping:0,
+    freight:0
   },
 
   /**
@@ -26,7 +27,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let freight = wx.getStorageSync('freight');
+    let shipping = wx.getStorageSync('shipping');
+    if (freight && shipping) {
+      this.setData({
+        freight: freight,
+        shipping: shipping
+      });
+    }
   },
 
   /**
