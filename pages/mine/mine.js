@@ -21,6 +21,8 @@ Page({
     status: [],
     modalShow: false,
     serviceQrUrl: '',
+    mobileShow: false,
+    mobile:''
   },
 
   imageLoad: function(e) {
@@ -115,6 +117,25 @@ Page({
   hideModal() {
     this.setData({
       modalShow: false
+    })
+  },
+
+  // 联系我们
+  showMobile() {
+    let that = this;
+    util.request(api.IndexUrlMobile, {
+    }, "GET").then(res => {
+      console.log(res);
+      that.setData({
+        mobile: res.mobile,
+        mobileShow: true
+      })
+    })
+  },
+
+  hideMobile() {
+    this.setData({
+      mobileShow: false
     })
   },
 
@@ -277,7 +298,10 @@ Page({
       wx.navigateTo({
         url: '/pages/ucenter/companyProfile/companyProfile',
       })
-    } else if (type == 17) {
+    } else if (type == 13) {
+     this.showMobile()
+    }
+     else if (type == 17) {
       wx.navigateTo({
         url: '/pages/ucenter/questions/questions',
       })

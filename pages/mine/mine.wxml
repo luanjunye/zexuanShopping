@@ -112,6 +112,10 @@
     <text class="modal-text">长按识别二维码</text>
 </modal>
 
+  <modal title='联系我们' hidden="{{!mobileShow}}" bindcancel='hideMobile' bindconfirm='hideMobile'>
+    <text class="modal-text">{{mobile}}</text>
+</modal>
+
 </view>
 
 <!-- 其他功能结束 -->

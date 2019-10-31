@@ -1,5 +1,5 @@
-// const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
-const API_BASE_URL = 'https://shop.zexuanshipin.com/freeterapi/';
+const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
+//const API_BASE_URL = 'https://shop.zexuanshipin.com/freeterapi/';
 
 module.exports = {
   //首页
@@ -7,6 +7,7 @@ module.exports = {
   IndexUrlQuick: API_BASE_URL + 'index/categoryindex', //首页快捷频道
   IndexUrlOrder: API_BASE_URL + 'index/goodsindex', //首页全部商品
   IndexUrlFreight: API_BASE_URL + 'login/yunfei',//满多少包邮和运费多少
+  IndexUrlMobile: API_BASE_URL + 'login/mobile',//联系我们手机号
   //二级商品页wx2042f106a5b6f6f1
   SecondIndexUrlCommodity: API_BASE_URL + 'goods/page', //二级商品页
   //个人中心
