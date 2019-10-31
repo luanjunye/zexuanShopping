@@ -82,7 +82,7 @@
       <view class="order-info">
         <view class="section-title">订单信息</view>
           <view class="order-title-list"><text>订单编号:</text><text>{{order.orderNum}}</text></view>
-          <view class="order-title-list"><text>微信交易号:</text><text>--</text></view>
+          <!-- <view class="order-title-list"><text>微信交易号:</text><text>--</text></view> -->
           <view class="order-title-list"><text>创建时间:</text><text>{{timeCreate}}</text></view>
           <view class="order-title-list"><text>付款时间:</text><text>{{timePayed}}</text></view>
           <view class="order-title-list"><text>发货时间:</text><text>{{timeShipping}}</text></view>
