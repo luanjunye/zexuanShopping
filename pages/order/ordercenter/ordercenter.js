@@ -68,7 +68,7 @@ Page({
                   expressNo: item.expressNo,
                   orderStauts: item.orderStatus,
                   createTime: item.createTime,
-                  invoice: item.Invoice,
+                  invoice: item.invoice,
       
                   // payType: '微信',
                   // actualPrice: 88.00,
