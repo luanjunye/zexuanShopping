@@ -92,5 +92,5 @@
 
   <!-- 订单列表布局结束 -->
 
-  <!-- <van-dialog confirm-button-color="#b4282d" id="van-dialog" /> -->
+   <van-dialog confirm-button-color="#b4282d" id="van-dialog" />
 </view>
