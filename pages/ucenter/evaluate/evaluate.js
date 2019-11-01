@@ -7,47 +7,48 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order: {
-      id: '1',
-      orderSn: '20180320',
-      createTime: '2019-08-18 18:35',
-      payType: '微信',
-      productList: [{
-        id: '1',
-        picUrl: 'https://yanxuan.nosdn.127.net/1979054e3a1c8409f10191242165e674.png',
-        title: '常温纯牛奶 250毫升*12盒*2提',
-        specDesc: '纯牛奶 12盒*2提',
-        price: 88.00,
-        count: 1,
-        status: 1,
-        rate: 5,
-        rateTxt: "非常满意",
-        comment: "",
-        commentStatus: 0
-      }, {
-        id: '3',
-        picUrl: 'https://yanxuan.nosdn.127.net/87eb525e1a7998b7a88f45a86b912e01.jpg',
-        title: '有道口袋打印机',
-        specDesc: '口袋打印机',
-        price: 398.00,
-        count: 1,
-        status: 5,
-        rate: 5,
-        rateTxt: "非常满意",
-        comment: "",
-        commentStatus: 0
-      }],
-      totalPrice: 586.00,
-      expressPrice: 0.00,
-      actualPrice: 586.00,
-      orderStatus: 1
-    }
+    productList: [],
+    // order: {
+    //   id: '1',
+    //   orderSn: '20180320',
+    //   createTime: '2019-08-18 18:35',
+    //   payType: '微信',
+    //   productList: [{
+    //     id: '1',
+    //     picUrl: 'https://yanxuan.nosdn.127.net/1979054e3a1c8409f10191242165e674.png',
+    //     title: '常温纯牛奶 250毫升*12盒*2提',
+    //     specDesc: '纯牛奶 12盒*2提',
+    //     price: 88.00,
+    //     count: 1,
+    //     status: 1,
+    //     rate: 5,
+    //     rateTxt: "非常满意",
+    //     comment: "",
+    //     commentStatus: 0
+    //   }, {
+    //     id: '3',
+    //     picUrl: 'https://yanxuan.nosdn.127.net/87eb525e1a7998b7a88f45a86b912e01.jpg',
+    //     title: '有道口袋打印机',
+    //     specDesc: '口袋打印机',
+    //     price: 398.00,
+    //     count: 1,
+    //     status: 5,
+    //     rate: 5,
+    //     rateTxt: "非常满意",
+    //     comment: "",
+    //     commentStatus: 0
+    //   }],
+    //   totalPrice: 586.00,
+    //   expressPrice: 0.00,
+    //   actualPrice: 586.00,
+    //   orderStatus: 1
+    // }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.setNavigationBarTitle({
       title: '评价',
     })
@@ -56,70 +57,87 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     let data = wx.getStorageSync("currOrder");
     console.log(data)
+    let list = []
+    
     // 初始化
-    this.data.productList.forEach(v => {
-      v.rate = 5;
-      v.rateTxt = "非常满意";
-      v.comment = "";
-      v.commentStatus = 0;
+   data.productList.forEach(v => {
+      list.push({
+        id: v.id,
+        picUrl: v.picUrl,
+        rate: 5,
+        rateTxt: "非常满意",
+        comment: "",
+        commentStatus: 0,
+        title: v.title,
+        specDesc: v.specDesc,
+        evaluate:[]
+      })
+      // v.rate = 5;
+      // v.rateTxt = "非常满意";
+      // v.comment = "";
+      // v.commentStatus = 0;
     })
+    // this.setData({
+    //   order: data
+    // })
     this.setData({
-      order: data
+      productList: list
     })
+    console.log(this.data.productList)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  changeInput: function (e) {
+  changeInput: function(e) {
     let index = e.currentTarget.dataset.index;
     let v = e.detail;
     this.setData({
-      [`order.productList[${index}].comment`]: v
+      [`productList[${index}].comment`]: v
     });
   },
-  changeRate: function (e) {
+  changeRate: function(e) {
     let index = e.currentTarget.dataset.index;
     let v = e.detail.index;
     let rateTxt = "非常满意";
@@ -133,12 +151,12 @@ Page({
       rateTxt = "满意"
     }
     this.setData({
-      [`order.productList[${index}].rate`]: v,
-      [`order.productList[${index}].rateTxt`]: rateTxt
+      [`productList[${index}].rate`]: v,
+      [`productList[${index}].rateTxt`]: rateTxt
     });
 
   },
-  post: function (e) {
+  post: function(e) {
     let index = e.currentTarget.dataset.index;
     let data = this.data.order.productList[index].comment;
     var time = util.formatTime(new Date());
@@ -148,8 +166,8 @@ Page({
       return;
     }
     this.setData({
-      [`order.productList[${index}].commentStatus`]: 1,
-      [`order.productList[${index}].commentTime`]: time
+      [`productList[${index}].commentStatus`]: 1,
+      [`productList[${index}].commentTime`]: time
     });
     Toast("评论成功");
   }

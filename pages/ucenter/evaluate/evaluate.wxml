@@ -1,5 +1,5 @@
 <!--pages/ucenter/evaluate/evaluate.wxml-->
-<view class="wrap" wx:for="{{order.productList}}" wx:key="{{index}}">
+<view class="wrap" wx:for="{{productList}}" wx:key="{{index}}">
   <view class="product">
     <image class="img" src="{{item.picUrl}}"></image>
     <view class="info">

@@ -1,5 +1,5 @@
-//const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
-const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
+const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
+// const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
 
 
 module.exports = {

@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/order/orderRefundMoney/orderRefundMoney",
-    
     "pages/index/index",
     "pages/ucenter/questions/questions",
     "pages/ucenter/agreement/agreement",
-
+    "pages/order/orderRefundMoney/orderRefundMoney",
     "pages/ucenter/invoice/invoice",
     "pages/product/product",
     "pages/order/ordercenter/ordercenter",
