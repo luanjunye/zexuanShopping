@@ -1,6 +1,8 @@
 // pages/ucenter/evaluate/evaluate.js
 import Toast from '../../../lib/vant-weapp/toast/toast';
 var util = require('../../../utils/util.js')
+const uploadImage = require('./../../../utils/fileUpload.js');
+const maxCountPics = 5;
 Page({
 
   /**
@@ -43,6 +45,7 @@ Page({
     //   actualPrice: 586.00,
     //   orderStatus: 1
     // }
+    returnEvidencePic: [],
   },
 
   /**
@@ -59,6 +62,92 @@ Page({
    */
   onReady: function() {
 
+  },
+
+  // 删除当前图片
+  removeCurrentPic(e) {
+    let index = e.currentTarget.dataset.index;
+    let tmpPicArray = this.data.returnEvidencePic;
+    tmpPicArray.splice(index, 1);
+    this.setData({
+      returnEvidencePic: tmpPicArray
+    })
+  },
+
+  // 预览图片
+  showCurrentPic(e) {
+    let index = e.currentTarget.dataset.index;
+    let that = this;
+    if (that.data.returnEvidencePic.length < 1) {
+      return
+    } else {
+      wx.previewImage({
+        urls: [that.data.returnEvidencePic[index]],
+      })
+    }
+  },
+
+
+  // 图片选择
+  imgPickerTaped() {
+    let that = this;
+    wx.chooseImage({
+      count: 5,
+      compressed: ['compressed'],
+      success: function (res) {
+        let hasReachMaxCountOfUploadPic = false; // 是否达到最大上传数量，在上传最后提示用
+
+        // 新旧图片数量
+        let oldPicCount = that.data.returnEvidencePic.length;
+        let newPicCount = res.tempFilePaths.length;
+        console.log(oldPicCount, newPicCount);
+
+        if (oldPicCount + newPicCount > maxCountPics) {
+          hasReachMaxCountOfUploadPic = true
+          res.tempFilePaths.splice(maxCountPics - oldPicCount, oldPicCount + newPicCount - maxCountPics);
+        }
+
+        console.log(hasReachMaxCountOfUploadPic)
+
+        // 路径参数
+        let tempFilePaths = that.data.returnEvidencePic;
+        let nowTime = util.formateDate(new Date(), 'yyyy-MM-dd');
+        let evidenceFinalUrls = [];
+
+        res.tempFilePaths.forEach((item, index) => {
+          //显示消息提示框
+          wx.showLoading({
+            title: '上传中' + (index + 1) + '/' + tempFilePaths.length,
+            mask: true
+          })
+          //上传图片
+          uploadImage(item, 'images/' + nowTime + '/',
+            function (result) {
+              let tempLastPicArray = that.data.returnEvidencePic;
+              tempLastPicArray.push(result);
+              that.setData({
+                returnEvidencePic: tempLastPicArray
+              })
+              console.log("======上传成功图片地址为：", result);
+              wx.hideLoading();
+              console.log(index);
+
+              // 每次上传完成后，查看是否为最后一张要上传的图，如果是，就显示达到最大上传数量的提示，不能写到结尾，因为异步
+              if (hasReachMaxCountOfUploadPic) {
+                wx.showToast({
+                  icon: 'none',
+                  title: `最多上传${maxCountPics}张凭证`,
+                });
+              }
+            },
+            function (result) {
+              console.log("======上传失败======", result);
+              wx.hideLoading()
+            }
+          )
+        })
+      }
+    })
   },
 
   /**
