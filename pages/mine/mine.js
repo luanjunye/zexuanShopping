@@ -17,12 +17,12 @@ Page({
     // otherFirst: {},
     other_f: [],
     other_s: [],
-    other_t:[],
+    other_t: [],
     status: [],
     modalShow: false,
     serviceQrUrl: '',
     mobileShow: false,
-    mobile:''
+    mobile: ''
   },
 
   imageLoad: function(e) {
@@ -104,8 +104,7 @@ Page({
   // 客服微信二维码
   showModal() {
     let that = this;
-    util.request(api.Service, {
-    }, "GET").then(res => {
+    util.request(api.Service, {}, "GET").then(res => {
       console.log(res);
       that.setData({
         serviceQrUrl: res.data,
@@ -123,8 +122,7 @@ Page({
   // 联系我们
   showMobile() {
     let that = this;
-    util.request(api.IndexUrlMobile, {
-    }, "GET").then(res => {
+    util.request(api.IndexUrlMobile, {}, "GET").then(res => {
       console.log(res);
       that.setData({
         mobile: res.mobile,
@@ -187,7 +185,7 @@ Page({
         that.setData(data)
       }
     });
-    util.request(api.MineUrlIconFourth, "GET").then(function (res) {
+    util.request(api.MineUrlIconFourth, "GET").then(function(res) {
       if (res.code === 0) {
         data.other_t = res.data
         that.setData(data)
@@ -291,17 +289,15 @@ Page({
       wx.navigateTo({
         url: '/pages/ucenter/antiCheating/antiCheating',
       })
-    }else if(type == 10){
+    } else if (type == 10) {
       this.showModal()
-    }
-     else if (type == 11) {
+    } else if (type == 11) {
       wx.navigateTo({
         url: '/pages/ucenter/companyProfile/companyProfile',
       })
     } else if (type == 13) {
-     this.showMobile()
-    }
-     else if (type == 17) {
+      this.showMobile()
+    } else if (type == 17) {
       wx.navigateTo({
         url: '/pages/ucenter/questions/questions',
       })

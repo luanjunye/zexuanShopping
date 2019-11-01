@@ -64,7 +64,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //let data = wx.getStorageSync("currOrder");
+    let data = wx.getStorageSync("currOrder");
+    console.log(data)
     // 初始化
     this.data.productList.forEach(v => {
       v.rate = 5;

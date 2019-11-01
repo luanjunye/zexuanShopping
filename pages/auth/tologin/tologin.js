@@ -91,6 +91,7 @@ Page({
     // 判断是否授权
     wx.getSetting({
       success(res) {
+        console.log(res.authSetting['scope.userInfo'])
         if (res.authSetting['scope.userInfo']) {
           // // 获取用户信息
           //that.getUserInfo()

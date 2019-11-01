@@ -214,6 +214,7 @@
 
 .other .other_info_third{
   padding-top: 20rpx;
+  padding-bottom: 40rpx;
 }
 
 .myStatus_other {

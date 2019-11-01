@@ -45,6 +45,8 @@ Page({
         wx.setStorageSync('shipping', res.map.baoyou)
       }
     })
+
+    wx.stopPullDownRefresh() // 停止下拉刷新：恢复
   },
   handleClick:function(e){
     let data = e.currentTarget.dataset.value;
@@ -54,6 +56,10 @@ Page({
       })
     }
   },
+  onPullDownRefresh: function () {
+    this.getIndexData();
+  },
+
   gotoProduct:function(e){
     let data = e.currentTarget.dataset.value;
     if (data.id){

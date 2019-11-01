@@ -223,6 +223,7 @@ Page({
     })
   },
   addToCart: function() {
+    let that = this
     if (this.checkLogin()) {
       let cartList = this.data.cartList;
       cartList.push({
@@ -244,13 +245,14 @@ Page({
       }, "POST").then(function(res) {
         if (res.code === 0) {
           console.log(res)
+          that.selectCart()
         }
       });
       wx.setStorageSync("cartList", cartList)
       this.setData({
         cartList: cartList
       });
-      this.selectCart()
+   
       Toast("加入购物车成功")
     }
   },
