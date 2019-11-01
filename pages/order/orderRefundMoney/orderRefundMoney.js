@@ -2,6 +2,9 @@
 
 const util = require('./../../../utils/util.js');
 const api = require('./../../../config/url.js');
+const uploadImage = require('./../../../utils/fileUpload.js');
+
+const maxCountPics = 5;
 
 Page({
   data: {
@@ -48,34 +51,60 @@ Page({
   imgPickerTaped() {
     let that = this;
     wx.chooseImage({
-      count: 9,
+      count: 5,
+      compressed: ['compressed'],
       success: function(res) {
-        if (res.tempFilePaths.length > 0) {
-          let choosenPicPaths = [];
-          res.tempFilePaths.forEach(item => {
-            choosenPicPaths.push(item)
-          })
+        let hasReachMaxCountOfUploadPic = false; // 是否达到最大上传数量，在上传最后提示用
 
-          // 组合数组
-          let finalPicArray = that.data.returnEvidencePic.concat(choosenPicPaths);
+        // 新旧图片数量
+        let oldPicCount = that.data.returnEvidencePic.length;
+        let newPicCount = res.tempFilePaths.length;
+        console.log(oldPicCount, newPicCount);
 
-          // 新旧图片数量
-          let oldPicCount = that.data.returnEvidencePic.length;
-          let newPicCount = res.tempFilePaths.length;
-
-          if (oldPicCount + newPicCount > 5) {
-            wx.showToast({
-              icon: 'none',
-              title: '最多上传5张凭证',
-            });
-            finalPicArray.splice(4, finalPicArray.length - 5);
-          } else {}
-
-          // 绑定数据
-          that.setData({
-            returnEvidencePic: finalPicArray
-          })
+        if (oldPicCount + newPicCount > maxCountPics) {
+          hasReachMaxCountOfUploadPic = true
+          res.tempFilePaths.splice(maxCountPics - oldPicCount, oldPicCount + newPicCount - maxCountPics);
         }
+
+        console.log(hasReachMaxCountOfUploadPic)
+
+        // 路径参数
+        let tempFilePaths = that.data.returnEvidencePic;
+        let nowTime = util.formateDate(new Date(), 'yyyy-MM-dd');
+        let evidenceFinalUrls = [];
+
+        res.tempFilePaths.forEach((item, index) => {
+          //显示消息提示框
+          wx.showLoading({
+            title: '上传中' + (index + 1) + '/' + tempFilePaths.length,
+            mask: true
+          })
+          //上传图片
+          uploadImage(item, 'images/' + nowTime + '/',
+            function(result) {
+              let tempLastPicArray = that.data.returnEvidencePic;
+              tempLastPicArray.push(result);
+              that.setData({
+                returnEvidencePic: tempLastPicArray
+              })
+              console.log("======上传成功图片地址为：", result);
+              wx.hideLoading();
+              console.log(index);
+
+              // 每次上传完成后，查看是否为最后一张要上传的图，如果是，就显示达到最大上传数量的提示，不能写到结尾，因为异步
+              if (hasReachMaxCountOfUploadPic){
+                wx.showToast({
+                  icon: 'none',
+                  title: `最多上传${maxCountPics}张凭证`,
+                });
+              }
+            },
+            function(result) {
+              console.log("======上传失败======", result);
+              wx.hideLoading()
+            }
+          )
+        })
       }
     })
   },
@@ -122,11 +151,11 @@ Page({
       };
 
       util.request(api.OrderRefund, requestData, "POST").then(function(res) {
-        if(res.code === 0){
+        if (res.code === 0) {
           wx.showToast({
             title: '成功提交申请'
           })
-          setTimeout(function () {
+          setTimeout(function() {
             wx.switchTab({
               url: '/pages/order/ordercenter/ordercenter',
             })

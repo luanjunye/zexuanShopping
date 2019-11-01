@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/order/orderRefundMoney/orderRefundMoney",
+    
     "pages/index/index",
     "pages/ucenter/questions/questions",
     "pages/ucenter/agreement/agreement",
@@ -8,7 +10,6 @@
     "pages/product/product",
     "pages/order/ordercenter/ordercenter",
     "pages/order/orderRefundExpress/orderRefundExpress",
-    "pages/order/orderRefundMoney/orderRefundMoney",
     "pages/order/orderRefund/orderRefund",
     "pages/order/orderInfo/orderInfo",
     "pages/ucenter/antiCheating/antiCheating",
