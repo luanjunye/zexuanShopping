@@ -1,5 +1,5 @@
-// const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
-const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
+const API_BASE_URL = 'http://192.168.0.176:8081/freeterapi/';
+// const API_BASE_URL = 'https://shop.zexuanchuanmei.com/freeterapi/';
 
 
 module.exports = {
@@ -30,6 +30,7 @@ module.exports = {
   //商品详情页
   CommodityDetails: API_BASE_URL + 'goods/info', //商品详情页
   SpecificationsDetails: API_BASE_URL + 'goods/selectspecification',//规格详情
+  AddEvaluate: API_BASE_URL + 'appraise/save/json',//新增评价
   EvaluateList: API_BASE_URL + 'goods/goodsappraise',//评价列表
   EvaluateListInfo: API_BASE_URL + 'goods/selectAppraise',//评价类型数量
   ProductInCart: API_BASE_URL + 'goods/goodscount',//查询对应商品在购物车的数量
