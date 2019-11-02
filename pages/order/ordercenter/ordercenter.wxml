@@ -50,7 +50,11 @@
       </view>
       <view class="product">
         <view class="product-remark" wx:for="{{item.productList}}" wx:for-item="product" wx:key='{{index}}' bindtap="toOrderDetail" data-value='{{item}}'>
+<<<<<<< HEAD
           <image class="img" src="{{product.picUrl}}" mode="aspectFit"></image>
+=======
+          <image mode="aspectFit" class="img" src="{{product.picUrl}}"></image>
+>>>>>>> refs/remotes/origin/master
           <view class="product-info">
             <view class="status">
               <text class="title">{{product.title}}</text>

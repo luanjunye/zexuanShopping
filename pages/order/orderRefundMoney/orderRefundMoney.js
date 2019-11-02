@@ -63,7 +63,7 @@ Page({
 
         if (oldPicCount + newPicCount > maxCountPics) {
           hasReachMaxCountOfUploadPic = true
-          res.tempFilePaths.splice(maxCountPics - oldPicCount, oldPicCount + newPicCount - maxCountPics);
+          res.tempFilePaths.splice(maxCountPics - oldPicCount, oldPicCount + newPicCount - maxCountPics); // 去掉第二次选择多于5张的图片
         }
 
         console.log(hasReachMaxCountOfUploadPic)
