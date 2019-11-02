@@ -186,7 +186,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let v = e.detail;
     this.setData({
-      [`productList[${index}].comment`]: v
+      [`productList[${index}].selectAppraiseModelVOList.comment`]: v
     });
   },
   changeRate: function(e) {
@@ -203,8 +203,8 @@ Page({
       rateTxt = "满意"
     }
     this.setData({
-      [`productList[${index}].rate`]: v,
-      [`productList[${index}].rateTxt`]: rateTxt
+      [`productList[${index}].selectAppraiseModelVOList.rate`]: v,
+      [`productList[${index}].selectAppraiseModelVOList.rateTxt`]: rateTxt
     });
 
   },
@@ -220,8 +220,8 @@ Page({
       return;
     }
     this.setData({
-      [`productList[${index}].commentStatus`]: 1,
-      [`productList[${index}].commentTime`]: time
+      [`productList[${index}].selectAppraiseModelVOList.commentStatus`]: 1,
+      [`productList[${index}].selectAppraiseModelVOList.commentTime`]: time
     });
     util.request(api.AddEvaluate, {
       buyer: this.data.userId,
