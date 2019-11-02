@@ -48,7 +48,6 @@
   color: #999;
 }
 
-
 .orders {
   padding: 90rpx 0 10px;
 }
@@ -63,7 +62,7 @@
   background: #fff;
 }
 
-.order .order-title  {
+.order .order-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,15 +77,15 @@
   align-items: center;
 }
 
-.order .order-title .order-title-top .tlabel{
+.order .order-title .order-title-top .tlabel {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 3rpx;
 }
 
-.order .order-title .order-title-top .order-text{
- margin-left: 15rpx;
+.order .order-title .order-title-top .order-text {
+  margin-left: 15rpx;
 }
 
 .order .order-title .status {
@@ -95,25 +94,25 @@
 }
 
 .product {
-   padding-top: 20rpx;
+  padding-top: 20rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.product .product-remark{
+.product .product-remark {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-    width: 100%;
+  width: 100%;
   padding-bottom: 20rpx;
-    border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
 }
 
 .product .product-remark .img {
-  height: 145rpx;
+  height: 115rpx;
   width: 145rpx;
-   background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 
 .product .product-remark .product-info {
@@ -126,14 +125,14 @@
 
 .product .product-remark .product-info .status {
   display: flex;
-   width: 100%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 }
 
 .product .product-remark .product-info .status_center {
   display: flex;
-   width: 100%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-top: 5rpx;
@@ -184,35 +183,34 @@
   padding-left: 10rpx;
 }
 
-
-.product .total{
+.product .total {
   padding-top: 20rpx;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.product .total .total-foot{
-display: flex;
-align-items: center;
+.product .total .total-foot {
+  display: flex;
+  align-items: center;
 }
 
-.product .total .total-foot .total-title{
-font-size: 24rpx;
+.product .total .total-foot .total-title {
+  font-size: 24rpx;
 }
 
-.product .total .total-foot .total-money{
-font-size: 26rpx;
-color:#FFA42F;
+.product .total .total-foot .total-money {
+  font-size: 26rpx;
+  color: #ffa42f;
 }
 
-.foot{
+.foot {
   padding-top: 20rpx;
   display: flex;
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 
-.foot .btn{
+.foot .btn {
   margin-left: 20rpx;
 }

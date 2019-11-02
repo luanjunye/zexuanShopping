@@ -150,8 +150,8 @@
 
 .menu image {
   display: block;
-  width: 58rpx;
-  height: 58rpx;
+  width: 56rpx;
+  height: 50rpx;
   margin: 0 auto;
   margin-bottom: 12rpx;
 }

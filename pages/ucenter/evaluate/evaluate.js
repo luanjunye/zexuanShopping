@@ -1,6 +1,7 @@
 // pages/ucenter/evaluate/evaluate.js
 import Toast from '../../../lib/vant-weapp/toast/toast';
 var util = require('../../../utils/util.js')
+const api = require('../../../config/url.js');
 const uploadImage = require('./../../../utils/fileUpload.js');
 const maxCountPics = 5;
 Page({
@@ -9,43 +10,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    rateText: [
+      "很差", "差", "一般吧", "满意", "非常满意"
+    ],
     productList: [],
-    // order: {
-    //   id: '1',
-    //   orderSn: '20180320',
-    //   createTime: '2019-08-18 18:35',
-    //   payType: '微信',
-    //   productList: [{
-    //     id: '1',
-    //     picUrl: 'https://yanxuan.nosdn.127.net/1979054e3a1c8409f10191242165e674.png',
-    //     title: '常温纯牛奶 250毫升*12盒*2提',
-    //     specDesc: '纯牛奶 12盒*2提',
-    //     price: 88.00,
-    //     count: 1,
-    //     status: 1,
-    //     rate: 5,
-    //     rateTxt: "非常满意",
-    //     comment: "",
-    //     commentStatus: 0
-    //   }, {
-    //     id: '3',
-    //     picUrl: 'https://yanxuan.nosdn.127.net/87eb525e1a7998b7a88f45a86b912e01.jpg',
-    //     title: '有道口袋打印机',
-    //     specDesc: '口袋打印机',
-    //     price: 398.00,
-    //     count: 1,
-    //     status: 5,
-    //     rate: 5,
-    //     rateTxt: "非常满意",
-    //     comment: "",
-    //     commentStatus: 0
-    //   }],
-    //   totalPrice: 586.00,
-    //   expressPrice: 0.00,
-    //   actualPrice: 586.00,
-    //   orderStatus: 1
-    // }
     returnEvidencePic: [],
+    order: [],
+    userId: '',
+    selectAppraiseModelVOS: []
   },
 
   /**
@@ -55,6 +27,12 @@ Page({
     wx.setNavigationBarTitle({
       title: '评价',
     })
+    let userId = wx.getStorageSync('userId')
+    if (userId) {
+      this.setData({
+        userId: userId
+      })
+    }
   },
 
   /**
@@ -94,7 +72,7 @@ Page({
     wx.chooseImage({
       count: 5,
       compressed: ['compressed'],
-      success: function (res) {
+      success: function(res) {
         let hasReachMaxCountOfUploadPic = false; // 是否达到最大上传数量，在上传最后提示用
 
         // 新旧图片数量
@@ -122,7 +100,7 @@ Page({
           })
           //上传图片
           uploadImage(item, 'images/' + nowTime + '/',
-            function (result) {
+            function(result) {
               let tempLastPicArray = that.data.returnEvidencePic;
               tempLastPicArray.push(result);
               that.setData({
@@ -140,7 +118,7 @@ Page({
                 });
               }
             },
-            function (result) {
+            function(result) {
               console.log("======上传失败======", result);
               wx.hideLoading()
             }
@@ -157,32 +135,17 @@ Page({
     let data = wx.getStorageSync("currOrder");
     console.log(data)
     let list = []
-    
-    // 初始化
-   data.productList.forEach(v => {
-      list.push({
-        id: v.id,
-        picUrl: v.picUrl,
-        rate: 5,
-        rateTxt: "非常满意",
-        comment: "",
-        commentStatus: 0,
-        title: v.title,
-        specDesc: v.specDesc,
-        evaluate:[]
-      })
-      // v.rate = 5;
-      // v.rateTxt = "非常满意";
-      // v.comment = "";
-      // v.commentStatus = 0;
-    })
-    // this.setData({
-    //   order: data
-    // })
-    this.setData({
-      productList: list
-    })
-    console.log(this.data.productList)
+    let that = this
+
+    util.request(api.OrderDetail, {
+      id: data.id,
+    }, "POST").then(function(res) {
+      if (res.code === 0) {
+       that.setData({
+         productList:res.orderInfoVO.list
+       })
+      }
+    });
   },
 
   /**
@@ -247,7 +210,9 @@ Page({
   },
   post: function(e) {
     let index = e.currentTarget.dataset.index;
-    let data = this.data.order.productList[index].comment;
+    let data = this.data.productList[index].comment;
+    let rate = this.data.productList[index].rate;
+    let goodsId = this.data.productList[index].id;
     var time = util.formatTime(new Date());
     console.log(time)
     if (!data) {
@@ -257,6 +222,18 @@ Page({
     this.setData({
       [`productList[${index}].commentStatus`]: 1,
       [`productList[${index}].commentTime`]: time
+    });
+    util.request(api.AddEvaluate, {
+      buyer: this.data.userId,
+      content: data,
+      starClass: rate,
+      goodsId: goodsId,
+      orderId: this.data.order.id,
+      url: []
+    }, "POST").then(function(res) {
+      if (res.code === 0) {
+        console.log(res)
+      }
     });
     Toast("评论成功");
   }

@@ -248,7 +248,9 @@ Page({
                 }, 1500);
               },
               fail(res) {
-                console.log('fail: ', res)
+                wx.switchTab({
+                  url: '/pages/order/ordercenter/ordercenter',
+                })
               }
             })
           }
