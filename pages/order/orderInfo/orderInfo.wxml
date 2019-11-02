@@ -2,8 +2,8 @@
 <view class="ucenter">
 
 <modal title='微信客服' hidden="{{!modalShow}}" bindcancel='hideModal' bindconfirm='hideModal'>
-    <image class="modal-img" src="{{serviceQrUrl}}" mode="aspectFit"></image>
-    <text class="modal-text">长按识别二维码</text>
+    <image bindtap="previewQr" class="modal-img" src="{{serviceQrUrl}}" mode="aspectFit"></image>
+    <text class="modal-text">请截图保存客服二维码</text>
 </modal>
 
   <view class="orderContainer">
@@ -92,6 +92,7 @@
 
   <view class="cart-bottom">
     <view class="cart_bottom_left" bindtap="showModal">
+    <!-- <button open-type="contact">打开客服</button> -->
       <image class="customer_icon" src="/assets/customer.png" />
       <text class="customer-text">1对1客服</text>
     </view>

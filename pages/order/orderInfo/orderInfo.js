@@ -75,6 +75,12 @@ Page({
     })
   },
 
+  previewQr(){
+    wx.previewImage({
+      urls: [this.data.serviceQrUrl],
+    })
+  },
+
 
 
   // 请求订单数据
