@@ -130,7 +130,7 @@
 .van-button--small {
   min-width: 60px;
   height: 30px;
-  padding: 0 8px;
+  padding: 0 3px;
   font-size: 12px;
   line-height: 28px;
 }

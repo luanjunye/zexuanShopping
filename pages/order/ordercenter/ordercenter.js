@@ -92,7 +92,6 @@ Page({
 
   // 载入筛选状态后的订单数据
   loadData(shippingStatus) {
-    console.log('insideLoadData: ', shippingStatus);
     this.setData({
       loading: true
     });

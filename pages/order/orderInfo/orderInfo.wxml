@@ -65,7 +65,7 @@
 
         <van-button wx:if='{{order.orderStatus === 3}}' plain type="default" size="small" class="btn">商品已发货</van-button>
 
-        <van-button wx:if='{{!order.returnStatus && order.shoppingStatus !== 1 && order.orderStatus !== 3}}' plain type="default" size="small" class="btn" bindtap="toReturnPage">退款</van-button>
+        <van-button wx:if='{{!order.returnStatus && order.shoppingStatus !== 1 && order.shoppingStatus !== 3}}' plain type="default" size="small" class="btn" bindtap="toReturnPage">退款</van-button>
         <van-button wx:if='{{order.returnStatus === 1}}' plain type="default" size="small" class="btn">退款申请审核中</van-button>
         <van-button wx:if='{{order.returnStatus === 3}}' plain type="default" size="small" class="btn">退货中</van-button>
         <van-button wx:if='{{order.returnStatus === 4}}' plain type="default" size="small" class="btn" >退货完成</van-button>
@@ -109,7 +109,7 @@
       <text class="customer-text">1对1客服</text>
     </view>
     <view class="cart_bottom_right order-info-btn-group">
-      <button wx:if='{{order.shippingNo}}' plain type="default" size="small" class="cart_btn" bindtap="goToShippingInfoPage">查看物流</button>
+      <button wx:if='{{order.shippingNo && !order.returnStatus}}' plain type="default" size="small" class="cart_btn" bindtap="goToShippingInfoPage">查看物流</button>
       <button wx:if='{{order.expressNo}}' plain type="default" size="small" class="cart_btn" bindtap="goToRefundDetail">查看退货详情</button>
       <button wx:if='{{order.shippingStatus === 3}}' plain type="default" size="small" class="cart_btn" bindtap="toReceiving">确认收货</button>
       <button wx:if='{{order.returnStatus === 2}}' plain type="default" size="small" class="cart_btn" bindtap="packagePanelShow">去发货</button>

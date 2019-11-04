@@ -90,7 +90,6 @@ Page({
     util.request(api.OrderDetail, {
       id: currentOrder.id
     }, "POST").then(res => {
-      console.log(typeof res.code);
       if (res.code === 0) {
         let tempOrder = res.orderInfoVO;
         // TODO: 修正时间在 safari 上的转换错误
@@ -111,45 +110,9 @@ Page({
           order: tempOrder
         });
 
+        console.log('[退款]按钮是否显示：', !tempOrder.returnStatus && tempOrder.shoppingStatus !== 1 && tempOrder.shoppingStatus !== 3)
+
         console.log('currentOrder: ', tempOrder);
-
-        // 获取快递信息
-        // that.getPackageInfo(tempOrder.shippingNo)
-
-        /*
-        let data = {
-          "userName": "邴新科",
-          "mobile": null,
-          "address": "山东省济南市",
-          "street": "高新万达",
-          "shopName": "屈蜂堂官方商城",
-          "label": "自营",
-          "list": [{
-              "name": "安守本分卡号",
-              "type": "",
-              "money": 200,
-              "num": 20,
-              "url": "https://resource.smartisan.com/resource/fda5c3e61a71c0f883bbd6c76516cd85.png"
-            },
-            {
-              "name": null,
-              "type": "",
-              "money": 20,
-              "num": 20,
-              "url": null
-            }
-          ],
-          "remark": "",
-          "payMoney": 5000,
-          "actualPrice": 5000,
-          "freight": 0,
-          "orderNum": "2019101909340001",
-          "createTime": "2019-10-19T01:37:47.000+0000",
-          "payTime": "2019-10-21T08:07:42.000+0000",
-          "deliveryTime": "2019-10-21T08:07:44.000+0000",
-          "shippingNo": "9830000829665"
-        }
-        */
       }
       wx.stopPullDownRefresh(); // 恢复下拉刷新
     })

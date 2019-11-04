@@ -1,6 +1,6 @@
 // pages/ucenter/evaluate/evaluate.js
 import Toast from '../../../lib/vant-weapp/toast/toast';
-var util = require('../../../utils/util.js')
+var util = require('../../../utils/util.js');
 const api = require('../../../config/url.js');
 const uploadImage = require('./../../../utils/fileUpload.js');
 const maxCountPics = 5;
@@ -61,7 +61,7 @@ Page({
               rate: item.selectAppraiseModelVOList.rate ? item.selectAppraiseModelVOList.rate : 5,
             }
           })
-        })
+        });
 
         // that.setData({
         //   productList: res.orderInfoVO.list
@@ -87,7 +87,7 @@ Page({
   removeCurrentPic(e) {
     let productIndex = e.currentTarget.dataset.prodcutindex;
     let index = e.currentTarget.dataset.index; // 商品 Index
-    console.log(`current pic: product: ${productIndex} - ${index}`) 
+    console.log(`current pic: product: ${productIndex} - ${index}`)
 
     let tmpPicArray = this.data.productList[productIndex].selectAppraiseModelVOList.picUrl;
     tmpPicArray.splice(index, 1);
@@ -98,7 +98,7 @@ Page({
 
   // 预览图片
   showCurrentPic(e) {
-    let productIndex = e.currentTarget.dataset.prodcutindex; 
+    let productIndex = e.currentTarget.dataset.prodcutindex;
     let index = e.currentTarget.dataset.index; // 图片 Index
     let that = this;
     wx.previewImage({
@@ -176,7 +176,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
   },
 
   /**

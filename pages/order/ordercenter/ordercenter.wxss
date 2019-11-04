@@ -212,5 +212,9 @@
 }
 
 .foot .btn {
-  margin-left: 20rpx;
+  margin-right: 5px
+}
+
+.foot .btn:last-child {
+  margin-right: 0
 }
