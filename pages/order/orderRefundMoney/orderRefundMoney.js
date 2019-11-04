@@ -136,8 +136,25 @@ Page({
 
   // 确认退货
   returnConfired() {
+
+    /*
+      returnStatus: 1-退货审核中 2-退货通过 3-退货中 4-退货完成 -->
+      orderStatus : 订单状态
+                            0 订单创建成功等待付款，
+                            1xx 表示订单取消和删除等状态  101订单已取消，102订单已删除
+                            2xx 表示订单支付状态 201订单已付款，等待发货
+                            3xx 表示订单物流相关状态 300订单已发货， 301用户确认收货
+                            4xx 表示订单退换货相关的状态 401 没有发货，退款 402 已收货，退款退货
+
+      shippingStatus    0 全部 1 待付款 2 待发货 3 已发货 4 等评价 5 退款售后  */
     console.log(this.data.packageStatusId);
-    if (this.data.packageStatusId === 0) {
+    if (order.shoppingStatus === 2 && this.data.returnReasonId === 2) {
+      // TODO:
+      wx.showToast({
+        icon: 'none',
+        title: '您还未收到货，请选择“未收到货”的状态'
+      })
+    } else if (this.data.packageStatusId === 0) {
       wx.showToast({
         icon: 'none',
         title: '请先选择是否收到货'
