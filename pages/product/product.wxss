@@ -434,12 +434,13 @@ font-size: 36rpx;
   align-items: center;
   justify-content: center;
   width: 225rpx;
-  color: #777;
+  color: #fff;
   font-size: 28rpx;
+  background: #b4282d;
 }
 
 .buy.active {
-  background: #ebebeb;
+  background: #981d22;
 }
 
 .add-cart {
@@ -447,13 +448,12 @@ font-size: 36rpx;
   align-items: center;
   justify-content: center;
   width: 225rpx;
-  font-size: 28rpx;
-  color: #fff;
-  background: #b4282d;
+  font-size: 28rpx; 
+  color: #777;
 }
 
 .add-cart.active {
-  background: #981d22;
+  background: #ebebeb;
 }
 
 .coupon-pop .title {
