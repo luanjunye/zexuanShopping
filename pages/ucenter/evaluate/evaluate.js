@@ -98,7 +98,6 @@ Page({
   // 预览图片
   showCurrentPic(e) {
     let productIndex = e.currentTarget.dataset.prodcutindex; 
-
     let index = e.currentTarget.dataset.index; // 图片 Index
     let that = this;
     wx.previewImage({

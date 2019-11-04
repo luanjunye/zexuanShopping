@@ -21,7 +21,7 @@
 
       <view class='uploader-content-item' bindtap='showCurrentPic' wx:for-index="picIndex"  wx:for-item="pic"  data-index="{{picIndex}}" data-prodcutindex="{{index}}" wx:for="{{item.selectAppraiseModelVOList.picUrl}}" wx:key="{{picIndex}}">
         <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-prodcutIndex="{{index}}"  data-index="{{picIndex}}"></image>
-        <image mode='aspectFill' bindtap="showCurrentPic" src="{{pic}}"></image>
+        <image mode='aspectFill' src="{{pic}}"></image>
       </view>
       <view wx:if='{{item.selectAppraiseModelVOList.picUrl.length < 5}}' data-index="{{index}}" class="img-picker" bindtap="imgPickerTaped"></view>
 
