@@ -17,7 +17,6 @@ Page({
     returnEvidencePic: [],
     order: [],
     userId: '',
-    selectAppraiseModelVOS: []
   },
 
   /**
@@ -210,10 +209,11 @@ Page({
   },
   post: function(e) {
     let index = e.currentTarget.dataset.index;
-    let data = this.data.productList[index].comment;
-    let rate = this.data.productList[index].rate;
-    let goodsId = this.data.productList[index].id;
+    let data = this.data.productList[index].selectAppraiseModelVOList.comment;
+    let rate = this.data.productList[index].selectAppraiseModelVOList.rate;
+    let goodsId = this.data.productList[index].goodsId;
     var time = util.formatTime(new Date());
+    console.log(data)
     console.log(time)
     if (!data) {
       Toast("请填写评价")
