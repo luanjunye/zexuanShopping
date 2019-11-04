@@ -68,8 +68,10 @@ Page({
         // })
 
         that.setData({
-          productList: list
+          productList: list,
+          order:data
         })
+        console.log(that.data.productList)
       }
     });
   },
@@ -238,21 +240,13 @@ Page({
 
   },
 
-
   post: function(e) {
     let index = e.currentTarget.dataset.index;
     let data = this.data.productList[index].selectAppraiseModelVOList.comment;
     let rate = this.data.productList[index].selectAppraiseModelVOList.rate;
-<<<<<<< HEAD
     let goodsId = this.data.productList[index].goodsId;
     var time = util.formatTime(new Date());
-    console.log(data)
-=======
-    let goodsId = this.data.productList[index].id;
-    var time = util.formatTime(new Date());
     let that = this;
->>>>>>> refs/remotes/origin/master
-    console.log(time)
     if (!data) {
       Toast("请填写评价")
       return;

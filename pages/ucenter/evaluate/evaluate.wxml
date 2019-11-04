@@ -7,30 +7,30 @@
       <text class="specDesc">{{item.type}}</text>
     </view>
   </view>
-  <view class="rate-wrap">
-    评分
-    <i-rate class="rate" value="{{item.selectAppraiseModelVOList.rate}}" data-index="{{index}}" bind:change="changeRate"></i-rate>
-    {{rateText[item.selectAppraiseModelVOList.rate-1]}}
-  </view>
-  <van-field value="{{ item.selectAppraiseModelVOList.comment }}" data-index="{{index}}" bind:change="changeInput" type="textarea" placeholder="填写高质量的评价，即可参与抽奖哦~" autosize border="{{ false }}" class="input" />
 
-
-  <view class="uploader">
-    <view class="uploader-title">上传凭证(最多5张)</view>
-    <view class="uploader-content">
-
-      <view class='uploader-content-item' bindtap='showCurrentPic' wx:for-index="picIndex"  wx:for-item="pic"  data-index="{{picIndex}}" data-prodcutindex="{{index}}" wx:for="{{item.selectAppraiseModelVOList.picUrl}}" wx:key="{{picIndex}}">
-        <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-prodcutIndex="{{index}}"  data-index="{{picIndex}}"></image>
-        <image mode='aspectFill' src="{{pic}}"></image>
-      </view>
-      <view wx:if='{{item.selectAppraiseModelVOList.picUrl.length < 5}}' data-index="{{index}}" class="img-picker" bindtap="imgPickerTaped"></view>
-
-    </view>
-  </view>
 
   <view wx:if="{{item.selectAppraiseModelVOList.commentStatus==0}}" class="post">
 
+    <view class="rate-wrap">
+      评分
+      <i-rate class="rate" value="{{item.selectAppraiseModelVOList.rate}}" data-index="{{index}}" bind:change="changeRate"></i-rate>
+      {{rateText[item.selectAppraiseModelVOList.rate-1]}}
+    </view>
+    <van-field value="{{ item.selectAppraiseModelVOList.comment }}" data-index="{{index}}" bind:change="changeInput" type="textarea" placeholder="填写高质量的评价，即可参与抽奖哦~" autosize border="{{ false }}" class="input" />
 
+
+    <view class="uploader">
+      <view class="uploader-title">上传凭证(最多5张)</view>
+      <view class="uploader-content">
+
+        <view class='uploader-content-item' bindtap='showCurrentPic' wx:for-index="picIndex" wx:for-item="pic" data-index="{{picIndex}}" data-prodcutindex="{{index}}" wx:for="{{item.selectAppraiseModelVOList.picUrl}}" wx:key="{{picIndex}}">
+          <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-prodcutIndex="{{index}}" data-index="{{picIndex}}"></image>
+          <image mode='aspectFill' src="{{pic}}"></image>
+        </view>
+        <view wx:if='{{item.selectAppraiseModelVOList.picUrl.length < 5}}' data-index="{{index}}" class="img-picker" bindtap="imgPickerTaped"></view>
+
+      </view>
+    </view>
     <!-- <wux-upload listType="picture-card" max="5" url="https://www.skyvow.cn/api/common/file" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
       <view class="upload">
         <van-icon name="photo-o" size="23px" color="#999" />上传图片</view>
@@ -41,8 +41,18 @@
     </view>
   </view>
   <view wx:if="{{item.selectAppraiseModelVOList.commentStatus==1}}" class="post">
+   <view class="rate-wrap">
+      评分
+      <i-rate class="rate" value="{{item.selectAppraiseModelVOList.rate}}" data-index="{{index}}" ></i-rate>
+      {{rateText[item.selectAppraiseModelVOList.rate-1]}}
+    </view>
     <view class="time">{{item.selectAppraiseModelVOList.commentTime}}</view>
     <view class="content">{{item.selectAppraiseModelVOList.comment}}</view>
+    <view class="evaluate_img">
+      <view class='uploader-content-item' bindtap='showCurrentPic' wx:for-index="picIndex" wx:for-item="pic" data-index="{{picIndex}}" data-prodcutindex="{{index}}" wx:for="{{item.selectAppraiseModelVOList.picUrl}}" wx:key="{{picIndex}}">
+          <image mode='aspectFill' src="{{pic}}"></image>
+        </view>
+        </view>
   </view>
 </view>
 

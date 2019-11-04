@@ -171,3 +171,9 @@
   width: 32px;
   height: 2px;
 }
+
+.evaluate_img{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
