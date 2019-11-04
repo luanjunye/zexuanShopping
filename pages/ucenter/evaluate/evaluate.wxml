@@ -13,23 +13,29 @@
     {{rateText[item.selectAppraiseModelVOList.rate-1]}}
   </view>
   <van-field value="{{ item.selectAppraiseModelVOList.comment }}" data-index="{{index}}" bind:change="changeInput" type="textarea" placeholder="填写高质量的评价，即可参与抽奖哦~" autosize border="{{ false }}" class="input" />
-   <view class="uploader">
-      <view class="uploader-title">上传凭证(最多5张)</view>
-      <view class="uploader-content">
-        <view class='uploader-content-item' bindtap='showCurrentPic' data-index="{{index}}" wx:for="{{returnEvidencePic}}" wx:key="{{index}}">
-          <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-index="{{index}}"></image>
-          <image mode='aspectFill' src="{{item}}"></image>
-        </view>
-        <view wx:if='{{returnEvidencePic.length < 5}}' class="img-picker" bindtap="imgPickerTaped"></view>
+
+
+  <view class="uploader">
+    <view class="uploader-title">上传凭证(最多5张)</view>
+    <view class="uploader-content">
+
+      <view class='uploader-content-item' bindtap='showCurrentPic' wx:for-index="picIndex"  wx:for-item="pic"  data-index="{{picIndex}}" data-prodcutindex="{{index}}" wx:for="{{item.selectAppraiseModelVOList.picUrl}}" wx:key="{{picIndex}}">
+        <image src='/assets/close.png' class="close" capture-catch:tap="removeCurrentPic" data-prodcutIndex="{{index}}"  data-index="{{picIndex}}"></image>
+        <image mode='aspectFill' src="{{pic}}"></image>
       </view>
+      <view wx:if='{{item.selectAppraiseModelVOList.picUrl.length < 5}}' data-index="{{index}}" class="img-picker" bindtap="imgPickerTaped"></view>
+
     </view>
+  </view>
+
   <view wx:if="{{item.selectAppraiseModelVOList.commentStatus==0}}" class="post">
-    
+
+
     <!-- <wux-upload listType="picture-card" max="5" url="https://www.skyvow.cn/api/common/file" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
       <view class="upload">
         <van-icon name="photo-o" size="23px" color="#999" />上传图片</view>
     </wux-upload> -->
-   
+
     <view class="bottom">
       <van-button data-index="{{index}}" size="small" custom-class="btn" bindtap="post">提交</van-button>
     </view>

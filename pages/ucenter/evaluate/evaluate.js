@@ -32,6 +32,46 @@ Page({
         userId: userId
       })
     }
+
+
+
+    let data = wx.getStorageSync("currOrder");
+    console.log(data)
+    let list = []
+    let that = this
+
+    util.request(api.OrderDetail, {
+      id: data.id,
+    }, "POST").then(function (res) {
+      if (res.code === 0) {
+        res.orderInfoVO.list.forEach(item => {
+          list.push({
+            goodsId: item.goodsId,
+            money: item.money,
+            name: item.name,
+            num: item.num,
+            type: item.type,
+            url: item.url,
+            selectAppraiseModelVOList: {
+              comment: item.selectAppraiseModelVOList.comment ? item.selectAppraiseModelVOList.comment : '',
+              commentStatus: item.selectAppraiseModelVOList.commentStatus ? item.selectAppraiseModelVOList.commentStatus : '',
+              commentTime: item.selectAppraiseModelVOList.commentTime ? item.selectAppraiseModelVOList.commentTime : '',
+              goodsId: item.selectAppraiseModelVOList.goodsId ? item.selectAppraiseModelVOList.goodsId : '',
+              picUrl: item.selectAppraiseModelVOList.picUrl ? item.selectAppraiseModelVOList.picUrl : [],
+              rate: item.selectAppraiseModelVOList.rate ? item.selectAppraiseModelVOList.rate : 5,
+            }
+          })
+        })
+
+        // that.setData({
+        //   productList: res.orderInfoVO.list
+        // })
+
+        that.setData({
+          productList: list
+        })
+      }
+    });
   },
 
   /**
@@ -43,31 +83,32 @@ Page({
 
   // 删除当前图片
   removeCurrentPic(e) {
-    let index = e.currentTarget.dataset.index;
-    let tmpPicArray = this.data.returnEvidencePic;
+    let productIndex = e.currentTarget.dataset.prodcutindex;
+    let index = e.currentTarget.dataset.index; // 商品 Index
+    console.log(`current pic: product: ${productIndex} - ${index}`) 
+
+    let tmpPicArray = this.data.productList[productIndex].selectAppraiseModelVOList.picUrl;
     tmpPicArray.splice(index, 1);
     this.setData({
-      returnEvidencePic: tmpPicArray
+      [`productList[${productIndex}].selectAppraiseModelVOList.picUrl`]: tmpPicArray
     })
   },
 
   // 预览图片
   showCurrentPic(e) {
-    let index = e.currentTarget.dataset.index;
+    let productIndex = e.currentTarget.dataset.prodcutindex; 
+    let index = e.currentTarget.dataset.index; // 图片 Index
     let that = this;
-    if (that.data.returnEvidencePic.length < 1) {
-      return
-    } else {
-      wx.previewImage({
-        urls: [that.data.returnEvidencePic[index]],
-      })
-    }
+    wx.previewImage({
+      urls: [that.data.productList[productIndex].selectAppraiseModelVOList.picUrl[index]],
+    })
   },
 
 
   // 图片选择
-  imgPickerTaped() {
+  imgPickerTaped(e) {
     let that = this;
+    let productId = e.currentTarget.dataset.index; // 商品 Index
     wx.chooseImage({
       count: 5,
       compressed: ['compressed'],
@@ -75,9 +116,11 @@ Page({
         let hasReachMaxCountOfUploadPic = false; // 是否达到最大上传数量，在上传最后提示用
 
         // 新旧图片数量
-        let oldPicCount = that.data.returnEvidencePic.length;
+        let oldPathArray = that.data.productList[productId].selectAppraiseModelVOList.picUrl;
+        oldPathArray = oldPathArray ? oldPathArray : []; // picUrl 为 null 时设为 []
+        let oldPicCount = oldPathArray.length;
         let newPicCount = res.tempFilePaths.length;
-        console.log(oldPicCount, newPicCount);
+        console.log('oldPicCount: ', oldPicCount, 'newPicCount: ', newPicCount);
 
         if (oldPicCount + newPicCount > maxCountPics) {
           hasReachMaxCountOfUploadPic = true
@@ -87,7 +130,8 @@ Page({
         console.log(hasReachMaxCountOfUploadPic)
 
         // 路径参数
-        let tempFilePaths = that.data.returnEvidencePic;
+        let tempFilePaths = that.data.productList[productId].selectAppraiseModelVOList.picUrl;
+        tempFilePaths = tempFilePaths ? tempFilePaths : [];
         let nowTime = util.formateDate(new Date(), 'yyyy-MM-dd');
         let evidenceFinalUrls = [];
 
@@ -100,10 +144,9 @@ Page({
           //上传图片
           uploadImage(item, 'images/' + nowTime + '/',
             function(result) {
-              let tempLastPicArray = that.data.returnEvidencePic;
-              tempLastPicArray.push(result);
+              oldPathArray.push(result);
               that.setData({
-                returnEvidencePic: tempLastPicArray
+                [`productList[${productId}].selectAppraiseModelVOList.picUrl`]: oldPathArray
               })
               console.log("======上传成功图片地址为：", result);
               wx.hideLoading();
@@ -131,20 +174,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    let data = wx.getStorageSync("currOrder");
-    console.log(data)
-    let list = []
-    let that = this
-
-    util.request(api.OrderDetail, {
-      id: data.id,
-    }, "POST").then(function(res) {
-      if (res.code === 0) {
-       that.setData({
-         productList:res.orderInfoVO.list
-       })
-      }
-    });
+    
   },
 
   /**
@@ -207,13 +237,21 @@ Page({
     });
 
   },
+
+
   post: function(e) {
     let index = e.currentTarget.dataset.index;
     let data = this.data.productList[index].selectAppraiseModelVOList.comment;
     let rate = this.data.productList[index].selectAppraiseModelVOList.rate;
+<<<<<<< HEAD
     let goodsId = this.data.productList[index].goodsId;
     var time = util.formatTime(new Date());
     console.log(data)
+=======
+    let goodsId = this.data.productList[index].id;
+    var time = util.formatTime(new Date());
+    let that = this;
+>>>>>>> refs/remotes/origin/master
     console.log(time)
     if (!data) {
       Toast("请填写评价")
@@ -229,7 +267,7 @@ Page({
       starClass: rate,
       goodsId: goodsId,
       orderId: this.data.order.id,
-      url: []
+      url: that.data.productList[index].selectAppraiseModelVOList.picUrl
     }, "POST").then(function(res) {
       if (res.code === 0) {
         console.log(res)
