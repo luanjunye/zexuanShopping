@@ -222,6 +222,18 @@ Page({
       url: '/pages/shoppingcart/shoppingcart',
     })
   },
+
+  copyWxCode(){
+    wx.setClipboardData({
+      data: 'KG17766504166',
+      success(res) {
+        wx.showToast({
+          title: '已复制客服微信号',
+        })
+      }
+    })
+  },
+
   addToCart: function() {
     let that = this
     if (this.checkLogin()) {
@@ -252,7 +264,7 @@ Page({
       this.setData({
         cartList: cartList
       });
-   
+
       Toast("加入购物车成功")
     }
   },

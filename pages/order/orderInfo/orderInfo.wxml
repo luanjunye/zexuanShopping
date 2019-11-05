@@ -3,7 +3,9 @@
 
 <modal title='微信客服' hidden="{{!modalShow}}" bindcancel='hideModal' bindconfirm='hideModal'>
     <image bindtap="previewQr" class="modal-img" src="{{serviceQrUrl}}" mode="aspectFit"></image>
-    <text class="modal-text">请截图保存客服二维码</text>
+    <view class="modal-text">
+        <text>KG17766504166</text><button class="btn-copy" bindtap="copyWxCode">复制微信号</button>
+    </view>
 </modal>
 
   <view class="orderContainer">

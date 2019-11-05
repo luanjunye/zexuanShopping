@@ -25,6 +25,17 @@ Page({
     mobile: ''
   },
 
+  copyWxCode(){
+    wx.setClipboardData({
+      data: 'KG17766504166',
+      success(res) {
+        wx.showToast({
+          title: '已复制客服微信号',
+        })
+      }
+    })
+  },
+
   imageLoad: function(e) {
     var $width = e.detail.width, //获取图片真实宽度
       $height = e.detail.height,

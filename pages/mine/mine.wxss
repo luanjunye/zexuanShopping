@@ -262,15 +262,29 @@
   padding-top: 15rpx;
 }
 
-/* 官方客服 */
-.modal-img{
- width: 100%;
+/* modal */
+.modal-img {
+    width: 100%;
 }
-.modal-text{
-    display: block;
-    padding: 5px;
-    text-align: center;
+
+.modal-text {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 5px 20px;
     font-size: 1rem;
+}
+
+.modal-text text {
+    text-align: center;
+    display: block;
+}
+.btn-copy {
+    margin-top: 5px;
+    display: block;
+    padding: 3px 6px;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 /* 其他功能布局结束 */

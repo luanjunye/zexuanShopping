@@ -39,6 +39,17 @@ Page({
     })
   },
 
+  copyWxCode(){
+    wx.setClipboardData({
+      data: 'KG17766504166',
+      success(res) {
+        wx.showToast({
+          title: '已复制客服微信号',
+        })
+      }
+    })
+  },
+
   // 跳转物流信息页面
   goToShippingInfoPage() {
     console.log(this.data.order);
