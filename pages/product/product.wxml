@@ -48,7 +48,7 @@
       </view>
     </view>
 
-    <view class="attr-wrap" hover-class="active" bindtap="openAddress">
+    <!-- <view class="attr-wrap" hover-class="active" bindtap="openAddress">
       <view class="delivery">
         <view class="title">配送</view>
         <view class="right">
@@ -59,7 +59,7 @@
           <image class="arrow" src="/assets/rightArrow.png"></image>
         </view>
       </view>
-    </view>
+    </view> -->
 
     <view class="attr-wrap" hover-class="active" bindtap="openService">
       <view class="service">
