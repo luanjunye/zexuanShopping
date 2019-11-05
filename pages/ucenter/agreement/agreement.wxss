@@ -1,6 +1,7 @@
 @charset "UTF-8";
+
 .article-bg {
-  background-color: #DD8083;
+  background-color: #dd8083;
   padding: 8px 8px 18px 8px;
 }
 
@@ -17,18 +18,18 @@
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   border-radius: 18px;
-  border: 1rpx solid #DD8083;
+  border: 1rpx solid #dd8083;
   padding: 10px;
 }
 
 .title {
   margin-bottom: 20px;
-  border-bottom: 1rpx solid #DD8083;
+  border-bottom: 1rpx solid #dd8083;
   line-height: 1;
   padding: 15px 0;
   text-align: center;
   font-size: 1.2rem;
-  color: #EA3732;
+  color: #ea3732;
 }
 
 .p {
@@ -36,6 +37,14 @@
   font-size: 0.9rem;
   text-indent: 2rem;
   margin-bottom: 5px;
+}
+
+.d {
+  line-height: 1.5;
+  font-size: 0.9rem;
+  text-indent: 2rem;
+  margin-bottom: 5px;
+  text-align: right;
 }
 
 .bold {

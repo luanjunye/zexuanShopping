@@ -21,6 +21,7 @@ module.exports = {
   //购物车
   CartPage: API_BASE_URL + 'cart/page', //查询购物车
   CartSave: API_BASE_URL + 'cart/save/json', //添加购物车
+  CartUpdate: API_BASE_URL + 'cart/update/num', //修改购物车
   CartDelete: API_BASE_URL + 'cart/delete',//删除购物车
   //地址管理
   AddressPage: API_BASE_URL + 'address/page', //地址管理

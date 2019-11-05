@@ -147,10 +147,20 @@ Page({
   //产品的购买数量
   changeCount: function(e) {
     let v = e.detail.value;
+    let that = this
     let index = e.currentTarget.dataset.index;
     this.setData({
       [`cartList[${index}].count`]: v
     })
+    util.request(api.CartUpdate, {
+      userId: this.data.userId,
+      number: v,
+      id: that.data.cartList[index].id
+    }, "POST").then(function (res) {
+      if (res.code === 0) {
+        console.log(res)
+      }
+    });
     this.setCheckedTotalPrice();
     this.setCheckedTotalCount();
   },

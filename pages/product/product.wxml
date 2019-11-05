@@ -119,8 +119,8 @@
   <view class="b-wrap cart" hover-class="active" bindtap="openCartPage">
     <van-icon custom-class="icon-info" name="shopping-cart-o" info="{{count>0 ? count:''}}" color="#777" size="20px" />
   </view>
+    <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
   <view class="buy" hover-class="active" bindtap="buyNow">立即购买</view>
-  <view class="add-cart" hover-class="active" bindtap="addToCart">加入购物车</view>
 </view>
 
 <!-- 服务详情 -->
