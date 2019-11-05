@@ -202,8 +202,9 @@ Page({
 
   // 确认收货
   confirmReceive(e) {
+    let that = this;
     Dialog.confirm({
-      message: '确认收货后钱款会支付给商家'
+      message: '是否确认收货'
     }).then(() => {
       // on confirm
       let index = e.currentTarget.dataset.index;
@@ -217,6 +218,14 @@ Page({
           wx.showToast({
             title: '确认收货成功',
           })
+          setTimeout(function () {
+            that.setData({
+              shippingStatus: 4,
+            })
+            that.requestData();
+          }, 1500);
+          
+
         } else {
           wx.showToast({
             title: '确认收货失败',
@@ -224,18 +233,21 @@ Page({
         }
       });
 
-      // 更新处理当前页面数据
-      let tempOrder = [];
-      this.data.order.forEach(function(v) {
-        if (id == v.id) {
-          v.shippingStatus = 4;
-        }
-        tempOrder.push(v)
-      })
-      this.setData({
-        order: tempOrder,
-        [`orderList[${index}].shippingStatus`]: 4,
-      })
+
+
+      // // 更新处理当前页面数据
+      // let tempOrder = [];
+      // that.data.order.forEach(function(v) {
+      //   if (id == v.id) {
+      //     v.shippingStatus = 4;
+      //   }
+      //   tempOrder.push(v)
+      // })
+      // that.setData({
+      //   order: tempOrder,
+      //   shippingStatus: 4,
+      //   [`orderList[${index}].shippingStatus`]: 4,
+      // })
 
     }).catch(() => {
       // on cancel
