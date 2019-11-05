@@ -11,7 +11,7 @@ Page({
     count: {},
     goodCommentRate: 100,
     rate: 5,
-    //comment: [],
+    comment: [],
     commentList:[],
     
   },
@@ -30,7 +30,10 @@ Page({
         if (res.code === 0) {
           console.log(res)
           data.commentList = res.commentList
-          that.setData(data)
+          that.setData({
+            commentList:data.commentList,
+            comment:data.commentList
+          })
         }
       });
       util.request(api.EvaluateListInfo, {
@@ -112,7 +115,7 @@ Page({
       });
     } else if (tag == "pic") {
       data = data.filter(v => {
-        return v.pics.length > 0;
+        return v.urlList.length > 0;
       });
     } else if (tag == "add") {
       data = data.filter(v => {
@@ -132,7 +135,7 @@ Page({
       })
     }
     this.setData({
-      commentList: data
+      comment: data
     })
   }
 })
