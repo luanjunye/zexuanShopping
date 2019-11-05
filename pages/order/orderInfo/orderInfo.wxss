@@ -139,6 +139,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 30rpx;
+  padding-top: 10rpx;
 }
 
 .product .item .body .product-info .body_center .explain {

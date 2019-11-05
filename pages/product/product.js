@@ -21,7 +21,7 @@ Page({
     specificationList: {},
     userId: "",
     id: "",
-    count:0,
+    count: 0,
     modalShow: false,
     serviceQrUrl: ''
   },
@@ -55,7 +55,7 @@ Page({
       if (res.code === 0) {
         data.product = res.product
         that.setData(data)
-        console.log(res)
+        console.log(res.product.comment.goodComment)
       }
     });
 
@@ -118,7 +118,7 @@ Page({
      */
     let isLogin = wx.getStorageSync('isLogin')
     let userId = wx.getStorageSync('userId')
-   console.log(userId)
+    console.log(userId)
     if (isLogin && userId) {
       this.setData({
         isLogin: isLogin,
@@ -252,7 +252,7 @@ Page({
       this.setData({
         cartList: cartList
       });
-   
+
       Toast("加入购物车成功")
     }
   },
@@ -261,7 +261,7 @@ Page({
       wx.navigateTo({
         url: '/pages/auth/tologin/tologin',
       })
-    }else{
+    } else {
       return true
     }
   },
@@ -269,8 +269,7 @@ Page({
   // 客服微信二维码
   showModal() {
     let that = this;
-    util.request(api.Service, {
-    }, "GET").then(res => {
+    util.request(api.Service, {}, "GET").then(res => {
       console.log(res);
       that.setData({
         serviceQrUrl: res.data,
@@ -285,16 +284,16 @@ Page({
     })
   },
 
-  customerService:function(){
+  customerService: function() {
     this.showModal()
   },
 
-  selectCart: function(){
+  selectCart: function() {
     let that = this
     var data = new Object();
     util.request(api.ProductInCart, {
       userId: this.data.userId,
-    }, "POST").then(function (res) {
+    }, "POST").then(function(res) {
       if (res.code === 0) {
         data.count = res.count
         that.setData(data)

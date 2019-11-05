@@ -15,6 +15,6 @@
     <view class="tag {{active=='bad' ? 'selected':''}}" data-value="bad" bindtap="changeTag">差评({{count.bad}})</view>
   </view>
   <view class="item-wrap">
-    <comment data="{{item}}" wx:for="{{commentList}}" wx:key="{{index}}" class="item"></comment>
+    <comment data="{{item}}" wx:for="{{comment}}" wx:key="{{index}}" class="item"></comment>
   </view>
 </view>
