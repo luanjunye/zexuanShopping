@@ -53,7 +53,7 @@
         </view>
       </view>
       <view class="foot">
-      <!-- returnStatus: 1-退货审核中 2-退货通过 3-退货中 4-退货完成 -->
+      <!-- returnStatus: 1-退货审核中 2-退货通过 3-退货中 4-退货完成 5-退款被拒 -->
       <!-- orderStatus :订单状态
                             0 订单创建成功等待付款，
                             1xx 表示订单取消和删除等状态  101订单已取消，102订单已删除
@@ -69,6 +69,8 @@
         <van-button wx:if='{{order.returnStatus === 1}}' plain type="default" size="small" class="btn">退款申请审核中</van-button>
         <van-button wx:if='{{order.returnStatus === 3}}' plain type="default" size="small" class="btn">退货中</van-button>
         <van-button wx:if='{{order.returnStatus === 4}}' plain type="default" size="small" class="btn" >退货完成</van-button>
+        <van-button wx:if='{{order.returnStatus === 5}}' plain type="default" size="small" class="btn" bindtap="toReturnPage">退款被拒，再次申请</van-button>
+
 
       </view>
       <view class="bottom">
