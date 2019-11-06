@@ -114,8 +114,8 @@
         </view>
     </modal>
 
-  <modal title='联系我们' hidden="{{!mobileShow}}" bindcancel='hideMobile' bindconfirm='hideMobile'>
-    <text class="modal-text">{{mobile}}</text>
+  <modal title='联系我们' hidden="{{!mobileShow}}" bindcancel='hideMobile' cancel-text="关闭" confirm-text="拨打" bindconfirm='callUs'>
+    <text class="modal-text text-center">{{mobile}}</text>
 </modal>
 
 </view>

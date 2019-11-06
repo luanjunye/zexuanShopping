@@ -142,6 +142,14 @@ Page({
     })
   },
 
+  // 执行呼叫
+  callUs(){
+    let that = this;
+    wx.makePhoneCall({
+      phoneNumber: that.data.mobile  //仅为示例，并非真实的电话号码
+    })
+  },
+
   hideMobile() {
     this.setData({
       mobileShow: false
