@@ -65,6 +65,7 @@ Page({
       let product = wx.getStorageSync("checkoutProduct");
       let specification = wx.getStorageSync("specification");
       let count = wx.getStorageSync("count");
+      console.log(count)
       this.setData({
         productList: [{
           id: product.id,
@@ -106,10 +107,12 @@ Page({
       let cartList = wx.getStorageSync("cartList");
       let data = [];
       let goodsIdCount = [];
+      let count = 0;
+      console.log(cartList)
       cartList.forEach(function(v) {
         if (v.checked) {
           data.push(v)
-          console.log(v.goodsId)
+          count += v.count
           goodsIdCount.push({
             "goodsId": v.goodsId,
             "num": v.count,
@@ -121,6 +124,7 @@ Page({
         productList: data,
         goodsIdCount: goodsIdCount,
         type:1,
+        count: count,
         totalPrice: wx.getStorageSync("totalPrice")
       })
 
