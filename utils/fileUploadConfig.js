@@ -1,4 +1,4 @@
-var fileHost = "https://zexuanxiaochengxu.oss-cn-hangzhou.aliyuncs.com";//你的阿里云OSS地址  在你当前小程序的公众号后台的uploadFile 合法域名也要配上这个域名
+var fileHost = "https://zexuanxiaochengxu.oss-cn-hangzhou.aliyuncs.com/";  //你的阿里云OSS地址  在你当前小程序的公众号后台的uploadFile 合法域名也要配上这个域名
 var config = {
   uploadImageUrl: `${fileHost}`, // 默认存在根目录，可根据需求改
   AccessKeySecret: 'DBiMQNglkSajRJdPNOVGs23LmtQLf9',        // AccessKeySecret 去你的阿里云上控制台上找
