@@ -173,7 +173,7 @@ Page({
       }
     })
     this.setData({
-      totalPrice: totalPrice
+      totalPrice: Number(totalPrice.toFixed(1))
     })
     this.judgeExpressFree();
   },
