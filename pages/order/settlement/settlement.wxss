@@ -13,6 +13,7 @@
 /* 地址栏布局开始 */
 
 .address_box {
+  padding:10px;
   margin: 30rpx;
   background: #fff;
   display: flex;
@@ -60,7 +61,6 @@
   background: #fff;
   margin: 0rpx 30rpx;
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .product .item {
@@ -159,6 +159,7 @@
 /* 商品信息布局结束 */
 
 .agreement {
+  padding-bottom: 80px;
   display: flex;
   padding-left: 32rpx;
   height: 130rpx;
