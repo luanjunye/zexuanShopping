@@ -60,7 +60,6 @@ Page({
     }
     // 读取购物车缓存数据
     let cartList = wx.getStorageSync("cartList");
-    console.log(cartList)
     // 模拟数据
     if (!cartList) {
       util.request(api.CartPage, {
@@ -84,7 +83,6 @@ Page({
         userId: userId
       }, "GET").then(function(res) {
         if (res.code === 0) {
-          console.log(res.data.list)
           data.cartList = res.data.list
           that.setData(data)
           wx.setStorageSync("cartList", cartList);
@@ -188,7 +186,7 @@ Page({
       let rest = this.data.shipping - this.data.totalPrice;
       this.setData({
         isExpressFree: false,
-        restExpressFree: rest,
+        restExpressFree: Number(rest.toFixed(1)),
         freightPrice: this.data.freight
       })
     }
