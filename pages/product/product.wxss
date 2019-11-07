@@ -252,7 +252,7 @@
 
 .service-wrap .c {
   height: 600rpx;
-  margin-bottom: 50rpx;
+  margin-bottom: 50px;
 }
 
 .service-wrap .c .desc {
