@@ -289,21 +289,25 @@ Page({
       wx.navigateTo({
         url: '/pages/auth/tologin/tologin',
       })
+    } else {
+      return true
     }
   },
   toOrder: function(e) {
     let type = e.currentTarget.id;
     if (type <= 5) {
-      this.checkLogin();
-      getApp().globalData.type = type;
-      wx.switchTab({
-        url: '/pages/order/ordercenter/ordercenter',
-      })
+      if(this.checkLogin()){
+        getApp().globalData.type = type;
+        wx.switchTab({
+          url: '/pages/order/ordercenter/ordercenter',
+        })
+      }
     } else if (type == 6) {
-      this.checkLogin();
-      wx.navigateTo({
-        url: '/pages/ucenter/address/index/index',
-      })
+     if(this.checkLogin()){
+       wx.navigateTo({
+         url: '/pages/ucenter/address/index/index',
+       })
+     }
     } else if (type == 9) {
       wx.navigateTo({
         url: '/pages/ucenter/antiCheating/antiCheating',
