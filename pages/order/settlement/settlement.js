@@ -25,7 +25,7 @@ Page({
     userId: "",
     remark: "",
     goodsIdCount: [],
-    type:0,
+    type: 0,
     shipping: 0,
     freight: 0
   },
@@ -84,7 +84,7 @@ Page({
           goodsId: product.id,
           num: count
         }],
-        type:2
+        type: 2
       })
 
       // 判断运费
@@ -123,7 +123,7 @@ Page({
       this.setData({
         productList: data,
         goodsIdCount: goodsIdCount,
-        type:1,
+        type: 1,
         count: count,
         totalPrice: wx.getStorageSync("totalPrice")
       })
@@ -147,6 +147,7 @@ Page({
   },
 
   remark_input: function(e) {
+    console.log(e)
     this.setData({
       'remark': e.detail.value
     })
@@ -163,7 +164,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
 
   },
 
@@ -213,7 +214,7 @@ Page({
     })
   },
 
-  toAgreement:function(){
+  toAgreement: function() {
     wx.navigateTo({
       url: '/pages/ucenter/agreement/agreement',
     })
@@ -232,7 +233,7 @@ Page({
         let id = res.id
         util.request(api.Pay, {
           id: id,
-        }, "POST").then(function (res) {
+        }, "POST").then(function(res) {
           console.log(res);
           if (res.success) {
             let entity = res.entity;
@@ -246,7 +247,7 @@ Page({
                 wx.showToast({
                   title: '支付成功',
                 });
-                setTimeout(function () {
+                setTimeout(function() {
                   wx.switchTab({
                     url: '/pages/order/ordercenter/ordercenter',
                   })

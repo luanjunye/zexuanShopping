@@ -273,6 +273,7 @@ Page({
   
   //底部统计栏下单事件
   checkout: function() {
+    console.log(this.data.noChecked)
     if (this.data.noChecked) {
       return;
     }
